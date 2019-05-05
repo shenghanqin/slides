@@ -10,11 +10,9 @@
 行业用法
 
 * 矢量图
-  * 背景图
-  * 图标
+  * 背景图或图标，如apple官网logo
 * SVG Sprite
-  * symbol 定义形状，以id命名，`<symbol id="icon-arrow-left" viewBox="0 0 1024 1024"></symbol>`
-  * `<use xlink:href="#icon-arrow-left"/>`
+  * symbol 定义形状，以id命名并使用，`<symbol id="icon-arrow-left" ></symbol>``<use xlink:href="#icon-arrow-left"/>`
   * CC这边业务相对分散，图标尚未集中管理
 * SVG 动画，更多可能性 
 
