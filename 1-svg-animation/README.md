@@ -10,11 +10,9 @@
 行业用法
 
 * 矢量图
-  * 背景图
-  * 图标
+  * 背景图或图标，如apple官网logo
 * SVG Sprite
-  * symbol 定义形状，以id命名，`<symbol id="icon-arrow-left" viewBox="0 0 1024 1024"></symbol>`
-  * `<use xlink:href="#icon-arrow-left"/>`
+  * symbol 定义形状，以id命名并使用，`<symbol id="icon-arrow-left" ></symbol>``<use xlink:href="#icon-arrow-left"/>`
   * CC这边业务相对分散，图标尚未集中管理
 * SVG 动画，更多可能性 
 
@@ -35,18 +33,18 @@
 
 
 ## CSS 动画
-演示基本变换
+演示基本变换，包含opacity、transform等
 
 使用场景为，平常的伸缩动画，简单的变形动画
-
-我想要的是矢量图形，可以随意变色，动画细节更丰富
 
 * hover 动画 吸顶动画
 * 特别说明，网页动画举例 + animate.css
 * 搜索推荐位平移动画 分析 height translate3d 调优；intro 展开动画 重复渲染 height
 * `animation-timing-function`
-* `animation-timing-？？？` 暂停
+* `animation-play-state: paused` 将动画暂停
 
+
+我想要的是矢量图形，可以随意变色，动画细节更丰富
 
 ## svg动画的技巧
 
@@ -57,11 +55,10 @@
 路径动画1.5：起始点，动画细节那么可控
 
 路径动画2：相同路径，实现动画巧妙变化，但兼容性不好
+
 路径动画2.5：svg animation smil： svg 初始实现方式；但写法麻烦
 path="M60, 100 L20, 20"
-
-css
-path d("M60, 100 L20, 20")
+css： path d("M60, 100 L20, 20")
 
 snap.svg或第三方库， path 
 
@@ -69,7 +66,7 @@ snap.svg或第三方库， path
 
 
 
-* svg animation smil要被废弃
+* svg animation smil要被废弃，如`<animateTransform attributeName="transform" type="scale" />`
 * svg动画兼容性：在SVG 1.1中,圆的半径是 attribute而不是 CSS property。safari和Firefox支持不够好
 * svg矢量图形，css动画，可以操作的属性有store-width,fill, transform，opacity等，但不建议操作半径、路径等
 
@@ -77,15 +74,20 @@ snap.svg或第三方库， path
 
 
 
-## CC这边的用法
+## CC 这边的用法
 
 * 背景图：默认2x图，当设计提出需要搞定时，可以用svg代替；其实图标可以直接用svg
 * svg动画：精巧的动画，无需借助第三方动画库即可实现
 * SVG Sprite 需要与设计沟通，出一系列的矢量图
 
+
+
+
+## 未来的想法
+* svg
+* canvas
+* js
+
+本次链接
+
 感谢 [reveal.js](https://github.com/hakimel/reveal.js)
-
-
-svg
-canvas
-js
