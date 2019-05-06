@@ -2,6 +2,9 @@
 
 ## 简介 10分钟
 
+svg概念
+https://baike.baidu.com/item/SVG/63178
+
 好处
 
 ** 矢量图，文件小
