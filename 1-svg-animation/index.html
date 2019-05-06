@@ -25,8 +25,65 @@
 	<body>
 		<div class="reveal">
 			<div class="slides">
-				<section>Slide 1</section>
-				<section>Slide 2</section>
+				<section>
+					<h1>svg动画</h1>
+					<h2>小溪里</h2>
+					<p>2019-05-06</p>
+				</section>
+				<section>
+					<h3>目录</h3>
+					<ul>
+						<li>SVG 简介</li>
+						<li>基本形状</li>
+						<li>CSS常见动画</li>
+						<li>SVG动画技巧</li>
+						<li>我的一些想法</li>
+					</ul>
+				</section>
+				<section>
+					<section>SVG 简介</section>
+					<section>
+						<h3>概念</h3>
+						<p>可缩放矢量图形是基于可扩展标记语言（标准通用标记语言的子集），用于描述二维矢量图形的一种图形格式。它由万维网联盟制定，是一个开放标准。</p>
+					</section>
+					<section>
+						<h3>特点</h3>
+						<ul>
+							<li>SVG 易读取或修改</li>
+							<li>SVG 与 JPEG 和 GIF 图像比起来，尺寸更小，且可压缩性更强。</li>
+							<li>SVG 是矢量的，且可被高质量打印</li>
+							<li>SVG 图像中的文本是可选的，同时也是可搜索的（很适合制作地图）</li>
+						</ul>
+					</section>
+					<section>
+						<h3>关注点</h3>
+						<ul>
+							<li>矢量</li>
+							<li>文件小</li>
+							<li>多色支持</li>
+							<li>动画可与CSS、JS配合</li>
+						</ul>
+					</section>
+					<section>
+						<h3>行业用法</h3>
+						<ul>
+							<li>矢量图
+								<ul>
+									<li>背景图或者图标，如苹果logo、Antd Icon</li>
+								</ul>
+							</li>
+							<li>
+								SVG Sprite
+								<ul>
+									<li>symbol 定义形状，以id命名并使用，<pre><code><symbol id="icon-arrow-left"></symbol>
+									<use xlink:href="#icon-arrow-left" /></code></pre></li>
+									<li>CC这边业务相对分散，图标尚未集中管理</li>
+								</ul>
+							</li>
+							<li>SVG 动画，更多可能性</li>
+						</ul>
+					</section>
+				</section>
 				
 			</div>
 		</div>
@@ -43,7 +100,9 @@
 					{ src: 'plugin/markdown/markdown.js' },
 					{ src: 'plugin/notes/notes.js', async: true },
 					{ src: 'plugin/highlight/highlight.js', async: true }
-				]
+				],
+				hash: true,
+				history: true
 			});
 		</script>
 	</body>
