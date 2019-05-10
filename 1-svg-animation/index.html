@@ -4,7 +4,7 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<title>reveal.js</title>
+		<title>SVG 动画研究 by 小溪里</title>
 
 		<link rel="stylesheet" href="css/reset.css">
 		<link rel="stylesheet" href="css/reveal.css">
@@ -69,22 +69,78 @@
 						<ul>
 							<li>矢量图
 								<ul>
-									<li>背景图或者图标，如苹果logo、Antd Icon</li>
+									<li>背景图或者图标，如苹果官网logo、Antd Icon</li>
+								</ul>
+							</li>
+							<li>SVG 动画，更多可能性
+								<ul>
+									<li>纯CSS动画</li>
+									<li>SVG动画</li>
 								</ul>
 							</li>
 							<li>
 								SVG Sprite
 								<ul>
-									<li>symbol 定义形状，以id命名并使用，<pre><code><symbol id="icon-arrow-left"></symbol>
-									<use xlink:href="#icon-arrow-left" /></code></pre></li>
+									<li>symbol 定义形状，以id命名并使用，</li>
 									<li>CC这边业务相对分散，图标尚未集中管理</li>
 								</ul>
 							</li>
-							<li>SVG 动画，更多可能性</li>
 						</ul>
+						<pre><code>
+<symbol id="icon-arrow-left"></symbol><use xlink:href="#icon-arrow-left"></use>
+						</code></pre>
 					</section>
 				</section>
-				
+				<section>
+					<section>
+						<h1>SVG基本形状</h1>
+						<ul>
+							<li>矩形 &lt;rect&gt;</li>
+							<li>圆形 &lt;circle&gt;</li>
+							<li>椭圆 &lt;ellipse&gt;</li>
+							<li>线 &lt;line&gt;</li>
+							<li>折线 &lt;polyline&gt;</li>
+							<li>多边形 &lt;polygon&gt;</li>
+							<li>路径 &lt;path&gt;</li>
+						</ul>
+					</section>
+					<section>
+						<h3>矩形 与 圆角矩形</h3>
+						<svg xmlns="http://www.w3.org/2000/svg" width="400" height="100" version="1.1">
+							<rect width="150" height="100" fill="blue" />
+							<rect x="160" width="150" height="100" rx="30" fill="blue" />
+						</svg>
+						<pre><code>
+<rect width="150" height="100" fill="blue"></rect>
+<rect x="160" width="150" height="100" rx="30" fill="blue"></rect>
+						</code></pre>
+					</section>
+					<section>
+						<h3>圆 与 椭圆</h3>
+						<svg xmlns="http://www.w3.org/2000/svg" width="400" height="100" version="1.1">
+							<circle cx="100" cy="50" r="50" fill="red" />
+							<ellipse cx="300" cy="50" rx="100" ry="50" fill="blue"  />
+						</svg>
+						<pre>
+							<code>
+<circle cx="100" cy="50" r="50" fill="red"></circle>
+<ellipse cx="300" cy="50" rx="100" ry="50" fill="blue"></ellipse>
+							</code>
+						</pre>
+					</section>
+					<section>
+						<h3>线条</h3>
+						<svg xmlns="http://www.w3.org/2000/svg" width="400" height="400" version="1.1">
+							<line x1="0" y1="0" x2="300" y2="0" stroke-width="2" stroke="red" />
+							<polygon points="20,100 300,210 170,250 123,234" style="fill:#cccccc;
+							stroke:#000000;stroke-width:1" />
+						</svg>
+						<pre><code>
+<line x1="0" y1="0" x2="300" y2="0" stroke-width="2" stroke="red"></line>
+<polygon points="20,100 300,210 170,250 123,234" fill="white"></polygon>
+						</code></pre>
+					</section>
+				</section>
 			</div>
 		</div>
 
