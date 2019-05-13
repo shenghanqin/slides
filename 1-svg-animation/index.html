@@ -191,6 +191,7 @@
 						</svg>
 						<h3 class="svg smaller">性能好</h3>
 						<p>transform 和 opacity，平常的伸缩动画，简单的变形动画</p>
+						<!-- 参考 https://github.com/birtles/cssconf2019 -->
 						<div class=demo-grid>
 							<figure class="fragment move">
 								<svg class=pie>
@@ -541,9 +542,70 @@
 							}
 						</style>
 					</section>
-
+					<section>
+						<h3>Zebra UI 动画效果</h3>
+						<p><a href="http://qares.hjfile.cn/cc/zebra/?path=/story/%E5%8A%A8%E7%94%BB%E7%BB%84%E4%BB%B6-animatedcss-%E5%8A%A8%E7%94%BB%E7%BB%84%E4%BB%B6--%E5%A4%9A%E7%A7%8D%E6%95%88%E6%9E%9C">Zebra 动画效果</a></p>
+						<!-- 内部网址 -->
+					</section>
+					<section>
+						<h3>动画调优实例-搜索广告位</h3>
+						<dl>
+							<dt>V1 Height</dt>
+							<dd>桌面Chrome上动画效果OK，但是iPhone 6S 或者安卓手机上出现抖动</dd>
+							<br />
+							<dt>V2 translate3d</dt>
+							<dd>页面整体平移，在屏幕外的交互要格外注意</dd>
+							<br />
+							<dt>V3 touch代替scroll</dt>
+							<dd>touchend内部滚动后不会立即执行scroll</dd>
+						</dl>
+					</section>
+					<section>
+						<h3>动画调优示例-intro页展开动画</h3>
+						<dl>
+							<dd>height、padding、margin等会导致重排。</dd>
+							<dd>分析动画的元素，防止多余的元素也重新生成，比如cloneElement。</dd>
+						</dl>
+						<p><br />折叠面板示例&nbsp;&nbsp;&nbsp;<a href="https://www.cctalk.com/m/group/666">CCtalk官方活动群</a></p>
+					</section>
 				</section>
-
+				<section>
+					<section>
+						<h1>SVG 动画技巧</h1>
+					</section>
+					<section>（待补充）</section>
+					<section>
+						<h2>小结</h2>
+						<ul>
+							<li>Svg Smil Animation 要被废弃，如`
+							<animateTransform attributeName="transform" type="scale" />`</li>
+							<li>Svg动画兼容性：在SVG 1.1中,圆的半径是 attribute而不是 CSS property。safari和Firefox支持不够好</li>
+							<li>Svg 矢量图形，CSS动画，可以操作的属性有stroke-width,fill, transform，opacity等，但不建议操作半径、路径等</li>
+						</ul>
+					</section>
+				</section>
+				<section>
+					<section>
+						<h1>我还想说</h1>
+					</section>
+					<section>
+						<h3>CCtalk 这边的用法</h3>
+						<ul>
+							<li>背景图：默认2x图，当设计提出需要搞定时，可以用svg代替；其实图标可以直接用svg</li>
+							<li>svg动画：精巧的动画，无需借助第三方动画库即可实现</li>
+							<li>SVG Sprite 需要与设计沟通，出一系列的矢量图</li>
+						</ul>
+					</section>
+					<section>
+						<h3>未来的想法</h3>
+						<ul>
+							<li>深入研究svg</li>
+							<li>Canvas的图形和动画</li>
+						</ul>
+					</section>
+				</section>
+				
+				
 			</div>
 		</div>
 
