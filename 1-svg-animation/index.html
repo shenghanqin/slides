@@ -64,6 +64,7 @@
 							<li>文件小</li>
 							<li>多色支持</li>
 							<li>动画可与CSS、JS配合</li>
+							<li>兼容IE9</li>
 						</ul>
 					</section>
 					<section>
@@ -89,7 +90,7 @@
 							</li>
 						</ul>
 						<pre><code>
-<symbol id="icon-arrow-left"></symbol><use xlink:href="#icon-arrow-left"></use>
+<symbol id="icon-arrow"></symbol><use xlink:href="#icon-arrow"></use>
 						</code></pre>
 					</section>
 				</section>
@@ -573,12 +574,15 @@
 					<section>
 						<h1>SVG 动画技巧</h1>
 					</section>
-					<section>（待补充）</section>
+					<section>
+						<h3>transform 和 scale</h3>
+						<p>跟普通CSS Animation那样写动画</p>
+					</section>
 					<section>
 						<h2>小结</h2>
 						<ul>
-							<li>Svg Smil Animation 要被废弃，如`
-							<animateTransform attributeName="transform" type="scale" />`</li>
+							<li>Svg Smil Animation 要被废弃，如<pre><code><animateTransform attributeName="transform" type="scale" /></code></pre>
+							</li>
 							<li>Svg动画兼容性：在SVG 1.1中,圆的半径是 attribute而不是 CSS property。safari和Firefox支持不够好</li>
 							<li>Svg 矢量图形，CSS动画，可以操作的属性有stroke-width,fill, transform，opacity等，但不建议操作半径、路径等</li>
 						</ul>
