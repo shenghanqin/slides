@@ -21,6 +21,60 @@
 			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
 			document.getElementsByTagName( 'head' )[0].appendChild( link );
 		</script>
+		<style>
+			.reveal pre {
+				font-size: 24px;
+				display: block;
+				position: relative;
+				width: 90%;
+				margin: 15px auto;
+				text-align: left;
+				font-family: monospace;
+				line-height: 1.2em;
+				word-wrap: break-word;
+				box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.3);
+			}
+		
+			.reveal pre code {
+				font-family: "Courier New", monospace;
+				word-wrap: normal;
+				text-align: left;
+				padding: 1em;
+				font-weight: bold;
+			}
+		
+			.reveal pre code .highlight {
+				background-color: var(--green-light);
+			}
+		
+			/*********************************************
+		 * CODE SAMPLE AND LIVE PREVIEW
+		 *********************************************/
+			.reveal .slides .side-by-side {
+				display: flex;
+				justify-content: space-around;
+				align-items: center;
+			}
+		
+			.reveal .slides .side-by-side>.target-content {
+				padding-left: 1em;
+				padding-right: 1em;
+			}
+		
+			/*********************************************
+		 * SORT OF FULL-SCREEN PICTURE, but not cropped
+		 *********************************************/
+			.reveal .slides>section.fit-picture {
+				padding: 0;
+				margin: 0;
+			}
+		
+			.reveal .fit-picture>img {
+				height: 700px;
+				border: 0;
+				margin: 0;
+			}
+		</style>
 	</head>
 	<body>
 		<div class="reveal">
@@ -190,8 +244,7 @@
 							<path
 								d="M32 26.6c-.3 0-.6-.3-.6-.6v-4c0-.3.3-.6.6-.6s.6.3.6.6v4c0 .3-.3.6-.6.6zM24 26.6c-.1 0-.2 0-.3-.1-.3-.2-.4-.5-.3-.8l2-4c.1-.2.3-.3.5-.3.1 0 .2 0 .3.1.3.1.4.5.3.8l-2 4c-.1.2-.3.3-.5.3zM40 26.6c-.2 0-.4-.1-.5-.3l-2-4c-.1-.3 0-.6.3-.7.1-.1.2-.1.3-.1.2 0 .4.1.5.3l2 4c.1.3 0 .7-.3.8H40zM15 44.6c-.3 0-.6-.3-.6-.6s.3-.6.6-.6h2c.3 0 .6.3.6.6s-.3.6-.6.6h-2zM21 44.6c-.3 0-.6-.3-.6-.6s.3-.6.6-.6h8c.3 0 .6.3.6.6s-.3.6-.6.6h-8z" />
 						</svg>
-						<h3 class="svg smaller">性能好</h3>
-						<p>transform 和 opacity，平常的伸缩动画，简单的变形动画</p>
+						<h3 class="svg smaller">transform 和 opacity 性能好</h3>
 						<!-- 参考 https://github.com/birtles/cssconf2019 -->
 						<div class=demo-grid>
 							<figure class="fragment move">
@@ -577,6 +630,458 @@
 					<section>
 						<h3>transform 和 scale</h3>
 						<p>跟普通CSS Animation那样写动画</p>
+						<div class="ui-cclogo-loading-1-rotate-icon">
+							<svg viewBox="0 0 72 72" version="2" xmlns="http://www.w3.org/2000/svg"
+								fill="#2F5AFF" fill-rule="evenodd">
+								<g stroke="none" stroke-width="1" fill-rule="evenodd">
+									<path class="ui-cclogo-loading-1-rotate-ring"
+										d="M68.076,24.538 C67.055,24.972 65.882,24.496 65.449,23.479 C60.414,11.65 48.853,4.006 35.999,4.006 C18.358,4.006 4.007,18.358 4.007,35.999 C4.007,37.095 4.063,38.201 4.174,39.287 C4.285,40.388 3.484,41.371 2.384,41.483 C2.315,41.491 2.246,41.494 2.178,41.494 C1.163,41.494 0.293,40.725 0.188,39.694 C0.063,38.473 0,37.23 0,35.999 C0,16.149 16.149,0 35.999,0 C50.463,0 63.471,8.6 69.135,21.911 C69.568,22.928 69.095,24.105 68.076,24.538 M35.999,71.997 C22.293,71.997 9.958,64.382 3.806,52.126 C3.31,51.137 3.71,49.933 4.699,49.438 C5.686,48.942 6.891,49.339 7.388,50.329 C12.855,61.223 23.818,67.991 35.999,67.991 C53.639,67.991 67.991,53.639 67.991,35.999 C67.991,35.442 67.976,34.89 67.949,34.34 C67.893,33.236 68.743,32.295 69.848,32.239 C70.947,32.2 71.894,33.034 71.949,34.139 C71.98,34.755 71.997,35.375 71.997,35.999 C71.997,55.849 55.848,71.997 35.999,71.997">
+									</path>
+									<path class="ui-cclogo-loading-1-rotate-eye"
+										d="M32.18,31.701 L33.465,36.573 C33.826,37.944 33.027,39.353 31.679,39.72 C31.46,39.779 31.24,39.808 31.023,39.808 C29.908,39.808 28.887,39.051 28.585,37.904 L27.3,33.031 C26.939,31.661 27.739,30.252 29.086,29.885 C30.432,29.517 31.819,30.33 32.18,31.701 M51.272,26.043 L52.556,30.916 C52.918,32.287 52.117,33.695 50.77,34.063 C50.551,34.122 50.331,34.151 50.114,34.151 C48.999,34.151 47.978,33.394 47.676,32.246 L46.391,27.373 C46.03,26.002 46.831,24.594 48.179,24.226 C49.518,23.864 50.91,24.672 51.272,26.043">
+									</path>
+								</g>
+							</svg>
+						</div>
+						<style>
+							.ui-cclogo-loading-1-rotate {
+								width: 240px;
+								height: 240px;
+								display: -webkit-box;
+								display: flex;
+							}
+						
+							.ui-cclogo-loading-1-rotate-icon {
+								margin: auto;
+								width: 240px;
+								height: 240px;
+							}
+						
+							.ui-cclogo-loading-1-rotate-icon>svg {
+								width: 100%;
+								height: 100%;
+							}
+						
+							.ui-cclogo-loading-1-rotate-ring {
+								-webkit-animation: ui-cclogo-loading-1-rotate-ring linear 0.6s infinite;
+								animation: ui-cclogo-loading-1-rotate-ring linear 0.6s infinite;
+								-ms-animation: ui-cclogo-loading-1-rotate-ring-ie 1s infinite;
+								-webkit-transform-origin: center;
+								transform-origin: center;
+							}
+						
+							.ui-cclogo-loading-1-rotate-eye {
+								-webkit-animation: ui-cclogo-loading--eye 0.7s infinite;
+								animation: ui-cclogo-loading--eye 0.7s infinite;
+								-webkit-transform-origin: center;
+								transform-origin: center;
+							}
+						
+							@-ms-keyframes ui-cclogo-loading-1-rotate-ring-ie {
+								0 {
+									opacity: 1;
+								}
+						
+								66% {
+									opacity: 0.3;
+									-transform: rotate(180deg);
+								}
+						
+								100% {
+									opacity: 1;
+								}
+							}
+						
+						
+							@keyframes ui-cclogo-loading-1-rotate-ring {
+								0 {
+									-webkit-transform: rotate(0);
+									transform: rotate(0);
+								}
+						
+								100% {
+									-webkit-transform: rotate(360deg);
+									transform: rotate(360deg);
+								}
+							}
+						
+							@keyframes ui-cclogo-loading--eye {
+								0 {
+									opacity: 1;
+								}
+						
+								25% {
+									opacity: 0;
+								}
+						
+								100% {
+									opacity: 1;
+								}
+							}
+						</style>
+					</section>
+					<section>
+						<h3>描边属性并不太控制</h3>
+						<div class="side-by-side">
+							<pre>
+<code class="css live-code" data-trim contenteditable=true spellcheck=false>
+.ui-stroke-line-example {
+	stroke-dasharray: 100;
+	stroke-dashoffset: -20;
+}
+</code></pre>
+							<div class="target-content">
+								<svg width="400" height="30">
+									<line class="ui-stroke-line-example" x1="0" y1="0" x2="300" y2="0" stroke-width="10" stroke="red" />
+								</svg>
+							</div>
+						</div>
+					</section>
+					<section>
+						<h3>描边动画 - 播放器icon</h3>
+						<div class="ui-play-icon-3-iqiyi">
+							<svg version="2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120"
+								class="ui-play-icon-3-iqiyi-btn ui-play-icon-3-iqiyi-play">
+								<path class="ui-play-icon-3-iqiyi-first"
+									d="M14 65,L14 25, A19,12, 0,0,1, 33,13, L91, 49, A12,22, 0,0,1, 91 71, L33 107, A19,12, 0,0,1, 14 95, L14 65"
+									stroke="#2F5AFF" stroke-width="22" stroke-linecap="round" fill="none" stroke-linejoin="round"></path>
+								<path class="ui-play-icon-3-iqiyi-second-left" d="M14 -24, L14 108" stroke="#2F5AFF" stroke-width="22"
+									stroke-linecap="round" fill="none" stroke-linejoin="round"></path>
+								<path class="ui-play-icon-3-iqiyi-middle" d="M14 60, L14 95, A18,8, 0,0,0, 77 95, L77 60" stroke="#2F5AFF"
+									stroke-width="22" stroke-linecap="round" fill="none" stroke-linejoin="round"></path>
+								<path class="ui-play-icon-3-iqiyi-second-right" d="M77 12, L77 144" stroke="#2F5AFF" stroke-width="22"
+									stroke-linecap="round" fill="none" stroke-linejoin="round"></path>
+							</svg>
+						</div>
+						<script>
+							(() => {
+									const button = document.querySelector(
+										'.ui-play-icon-3-iqiyi > svg'
+									);
+									button.onclick = () => {
+										if (button.classList.contains('ui-play-icon-3-iqiyi-play')) {
+											button.classList.remove('ui-play-icon-3-iqiyi-play')
+											button.classList.add('ui-play-icon-3-iqiyi-pause')
+										} else {
+											button.classList.add('ui-play-icon-3-iqiyi-play')
+											button.classList.remove('ui-play-icon-3-iqiyi-pause')
+										}
+									}
+								})();
+						</script>
+						<style type="text/css">
+							@keyframes ui-stroke-line-example-ani {
+								0% {
+									stroke-dashoffset:300;
+									stroke-dasharray:  300;
+								}
+						
+								/* 60% {
+									stroke-dashoffset: 108;
+								} */
+						
+								100% {
+									stroke-dasharray:  0;
+									stroke-dashoffset: 0;
+								}
+							}
+							
+							.ui-play-icon-3-iqiyi {
+								width: 240px;
+								height: 240px;
+								margin: 0 auto;
+								display: -webkit-box;
+								display: flex;
+							}
+						
+							.ui-play-icon-3-iqiyi>svg {
+								width: 100%;
+								height: 100%;
+							}
+						
+							.ui-play-icon-3-iqiyi-play .ui-play-icon-3-iqiyi-first {
+								stroke-dasharray: 276;
+							}
+						
+							.ui-play-icon-3-iqiyi-play .ui-play-icon-3-iqiyi-middle {
+								stroke-dasharray: 172;
+							}
+						
+							.ui-play-icon-3-iqiyi-play .ui-play-icon-3-iqiyi-second-left {
+								stroke-dasharray: 120;
+							}
+						
+							.ui-play-icon-3-iqiyi-play .ui-play-icon-3-iqiyi-second-right {
+								stroke-dasharray: 120;
+							}
+						
+							.ui-play-icon-3-iqiyi-pause .ui-play-icon-3-iqiyi-first {
+								-webkit-animation-duration: 0.9s;
+								animation-duration: 0.9s;
+								-webkit-animation-timing-function: linear;
+								animation-timing-function: linear;
+								-webkit-animation-fill-mode: forwards;
+								animation-fill-mode: forwards;
+								-webkit-animation-name: ui-play-icon-3-iqiyi-ani-pause-first;
+								animation-name: ui-play-icon-3-iqiyi-ani-pause-first;
+							}
+						
+							.ui-play-icon-3-iqiyi-pause .ui-play-icon-3-iqiyi-middle {
+								-webkit-animation-duration: 0.9s;
+								animation-duration: 0.9s;
+								-webkit-animation-timing-function: linear;
+								animation-timing-function: linear;
+								-webkit-animation-fill-mode: forwards;
+								animation-fill-mode: forwards;
+								-webkit-animation-name: ui-play-icon-3-iqiyi-ani-pause-middle;
+								animation-name: ui-play-icon-3-iqiyi-ani-pause-middle;
+							}
+						
+							.ui-play-icon-3-iqiyi-pause .ui-play-icon-3-iqiyi-second-left {
+								-webkit-animation-duration: 0.9s;
+								animation-duration: 0.9s;
+								-webkit-animation-timing-function: linear;
+								animation-timing-function: linear;
+								-webkit-animation-fill-mode: forwards;
+								animation-fill-mode: forwards;
+								-webkit-animation-name: ui-play-icon-3-iqiyi-ani-pause-second-left;
+								animation-name: ui-play-icon-3-iqiyi-ani-pause-second-left;
+							}
+						
+							.ui-play-icon-3-iqiyi-pause .ui-play-icon-3-iqiyi-second-right {
+								-webkit-animation-duration: 0.9s;
+								animation-duration: 0.9s;
+								-webkit-animation-timing-function: linear;
+								animation-timing-function: linear;
+								-webkit-animation-fill-mode: forwards;
+								animation-fill-mode: forwards;
+								-webkit-animation-name: ui-play-icon-3-iqiyi-ani-pause-second-right;
+								animation-name: ui-play-icon-3-iqiyi-ani-pause-second-right;
+							}
+						
+							.ui-play-icon-3-iqiyi-play .ui-play-icon-3-iqiyi-first {
+								-webkit-animation-duration: 0.9s;
+								animation-duration: 0.9s;
+								-webkit-animation-timing-function: linear;
+								animation-timing-function: linear;
+								-webkit-animation-fill-mode: forwards;
+								animation-fill-mode: forwards;
+								-webkit-animation-name: ui-play-icon-3-iqiyi-ani-play-first;
+								animation-name: ui-play-icon-3-iqiyi-ani-play-first;
+							}
+						
+							.ui-play-icon-3-iqiyi-play .ui-play-icon-3-iqiyi-middle {
+								-webkit-animation-duration: 0.9s;
+								animation-duration: 0.9s;
+								-webkit-animation-timing-function: linear;
+								animation-timing-function: linear;
+								-webkit-animation-fill-mode: forwards;
+								animation-fill-mode: forwards;
+								-webkit-animation-name: ui-play-icon-3-iqiyi-ani-play-middle;
+								animation-name: ui-play-icon-3-iqiyi-ani-play-middle;
+							}
+						
+							.ui-play-icon-3-iqiyi-play .ui-play-icon-3-iqiyi-second-left {
+								-webkit-animation-duration: 0.9s;
+								animation-duration: 0.9s;
+								-webkit-animation-timing-function: linear;
+								animation-timing-function: linear;
+								-webkit-animation-fill-mode: forwards;
+								animation-fill-mode: forwards;
+								-webkit-animation-name: ui-play-icon-3-iqiyi-ani-play-second-left;
+								animation-name: ui-play-icon-3-iqiyi-ani-play-second-left;
+							}
+						
+							.ui-play-icon-3-iqiyi-play .ui-play-icon-3-iqiyi-second-right {
+								-webkit-animation-duration: 0.9s;
+								animation-duration: 0.9s;
+								-webkit-animation-timing-function: linear;
+								animation-timing-function: linear;
+								-webkit-animation-fill-mode: forwards;
+								animation-fill-mode: forwards;
+								-webkit-animation-name: ui-play-icon-3-iqiyi-ani-play-second-right;
+								animation-name: ui-play-icon-3-iqiyi-ani-play-second-right;
+							}
+						
+							.ui-play-icon-3-iqiyi-pause .ui-play-icon-3-iqiyi-first {
+								stroke-dasharray: 276;
+								-webkit-animation-duration: 0.9s;
+								animation-duration: 0.9s;
+								-webkit-animation-timing-function: linear;
+								animation-timing-function: linear;
+								-webkit-animation-fill-mode: forwards;
+								animation-fill-mode: forwards;
+								-webkit-animation-name: ui-play-icon-3-iqiyi-ani-pause-first;
+								animation-name: ui-play-icon-3-iqiyi-ani-pause-first;
+							}
+						
+							.ui-play-icon-3-iqiyi-pause .ui-play-icon-3-iqiyi-middle {
+								stroke-dasharray: 172;
+								-webkit-animation-duration: 0.9s;
+								animation-duration: 0.9s;
+								-webkit-animation-timing-function: linear;
+								animation-timing-function: linear;
+								-webkit-animation-fill-mode: forwards;
+								animation-fill-mode: forwards;
+								-webkit-animation-name: ui-play-icon-3-iqiyi-ani-pause-middle;
+								animation-name: ui-play-icon-3-iqiyi-ani-pause-middle;
+							}
+						
+							.ui-play-icon-3-iqiyi-pause .ui-play-icon-3-iqiyi-second-left {
+								stroke-dasharray: 120;
+								-webkit-animation-duration: 0.9s;
+								animation-duration: 0.9s;
+								-webkit-animation-timing-function: linear;
+								animation-timing-function: linear;
+								-webkit-animation-fill-mode: forwards;
+								animation-fill-mode: forwards;
+								-webkit-animation-name: ui-play-icon-3-iqiyi-ani-pause-second-left;
+								animation-name: ui-play-icon-3-iqiyi-ani-pause-second-left;
+							}
+						
+							.ui-play-icon-3-iqiyi-pause .ui-play-icon-3-iqiyi-second-right {
+								stroke-dasharray: 120;
+								-webkit-animation-duration: 0.9s;
+								animation-duration: 0.9s;
+								-webkit-animation-timing-function: linear;
+								animation-timing-function: linear;
+								-webkit-animation-fill-mode: forwards;
+								animation-fill-mode: forwards;
+								-webkit-animation-name: ui-play-icon-3-iqiyi-ani-pause-second-right;
+								animation-name: ui-play-icon-3-iqiyi-ani-pause-second-right;
+							}
+						
+						
+							@keyframes ui-play-icon-3-iqiyi-ani-play-first {
+								0% {
+									stroke-dashoffset: 276;
+								}
+						
+								33% {
+									stroke-dashoffset: 276;
+								}
+						
+								100% {
+									stroke-dashoffset: 0;
+								}
+							}
+						
+						
+							@keyframes ui-play-icon-3-iqiyi-ani-play-middle {
+						
+								0%,
+								33% {
+									stroke-dashoffset: -107;
+								}
+						
+								66% {
+									stroke-dashoffset: 107;
+								}
+						
+								100% {
+									stroke-dashoffset: 161;
+								}
+							}
+						
+							@keyframes ui-play-icon-3-iqiyi-ani-play-second-left {
+								0% {
+									stroke-dashoffset: -36;
+								}
+						
+								60% {
+									stroke-dashoffset: 108;
+								}
+						
+								100% {
+									stroke-dashoffset: 108;
+								}
+							}
+						
+						
+							@keyframes ui-play-icon-3-iqiyi-ani-play-second-right {
+								0% {
+									stroke-dashoffset: 24;
+								}
+						
+								17% {
+									stroke-dashoffset: 24;
+								}
+						
+								33% {
+									stroke-dashoffset: -120;
+								}
+						
+								100% {
+									stroke-dashoffset: -120;
+								}
+							}
+						
+						
+							@keyframes ui-play-icon-3-iqiyi-ani-pause-first {
+								0% {
+									stroke-dashoffset: 0;
+								}
+						
+								66% {
+									stroke-dashoffset: 276;
+								}
+						
+								100% {
+									stroke-dashoffset: 276;
+								}
+							}
+						
+							
+							@keyframes ui-play-icon-3-iqiyi-ani-pause-middle {
+								0% {
+									stroke-dashoffset: 161;
+								}
+						
+								33% {
+									stroke-dashoffset: 107;
+								}
+						
+								66%,
+								100% {
+									stroke-dashoffset: -107;
+								}
+							}
+						
+						
+							@keyframes ui-play-icon-3-iqiyi-ani-pause-second-left {
+								0% {
+									stroke-dashoffset: 108;
+								}
+						
+								40% {
+									stroke-dashoffset: 108;
+									-webkit-animation-timing-function: ease;
+									animation-timing-function: ease;
+								}
+						
+								100% {
+									stroke-dashoffset: -36;
+								}
+							}
+						
+							@keyframes ui-play-icon-3-iqiyi-ani-pause-second-right {
+								0% {
+									stroke-dashoffset: -120;
+								}
+						
+								67% {
+									stroke-dashoffset: -120;
+								}
+						
+								83% {
+									stroke-dashoffset: 24;
+								}
+						
+								100% {
+									stroke-dashoffset: 24;
+								}
+							}
+						</style>
 					</section>
 					<section>
 						<h2>小结</h2>
@@ -614,17 +1119,102 @@
 		</div>
 
 		<script src="js/reveal.js"></script>
+<!-- Live code sections -->
+<script>
+	for (const block of Array.from(document.querySelectorAll('.live-code'))) {
+		block.addEventListener('input', scheduleCodeUpdate);
+		// Initial application
+		window.addEventListener('load', () => updateCode(block));
+	}
 
+	function scheduleCodeUpdate(evt) {
+		let block = evt.target;
+
+		// Edge adds extra divs when editing. It's weird.
+		while (block && !block.classList.contains('live-code')) {
+			block = block.parentNode;
+		}
+		if (!block) {
+			console.log('Couldn\'t get root of block');
+			return;
+		}
+
+		if (block.updateTimeout) {
+			clearTimeout(block.updateTimeout);
+		}
+		if (block.highlightTimeout) {
+			clearTimeout(block.highlightTimeout);
+		}
+		block.updateTimeout = setTimeout(() => { updateCode(block) }, 500);
+		block.highlightTimeout = setTimeout(() => {
+			block.highlightTimeout = null;
+			hljs.highlightBlock(block);
+		}, 3000);
+	}
+
+	function updateCode(block) {
+		block.updateTimeout = null;
+
+		// Get target content
+		let ancestor = block;
+		let target = null;
+		while (ancestor && !target) {
+			// Check we don't start targeting another slide
+			if (ancestor.classList.contains('slides')) {
+				break;
+			}
+			target = ancestor.querySelector('.target-content');
+			ancestor = ancestor.parentNode;
+		}
+
+		if (!target) {
+			console.log('Target content to update not found');
+		}
+
+		// Create a "unique" ID. We really should test to see if the ID is unique but
+		// this way I have a 1 in 10,000 chance of the presentation going pear-shaped
+		// which could never happen. Definitely not.
+		if (!target.id) {
+			target.setAttribute('id', 'id-' + Date.now()
+				+ '-' + Math.floor((Math.random() * 100000)));
+		}
+
+		// Create style element
+		let styleBlock = target.querySelector('style');
+		if (!styleBlock) {
+			styleBlock = document.createElement('style');
+			target.appendChild(styleBlock);
+		}
+
+		// Update result
+		styleBlock.textContent = localizeCSS(block.textContent, target.id);
+	}
+
+	function localizeCSS(css, id) {
+		//
+		// We're just going to do something super hacky here that will work for
+		// this presentation. Basically, just add an ID to the start of any line
+		// that doesn't start with a space or an @
+		//
+		return css.replace(/^([^@ \n].*{)\s*/mg, '#' + id + ' $1');
+	}
+</script>
 		<script>
 			// More info about config & dependencies:
 			// - https://github.com/hakimel/reveal.js#configuration
 			// - https://github.com/hakimel/reveal.js#dependencies
 			Reveal.initialize({
 				dependencies: [
-					{ src: 'plugin/markdown/marked.js' },
-					{ src: 'plugin/markdown/markdown.js' },
+					// { src: 'plugin/markdown/marked.js' },
+					// { src: 'plugin/markdown/markdown.js' },
 					{ src: 'plugin/notes/notes.js', async: true },
-					{ src: 'plugin/highlight/highlight.js', async: true }
+					{
+						src: 'plugin/highlight/highlight.js',
+						async: true,
+						callback: function () {
+							hljs.initHighlightingOnLoad();
+						},
+					}
 				],
 				hash: true,
 				history: true
