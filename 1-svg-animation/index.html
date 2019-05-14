@@ -21,6 +21,60 @@
 			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
 			document.getElementsByTagName( 'head' )[0].appendChild( link );
 		</script>
+		<style>
+			.reveal pre {
+				font-size: 24px;
+				display: block;
+				position: relative;
+				width: 90%;
+				margin: 15px auto;
+				text-align: left;
+				font-family: monospace;
+				line-height: 1.2em;
+				word-wrap: break-word;
+				box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.3);
+			}
+		
+			.reveal pre code {
+				font-family: "Courier New", monospace;
+				word-wrap: normal;
+				text-align: left;
+				padding: 1em;
+				font-weight: bold;
+			}
+		
+			.reveal pre code .highlight {
+				background-color: var(--green-light);
+			}
+		
+			/*********************************************
+		 * CODE SAMPLE AND LIVE PREVIEW
+		 *********************************************/
+			.reveal .slides .side-by-side {
+				display: flex;
+				justify-content: space-around;
+				align-items: center;
+			}
+		
+			.reveal .slides .side-by-side>.target-content {
+				padding-left: 1em;
+				padding-right: 1em;
+			}
+		
+			/*********************************************
+		 * SORT OF FULL-SCREEN PICTURE, but not cropped
+		 *********************************************/
+			.reveal .slides>section.fit-picture {
+				padding: 0;
+				margin: 0;
+			}
+		
+			.reveal .fit-picture>img {
+				height: 700px;
+				border: 0;
+				margin: 0;
+			}
+		</style>
 	</head>
 	<body>
 		<div class="reveal">
@@ -190,8 +244,7 @@
 							<path
 								d="M32 26.6c-.3 0-.6-.3-.6-.6v-4c0-.3.3-.6.6-.6s.6.3.6.6v4c0 .3-.3.6-.6.6zM24 26.6c-.1 0-.2 0-.3-.1-.3-.2-.4-.5-.3-.8l2-4c.1-.2.3-.3.5-.3.1 0 .2 0 .3.1.3.1.4.5.3.8l-2 4c-.1.2-.3.3-.5.3zM40 26.6c-.2 0-.4-.1-.5-.3l-2-4c-.1-.3 0-.6.3-.7.1-.1.2-.1.3-.1.2 0 .4.1.5.3l2 4c.1.3 0 .7-.3.8H40zM15 44.6c-.3 0-.6-.3-.6-.6s.3-.6.6-.6h2c.3 0 .6.3.6.6s-.3.6-.6.6h-2zM21 44.6c-.3 0-.6-.3-.6-.6s.3-.6.6-.6h8c.3 0 .6.3.6.6s-.3.6-.6.6h-8z" />
 						</svg>
-						<h3 class="svg smaller">性能好</h3>
-						<p>transform 和 opacity，平常的伸缩动画，简单的变形动画</p>
+						<h3 class="svg smaller">transform 和 opacity 性能好</h3>
 						<!-- 参考 https://github.com/birtles/cssconf2019 -->
 						<div class=demo-grid>
 							<figure class="fragment move">
@@ -575,8 +628,866 @@
 						<h1>SVG 动画技巧</h1>
 					</section>
 					<section>
-						<h3>transform 和 scale</h3>
-						<p>跟普通CSS Animation那样写动画</p>
+						<h3>跟普通CSS Animation那样写动画</h3>
+						<p>transform 和 rotate</p>
+						<div class="ui-cclogo-loading-1-rotate-icon">
+							<svg viewBox="0 0 72 72" version="2" xmlns="http://www.w3.org/2000/svg"
+								fill="#2F5AFF" fill-rule="evenodd">
+								<g stroke="none" stroke-width="1" fill-rule="evenodd">
+									<path class="ui-cclogo-loading-1-rotate-ring"
+										d="M68.076,24.538 C67.055,24.972 65.882,24.496 65.449,23.479 C60.414,11.65 48.853,4.006 35.999,4.006 C18.358,4.006 4.007,18.358 4.007,35.999 C4.007,37.095 4.063,38.201 4.174,39.287 C4.285,40.388 3.484,41.371 2.384,41.483 C2.315,41.491 2.246,41.494 2.178,41.494 C1.163,41.494 0.293,40.725 0.188,39.694 C0.063,38.473 0,37.23 0,35.999 C0,16.149 16.149,0 35.999,0 C50.463,0 63.471,8.6 69.135,21.911 C69.568,22.928 69.095,24.105 68.076,24.538 M35.999,71.997 C22.293,71.997 9.958,64.382 3.806,52.126 C3.31,51.137 3.71,49.933 4.699,49.438 C5.686,48.942 6.891,49.339 7.388,50.329 C12.855,61.223 23.818,67.991 35.999,67.991 C53.639,67.991 67.991,53.639 67.991,35.999 C67.991,35.442 67.976,34.89 67.949,34.34 C67.893,33.236 68.743,32.295 69.848,32.239 C70.947,32.2 71.894,33.034 71.949,34.139 C71.98,34.755 71.997,35.375 71.997,35.999 C71.997,55.849 55.848,71.997 35.999,71.997">
+									</path>
+									<path class="ui-cclogo-loading-1-rotate-eye"
+										d="M32.18,31.701 L33.465,36.573 C33.826,37.944 33.027,39.353 31.679,39.72 C31.46,39.779 31.24,39.808 31.023,39.808 C29.908,39.808 28.887,39.051 28.585,37.904 L27.3,33.031 C26.939,31.661 27.739,30.252 29.086,29.885 C30.432,29.517 31.819,30.33 32.18,31.701 M51.272,26.043 L52.556,30.916 C52.918,32.287 52.117,33.695 50.77,34.063 C50.551,34.122 50.331,34.151 50.114,34.151 C48.999,34.151 47.978,33.394 47.676,32.246 L46.391,27.373 C46.03,26.002 46.831,24.594 48.179,24.226 C49.518,23.864 50.91,24.672 51.272,26.043">
+									</path>
+								</g>
+							</svg>
+						</div>
+						<style>
+							.ui-cclogo-loading-1-rotate {
+								width: 240px;
+								height: 240px;
+								display: -webkit-box;
+								display: flex;
+							}
+						
+							.ui-cclogo-loading-1-rotate-icon {
+								margin: auto;
+								width: 240px;
+								height: 240px;
+							}
+						
+							.ui-cclogo-loading-1-rotate-icon>svg {
+								width: 100%;
+								height: 100%;
+							}
+						
+							.ui-cclogo-loading-1-rotate-ring {
+								-webkit-animation: ui-cclogo-loading-1-rotate-ring linear 0.6s infinite;
+								animation: ui-cclogo-loading-1-rotate-ring linear 0.6s infinite;
+								-ms-animation: ui-cclogo-loading-1-rotate-ring-ie 1s infinite;
+								-webkit-transform-origin: center;
+								transform-origin: center;
+							}
+						
+							.ui-cclogo-loading-1-rotate-eye {
+								-webkit-animation: ui-cclogo-loading--eye 0.7s infinite;
+								animation: ui-cclogo-loading--eye 0.7s infinite;
+								-webkit-transform-origin: center;
+								transform-origin: center;
+							}
+						
+							@-ms-keyframes ui-cclogo-loading-1-rotate-ring-ie {
+								0 {
+									opacity: 1;
+								}
+						
+								66% {
+									opacity: 0.3;
+									-transform: rotate(180deg);
+								}
+						
+								100% {
+									opacity: 1;
+								}
+							}
+						
+						
+							@keyframes ui-cclogo-loading-1-rotate-ring {
+								0 {
+									-webkit-transform: rotate(0);
+									transform: rotate(0);
+								}
+						
+								100% {
+									-webkit-transform: rotate(360deg);
+									transform: rotate(360deg);
+								}
+							}
+						
+							@keyframes ui-cclogo-loading--eye {
+								0 {
+									opacity: 1;
+								}
+						
+								25% {
+									opacity: 0;
+								}
+						
+								100% {
+									opacity: 1;
+								}
+							}
+						</style>
+					</section>
+					<section>
+						<h3>描边动画 - 遮罩和路径</h3>
+						<div class="ui-cclogo-loading-4-circle-ring"><svg class="ui-cclogo-loading-4-circle-ring-svg" version="2"
+								xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600">
+								<mask id="ui-cclogo-loading-4-circle-ring-mask">
+									<circle cx="300" cy="300" r="300" fill="white"></circle>
+									<rect x="0" y="277" width="600" height="46" fill="black"></rect>
+								</mask>
+								<g class="ui-cclogo-loading-4-circle-ring-group">
+									<circle class="ui-cclogo-loading-4-circle-ring-ring" cx="260" cy="300" r="290" fill="none" stroke-width="100"
+										stroke="#2F5AFF" mask="url(#ui-cclogo-loading-4-circle-ring-mask)"></circle>
+								</g>
+								<path class="ui-cclogo-loading-4-circle-ring-eye" fill="#2F5AFF" stroke-width="10" stroke="#2F5AFF"
+									d="m284.953401,235.766159c5.846281,0.593821 9.835216,4.081812 13.935874,10.631933c3.541999,6.550121 12.249936,40.581733 12.249936,45.911953c0,4.609919 0.273424,10.811982 -7.87674,13.316978c-8.150165,2.504997 -9.513894,-2.046528 -13.460886,-7.996739c-1.973496,-2.975105 -7.161079,-43.380094 -11.683162,-46.374901c-1.170128,-8.860729 3.911837,-15.786135 6.834978,-15.489224z">
+								</path>
+								<path class="ui-cclogo-loading-4-circle-ring-eye" fill="#2F5AFF" stroke-width="10" stroke="#2F5AFF"
+									d="m434.649354,199.48547c5.846281,0.593821 9.835216,4.081812 13.935874,10.631933c3.541999,6.550121 12.249936,40.581733 12.249936,45.911953c0,4.609919 0.273424,10.811982 -7.87674,13.316978c-8.150165,2.504997 -9.513894,-2.046528 -13.460886,-7.996739c-1.973496,-2.975105 -7.161079,-43.380094 -11.683162,-46.374901c-1.170128,-8.860729 3.911837,-15.786135 6.834978,-15.489224z">
+								</path>
+							</svg>
+						</div>
+						<style type="text/css">
+							.ui-cclogo-loading-4-circle-ring {
+								width: 240px;
+								height: 240px;
+								margin: 0 auto;
+								position: relative;
+								overflow: hidden;
+								display: -webkit-box;
+								display: flex;
+							}
+						
+							.ui-cclogo-loading-4-circle-ring-svg {
+								margin: auto;
+								width: 120px;
+								height: 120px;
+							}
+						
+							.ui-cclogo-loading-4-circle-ring-group {
+								-webkit-transform-origin: center;
+								transform-origin: center;
+								-webkit-transform: rotate(165deg);
+								transform: rotate(165deg);
+								-webkit-animation-duration: 3s;
+								animation-duration: 3s;
+								-webkit-animation-timing-function: linear;
+								animation-timing-function: linear;
+								-webkit-animation-iteration-count: infinite;
+								animation-iteration-count: infinite;
+								-webkit-animation-fill-mode: forwards;
+								animation-fill-mode: forwards;
+								-webkit-animation-name: ui-cclogo-loading-4-circle-ring-svg;
+								animation-name: ui-cclogo-loading-4-circle-ring-svg;
+							}
+						
+							.ui-cclogo-loading-4-circle-ring-ring {
+								-webkit-transform-origin: center;
+								transform-origin: center;
+								stroke-dasharray: 1802;
+								-webkit-animation-duration: 3s;
+								animation-duration: 3s;
+								-webkit-animation-timing-function: linear;
+								animation-timing-function: linear;
+								-webkit-animation-iteration-count: infinite;
+								animation-iteration-count: infinite;
+								-webkit-animation-fill-mode: forwards;
+								animation-fill-mode: forwards;
+								-webkit-animation-name: ui-cclogo-loading-4-circle-ring-ring;
+								animation-name: ui-cclogo-loading-4-circle-ring-ring;
+							}
+						
+							.ui-cclogo-loading-4-circle-ring-eye {
+								-webkit-transform-origin: center;
+								transform-origin: center;
+								stroke-dashoffset: 172;
+								stroke-dasharray: 172;
+								-webkit-animation-duration: 3s;
+								animation-duration: 3s;
+								-webkit-animation-timing-function: linear;
+								animation-timing-function: linear;
+								-webkit-animation-iteration-count: infinite;
+								animation-iteration-count: infinite;
+								-webkit-animation-fill-mode: forwards;
+								animation-fill-mode: forwards;
+								-webkit-animation-name: ui-cclogo-loading-4-circle-ring-eye;
+								animation-name: ui-cclogo-loading-4-circle-ring-eye;
+							}
+						
+							@keyframes ui-cclogo-loading-4-circle-ring-svg {
+								0% {
+									-webkit-transform: rotate(-195deg);
+									transform: rotate(-195deg);
+								}
+						
+								55%,
+								95%,
+								100% {
+									-webkit-transform: rotate(165deg);
+									transform: rotate(165deg);
+								}
+							}
+						
+							@keyframes ui-cclogo-loading-4-circle-ring-ring {
+								0% {
+									r: 320px;
+									cx: 300px;
+									stroke-dasharray: 2011;
+									stroke-dashoffset: 2011;
+								}
+						
+								55% {
+									opacity: 1;
+									r: 320px;
+									cx: 300px;
+									stroke-dasharray: 2011;
+									stroke-dashoffset: 0;
+								}
+						
+								95% {
+									stroke-dasharray: 1802;
+									stroke-dashoffset: 0;
+								}
+						
+								100% {
+									stroke-dasharray: 1802;
+									stroke-dashoffset: 0;
+								}
+							}
+						
+							@keyframes ui-cclogo-loading-4-circle-ring-eye {
+								0% {
+									stroke-dashoffset: eyeDashConst;
+									-webkit-transform: scale(1.2) translate3d(-30px, -3px, 0);
+									transform: scale(1.2) translate3d(-30px, -3px, 0);
+									fill: rgba(0, 0, 0, 0);
+								}
+						
+								55% {
+									-webkit-transform: scale(1.2) translate3d(-30px, -3px, 0);
+									transform: scale(1.2) translate3d(-30px, -3px, 0);
+									stroke-dashoffset: 0;
+									fill: rgba(0, 0, 0, 0);
+								}
+						
+								95% {
+									-webkit-transform: scale(1);
+									transform: scale(1);
+									stroke-dashoffset: 0;
+									stroke-width: 0;
+								}
+						
+								100% {
+									stroke-dashoffset: 0;
+									stroke-width: 0;
+								}
+							}
+						</style>
+					</section>
+					<section>
+						<h3>SVG 描边属性并不太控制</h3>
+						<p>stroke-dasharray 和 stroke-dashoffset</p>
+						<div class="side-by-side">
+							<pre>
+<code class="css live-code" data-trim contenteditable=true spellcheck=false>
+.ui-stroke-line-example {
+	stroke-dasharray: 100;
+	stroke-dashoffset: -20;
+}
+</code></pre>
+							<div class="target-content">
+								<svg width="400" height="30">
+									<line class="ui-stroke-line-example" x1="0" y1="0" x2="300" y2="0" stroke-width="10" stroke="red" />
+								</svg>
+							</div>
+						</div>
+					</section>
+					<section>
+						<h3>描边动画 - 播放器icon</h3>
+						<div class="ui-play-icon-3-iqiyi">
+							<svg version="2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120"
+								class="ui-play-icon-3-iqiyi-btn ui-play-icon-3-iqiyi-play">
+								<path class="ui-play-icon-3-iqiyi-first"
+									d="M14 65,L14 25, A19,12, 0,0,1, 33,13, L91, 49, A12,22, 0,0,1, 91 71, L33 107, A19,12, 0,0,1, 14 95, L14 65"
+									stroke="#2F5AFF" stroke-width="22" stroke-linecap="round" fill="none" stroke-linejoin="round"></path>
+								<path class="ui-play-icon-3-iqiyi-second-left" d="M14 -24, L14 108" stroke="#2F5AFF" stroke-width="22"
+									stroke-linecap="round" fill="none" stroke-linejoin="round"></path>
+								<path class="ui-play-icon-3-iqiyi-middle" d="M14 60, L14 95, A18,8, 0,0,0, 77 95, L77 60" stroke="#2F5AFF"
+									stroke-width="22" stroke-linecap="round" fill="none" stroke-linejoin="round"></path>
+								<path class="ui-play-icon-3-iqiyi-second-right" d="M77 12, L77 144" stroke="#2F5AFF" stroke-width="22"
+									stroke-linecap="round" fill="none" stroke-linejoin="round"></path>
+							</svg>
+						</div>
+						<script>
+							(() => {
+									const button = document.querySelector(
+										'.ui-play-icon-3-iqiyi > svg'
+									);
+									button.onclick = () => {
+										if (button.classList.contains('ui-play-icon-3-iqiyi-play')) {
+											button.classList.remove('ui-play-icon-3-iqiyi-play')
+											button.classList.add('ui-play-icon-3-iqiyi-pause')
+										} else {
+											button.classList.add('ui-play-icon-3-iqiyi-play')
+											button.classList.remove('ui-play-icon-3-iqiyi-pause')
+										}
+									}
+								})();
+						</script>
+						<style type="text/css">
+							@keyframes ui-stroke-line-example-ani {
+								0% {
+									stroke-dashoffset:300;
+									stroke-dasharray:  300;
+								}
+						
+								/* 60% {
+									stroke-dashoffset: 108;
+								} */
+						
+								100% {
+									stroke-dasharray:  0;
+									stroke-dashoffset: 0;
+								}
+							}
+							
+							.ui-play-icon-3-iqiyi {
+								width: 240px;
+								height: 240px;
+								margin: 0 auto;
+								display: -webkit-box;
+								display: flex;
+							}
+						
+							.ui-play-icon-3-iqiyi>svg {
+								width: 100%;
+								height: 100%;
+							}
+						
+							.ui-play-icon-3-iqiyi-play .ui-play-icon-3-iqiyi-first {
+								stroke-dasharray: 276;
+							}
+						
+							.ui-play-icon-3-iqiyi-play .ui-play-icon-3-iqiyi-middle {
+								stroke-dasharray: 172;
+							}
+						
+							.ui-play-icon-3-iqiyi-play .ui-play-icon-3-iqiyi-second-left {
+								stroke-dasharray: 120;
+							}
+						
+							.ui-play-icon-3-iqiyi-play .ui-play-icon-3-iqiyi-second-right {
+								stroke-dasharray: 120;
+							}
+						
+							.ui-play-icon-3-iqiyi-pause .ui-play-icon-3-iqiyi-first {
+								-webkit-animation-duration: 0.9s;
+								animation-duration: 0.9s;
+								-webkit-animation-timing-function: linear;
+								animation-timing-function: linear;
+								-webkit-animation-fill-mode: forwards;
+								animation-fill-mode: forwards;
+								-webkit-animation-name: ui-play-icon-3-iqiyi-ani-pause-first;
+								animation-name: ui-play-icon-3-iqiyi-ani-pause-first;
+							}
+						
+							.ui-play-icon-3-iqiyi-pause .ui-play-icon-3-iqiyi-middle {
+								-webkit-animation-duration: 0.9s;
+								animation-duration: 0.9s;
+								-webkit-animation-timing-function: linear;
+								animation-timing-function: linear;
+								-webkit-animation-fill-mode: forwards;
+								animation-fill-mode: forwards;
+								-webkit-animation-name: ui-play-icon-3-iqiyi-ani-pause-middle;
+								animation-name: ui-play-icon-3-iqiyi-ani-pause-middle;
+							}
+						
+							.ui-play-icon-3-iqiyi-pause .ui-play-icon-3-iqiyi-second-left {
+								-webkit-animation-duration: 0.9s;
+								animation-duration: 0.9s;
+								-webkit-animation-timing-function: linear;
+								animation-timing-function: linear;
+								-webkit-animation-fill-mode: forwards;
+								animation-fill-mode: forwards;
+								-webkit-animation-name: ui-play-icon-3-iqiyi-ani-pause-second-left;
+								animation-name: ui-play-icon-3-iqiyi-ani-pause-second-left;
+							}
+						
+							.ui-play-icon-3-iqiyi-pause .ui-play-icon-3-iqiyi-second-right {
+								-webkit-animation-duration: 0.9s;
+								animation-duration: 0.9s;
+								-webkit-animation-timing-function: linear;
+								animation-timing-function: linear;
+								-webkit-animation-fill-mode: forwards;
+								animation-fill-mode: forwards;
+								-webkit-animation-name: ui-play-icon-3-iqiyi-ani-pause-second-right;
+								animation-name: ui-play-icon-3-iqiyi-ani-pause-second-right;
+							}
+						
+							.ui-play-icon-3-iqiyi-play .ui-play-icon-3-iqiyi-first {
+								-webkit-animation-duration: 0.9s;
+								animation-duration: 0.9s;
+								-webkit-animation-timing-function: linear;
+								animation-timing-function: linear;
+								-webkit-animation-fill-mode: forwards;
+								animation-fill-mode: forwards;
+								-webkit-animation-name: ui-play-icon-3-iqiyi-ani-play-first;
+								animation-name: ui-play-icon-3-iqiyi-ani-play-first;
+							}
+						
+							.ui-play-icon-3-iqiyi-play .ui-play-icon-3-iqiyi-middle {
+								-webkit-animation-duration: 0.9s;
+								animation-duration: 0.9s;
+								-webkit-animation-timing-function: linear;
+								animation-timing-function: linear;
+								-webkit-animation-fill-mode: forwards;
+								animation-fill-mode: forwards;
+								-webkit-animation-name: ui-play-icon-3-iqiyi-ani-play-middle;
+								animation-name: ui-play-icon-3-iqiyi-ani-play-middle;
+							}
+						
+							.ui-play-icon-3-iqiyi-play .ui-play-icon-3-iqiyi-second-left {
+								-webkit-animation-duration: 0.9s;
+								animation-duration: 0.9s;
+								-webkit-animation-timing-function: linear;
+								animation-timing-function: linear;
+								-webkit-animation-fill-mode: forwards;
+								animation-fill-mode: forwards;
+								-webkit-animation-name: ui-play-icon-3-iqiyi-ani-play-second-left;
+								animation-name: ui-play-icon-3-iqiyi-ani-play-second-left;
+							}
+						
+							.ui-play-icon-3-iqiyi-play .ui-play-icon-3-iqiyi-second-right {
+								-webkit-animation-duration: 0.9s;
+								animation-duration: 0.9s;
+								-webkit-animation-timing-function: linear;
+								animation-timing-function: linear;
+								-webkit-animation-fill-mode: forwards;
+								animation-fill-mode: forwards;
+								-webkit-animation-name: ui-play-icon-3-iqiyi-ani-play-second-right;
+								animation-name: ui-play-icon-3-iqiyi-ani-play-second-right;
+							}
+						
+							.ui-play-icon-3-iqiyi-pause .ui-play-icon-3-iqiyi-first {
+								stroke-dasharray: 276;
+								-webkit-animation-duration: 0.9s;
+								animation-duration: 0.9s;
+								-webkit-animation-timing-function: linear;
+								animation-timing-function: linear;
+								-webkit-animation-fill-mode: forwards;
+								animation-fill-mode: forwards;
+								-webkit-animation-name: ui-play-icon-3-iqiyi-ani-pause-first;
+								animation-name: ui-play-icon-3-iqiyi-ani-pause-first;
+							}
+						
+							.ui-play-icon-3-iqiyi-pause .ui-play-icon-3-iqiyi-middle {
+								stroke-dasharray: 172;
+								-webkit-animation-duration: 0.9s;
+								animation-duration: 0.9s;
+								-webkit-animation-timing-function: linear;
+								animation-timing-function: linear;
+								-webkit-animation-fill-mode: forwards;
+								animation-fill-mode: forwards;
+								-webkit-animation-name: ui-play-icon-3-iqiyi-ani-pause-middle;
+								animation-name: ui-play-icon-3-iqiyi-ani-pause-middle;
+							}
+						
+							.ui-play-icon-3-iqiyi-pause .ui-play-icon-3-iqiyi-second-left {
+								stroke-dasharray: 120;
+								-webkit-animation-duration: 0.9s;
+								animation-duration: 0.9s;
+								-webkit-animation-timing-function: linear;
+								animation-timing-function: linear;
+								-webkit-animation-fill-mode: forwards;
+								animation-fill-mode: forwards;
+								-webkit-animation-name: ui-play-icon-3-iqiyi-ani-pause-second-left;
+								animation-name: ui-play-icon-3-iqiyi-ani-pause-second-left;
+							}
+						
+							.ui-play-icon-3-iqiyi-pause .ui-play-icon-3-iqiyi-second-right {
+								stroke-dasharray: 120;
+								-webkit-animation-duration: 0.9s;
+								animation-duration: 0.9s;
+								-webkit-animation-timing-function: linear;
+								animation-timing-function: linear;
+								-webkit-animation-fill-mode: forwards;
+								animation-fill-mode: forwards;
+								-webkit-animation-name: ui-play-icon-3-iqiyi-ani-pause-second-right;
+								animation-name: ui-play-icon-3-iqiyi-ani-pause-second-right;
+							}
+						
+						
+							@keyframes ui-play-icon-3-iqiyi-ani-play-first {
+								0% {
+									stroke-dashoffset: 276;
+								}
+						
+								33% {
+									stroke-dashoffset: 276;
+								}
+						
+								100% {
+									stroke-dashoffset: 0;
+								}
+							}
+						
+						
+							@keyframes ui-play-icon-3-iqiyi-ani-play-middle {
+						
+								0%,
+								33% {
+									stroke-dashoffset: -107;
+								}
+						
+								66% {
+									stroke-dashoffset: 107;
+								}
+						
+								100% {
+									stroke-dashoffset: 161;
+								}
+							}
+						
+							@keyframes ui-play-icon-3-iqiyi-ani-play-second-left {
+								0% {
+									stroke-dashoffset: -36;
+								}
+						
+								60% {
+									stroke-dashoffset: 108;
+								}
+						
+								100% {
+									stroke-dashoffset: 108;
+								}
+							}
+						
+						
+							@keyframes ui-play-icon-3-iqiyi-ani-play-second-right {
+								0% {
+									stroke-dashoffset: 24;
+								}
+						
+								17% {
+									stroke-dashoffset: 24;
+								}
+						
+								33% {
+									stroke-dashoffset: -120;
+								}
+						
+								100% {
+									stroke-dashoffset: -120;
+								}
+							}
+						
+						
+							@keyframes ui-play-icon-3-iqiyi-ani-pause-first {
+								0% {
+									stroke-dashoffset: 0;
+								}
+						
+								66% {
+									stroke-dashoffset: 276;
+								}
+						
+								100% {
+									stroke-dashoffset: 276;
+								}
+							}
+						
+							
+							@keyframes ui-play-icon-3-iqiyi-ani-pause-middle {
+								0% {
+									stroke-dashoffset: 161;
+								}
+						
+								33% {
+									stroke-dashoffset: 107;
+								}
+						
+								66%,
+								100% {
+									stroke-dashoffset: -107;
+								}
+							}
+						
+						
+							@keyframes ui-play-icon-3-iqiyi-ani-pause-second-left {
+								0% {
+									stroke-dashoffset: 108;
+								}
+						
+								40% {
+									stroke-dashoffset: 108;
+									-webkit-animation-timing-function: ease;
+									animation-timing-function: ease;
+								}
+						
+								100% {
+									stroke-dashoffset: -36;
+								}
+							}
+						
+							@keyframes ui-play-icon-3-iqiyi-ani-pause-second-right {
+								0% {
+									stroke-dashoffset: -120;
+								}
+						
+								67% {
+									stroke-dashoffset: -120;
+								}
+						
+								83% {
+									stroke-dashoffset: 24;
+								}
+						
+								100% {
+									stroke-dashoffset: 24;
+								}
+							}
+						</style>
+					</section>
+					<section>
+						<h3>SVG 动画兼容性</h3>
+						<div class="side-by-side">
+							<div class="ui-play-icon-4-circle-rect">
+								<svg version="2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120"
+									class="ui-play-icon-4-circle-rect-btn ui-play-icon-4-circle-rect-pause">
+									<g class="ui-play-icon-4-circle-rect-group">
+										<mask id="ui-play-icon-4-circle-rect-mask">
+											<polygon fill="white" points="0,0 103.4,60 0,120"></polygon>
+										</mask>
+										<circle class="ui-play-icon-4-circle-rect-ring" cx="34.64" cy="60" r="69.2" fill="red"
+											mask="url(#ui-play-icon-4-circle-rect-mask)"></circle>
+									</g>
+									<rect class="ui-play-icon-4-circle-rect-eye" x="0" y="8.6" rx="51.7" ry="51.7" width="103.4" height="103.4"
+										fill="red"></rect>
+								</svg>
+							</div>
+							<div class="ui-play-icon-4-circle-rect-inner">
+								<svg version="2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120"
+									class="ui-play-icon-4-circle-rect-inner-svg">
+									<g class="ui-play-icon-4-circle-rect-inner-group" transform="translate(19 0)">
+										<animateTransform attributeType="XML" attributeName="transform" type="translate" values="0 0; 19 0; 19 0"
+											dur="3s" repeatCount="indefinite"></animateTransform>
+										<g>
+											<mask id="ui-play-icon-4-circle-rect-inner-mask">
+												<polygon fill="white" points="0,0 103.4,60 0,120"></polygon>
+											</mask>
+											<circle class="ui-play-icon-4-circle-rect-inner-ring" cx="34.64" cy="60" r="25.7" fill="#2F5AFF"
+												mask="url(#ui-play-icon-4-circle-rect-inner-mask)">
+												<animate attributeType="XML" attributeName="r" values="69.2; 25.7; 25.7" dur="3s" repeatCount="indefinite"></animate>
+											</circle>
+										</g>
+									</g>
+									<g transform="translate(51.7, 51.7)">
+										<rect class="ui-play-icon-4-circle-rect-inner-eye" x="-51.7" y="-43" rx="15" ry="15" width="103.4" height="103.4"
+											fill="#2F5AFF" transform="scale(1 1)">
+											<animate attributeType="XML" attributeName="rx" values="51.7;51.7;15" dur="3s" repeatCount="indefinite"></animate>
+											<animate attributeType="XML" attributeName="ry" values="51.7;51.7;15" dur="3s" repeatCount="indefinite"></animate>
+											<animateTransform attributeType="XML" attributeName="transform" type="scale" origin="center"
+												values="0.3; 0.5; 1" calcMode="spline" keySplines="0.5 0 0.5 1;0.5 0 0.5 1" dur="3s" repeatCount="indefinite"></animateTransform>
+										</rect>
+									</g>
+								</svg>
+								<svg version="2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" class="ui-play-icon-4-circle-rect-inner-svg">
+									<g class="ui-play-icon-4-circle-rect-inner-group" transform="translate(0 0)">
+										<animateTransform attributeType="XML" attributeName="transform" type="translate" values="19; 19 0; 0 0" dur="3s" repeatCount="indefinite">
+										</animateTransform>
+										<g>
+											<mask id="ui-play-icon-4-circle-rect-inner-mask">
+												<polygon fill="white" points="0,0 103.4,60 0,120"></polygon>
+											</mask>
+											<circle class="ui-play-icon-4-circle-rect-inner-ring" cx="34.64" cy="60" r="69.2" fill="#2F5AFF"
+												mask="url(#ui-play-icon-4-circle-rect-inner-mask)">
+												<animate attributeType="XML" attributeName="r" values="25.7; 25.7; 69.2" dur="3s" repeatCount="indefinite"></animate>
+											</circle>
+										</g>
+									</g>
+									<g transform="translate(51.7, 51.7)">
+										<rect class="ui-play-icon-4-circle-rect-inner-eye" x="-51.7" y="-43" rx="51.7" ry="51.7" width="103.4"
+											height="103.4" fill="#2F5AFF" transform="scale(0.3 0.3)">
+											<animate attributeType="XML" attributeName="rx" values="15;51.7;51.7" dur="3s" repeatCount="indefinite"></animate>
+											<animate attributeType="XML" attributeName="ry" values="15;51.7;51.7" dur="3s" repeatCount="indefinite"></animate>
+											<animateTransform attributeType="XML" attributeName="transform" type="scale" values="1; 0.5; 0.3" dur="3s" repeatCount="indefinite">
+											</animateTransform>
+										</rect>
+									</g>
+								</svg>
+							</div>
+							
+						</div>
+						<style type="text/css">
+							.ui-play-icon-4-circle-rect {
+								width: 240px;
+								height: 240px;
+								display: -webkit-box;
+								display: flex;
+							}
+						
+							.ui-play-icon-4-circle-rect>svg {
+								width: 100%;
+								height: 100%;
+							}
+						
+							.ui-play-icon-4-circle-rect-group {
+								transform-origin: center;
+								animation-duration: 3s;
+								animation-timing-function: linear;
+								animation-fill-mode: forwards;
+								animation-iteration-count: infinite;
+								animation-name: ui-play-icon-4-circle-rect-ani-group;
+							}
+						
+							.ui-play-icon-4-circle-rect-ring {
+								transform-origin: center;
+								animation-duration: 3s;
+								animation-timing-function: linear;
+								animation-fill-mode: forwards;
+								animation-iteration-count: infinite;
+								animation-name: ui-play-icon-4-circle-rect-ani-ring;
+							}
+						
+							.ui-play-icon-4-circle-rect-eye {
+								transform-origin: center;
+								animation-duration: 3s;
+								animation-timing-function: linear;
+								animation-fill-mode: forwards;
+								animation-iteration-count: infinite;
+								animation-name: ui-play-icon-4-circle-rect-ani-eye;
+							}
+						
+							@keyframes ui-play-icon-4-circle-rect-ani-group {
+								0% {
+									transform: translateX(0);
+								}
+						
+								66% {
+									transform: translateX(17.2%);
+								}
+						
+								100% {
+									transform: translateX(17.2%);
+								}
+							}
+						
+							@keyframes ui-play-icon-4-circle-rect-ani-ring {
+								0% {
+									r: 69.2;
+								}
+						
+								66% {
+									r: 34.6;
+								}
+						
+								100% {
+									r: 34.6;
+								}
+							}
+						
+							@keyframes ui-play-icon-4-circle-rect-ani-eye {
+								0% {
+									opacity: 0;
+									rx: 51.7;
+									ry: 51.7;
+									transform: scale(0.5);
+								}
+						
+								50% {
+									opacity: 1;
+									rx: 51.7;
+									ry: 51.7;
+									transform: scale(0.5);
+								}
+						
+								100% {
+									rx: 15;
+									ry: 15;
+									transform: scale(1);
+								}
+							}
+						</style>
+						<style type="text/css">
+							.ui-play-icon-4-circle-rect-inner {
+								width: 480px;
+								height: 240px;
+								display: -webkit-box;
+								display: flex;
+							}
+						
+							.ui-play-icon-4-circle-rect-inner .ui-play-icon-4-circle-rect-inner-svg {
+								/* width: 100%; */
+								height: 100%;
+							}
+						</style>
+					</section>
+					<section>
+						<h3>化简为繁 - 图形变换即可</h3>
+						<div class="ui-play-icon-5-rect-skew">
+							<svg version="2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120"
+								class="ui-play-icon-5-rect-skew-svg">
+								<rect class="ui-play-icon-5-rect-skew-ring" x="0" y="8.65" rx="0" ry="0" width="103.4" height="103.4" fill="#2F5AFF"
+									stroke="#2F5AFF"></rect>
+							</svg>
+						</div>
+						<script>
+							(() => {
+								const button2 = document.querySelector(
+									'.ui-play-icon-5-rect-skew'
+								);
+								console.log('button2 :', button2);
+								button2.onclick = () => {
+									if (!button2.classList.contains('ui-play-icon-5-rect-skew-to-pause')) {
+										button2.classList.remove('ui-play-icon-5-rect-skew-to-play')
+										button2.classList.add('ui-play-icon-5-rect-skew-to-pause')
+									} else {
+										button2.classList.add('ui-play-icon-5-rect-skew-to-play')
+										button2.classList.remove('ui-play-icon-5-rect-skew-to-pause')
+									}
+								}
+							})();
+						</script>
+						<style type="text/css">
+							.ui-play-icon-5-rect-skew {
+								margin: 0 auto;
+								width: 240px;
+								height: 240px;
+							}
+						
+							.ui-play-icon-5-rect-skew-svg {
+								width: 100%;
+								height: 100%;
+							}
+						
+							.ui-play-icon-5-rect-skew-ring {
+								-webkit-transform-origin: center;
+								transform-origin: center;
+								-webkit-transition: all 0.3s cubic-bezier(0.54, -0.75, 0.47, 1.58);
+								transition: all 0.3s cubic-bezier(0.54, -0.75, 0.47, 1.58);
+								-webkit-transform: rotate(-45deg) skew(15deg, 15deg) translate(-21%, -27%) scale(1.1);
+								transform: rotate(-45deg) skew(15deg, 15deg) translate(-21%, -27%) scale(1.1);
+								stroke-linejoin: round;
+							}
+						
+							.ui-play-icon-5-rect-skew-to-pause .ui-play-icon-5-rect-skew-ring {
+								-webkit-transform: rotate(0) skew(0, 0) translate(0, 0) scale(0.8);
+								transform: rotate(0) skew(0, 0) translate(0, 0) scale(0.8);
+								stroke-width: 30;
+							}
+						
+							.ui-play-icon-5-rect-skew-ie-polygon {
+								-webkit-transition: all 0.3s ease-in-out;
+								transition: all 0.3s ease-in-out;
+							}
+						
+							.ui-play-icon-5-rect-skew-ie-rect {
+								opacity: 0;
+								-webkit-transition: all 0.3s ease-in-out;
+								transition: all 0.3s ease-in-out;
+							}
+						
+							.ui-play-icon-5-rect-skew-to-pause .ui-play-icon-5-rect-skew-ie-rect {
+								opacity: 1;
+							}
+						
+							.ui-play-icon-5-rect-skew-to-pause .ui-play-icon-5-rect-skew-ie-polygon {
+								opacity: 0;
+							}
+						</style>
 					</section>
 					<section>
 						<h2>小结</h2>
@@ -614,17 +1525,102 @@
 		</div>
 
 		<script src="js/reveal.js"></script>
+<!-- Live code sections -->
+<script>
+	for (const block of Array.from(document.querySelectorAll('.live-code'))) {
+		block.addEventListener('input', scheduleCodeUpdate);
+		// Initial application
+		window.addEventListener('load', () => updateCode(block));
+	}
 
+	function scheduleCodeUpdate(evt) {
+		let block = evt.target;
+
+		// Edge adds extra divs when editing. It's weird.
+		while (block && !block.classList.contains('live-code')) {
+			block = block.parentNode;
+		}
+		if (!block) {
+			console.log('Couldn\'t get root of block');
+			return;
+		}
+
+		if (block.updateTimeout) {
+			clearTimeout(block.updateTimeout);
+		}
+		if (block.highlightTimeout) {
+			clearTimeout(block.highlightTimeout);
+		}
+		block.updateTimeout = setTimeout(() => { updateCode(block) }, 500);
+		block.highlightTimeout = setTimeout(() => {
+			block.highlightTimeout = null;
+			hljs.highlightBlock(block);
+		}, 3000);
+	}
+
+	function updateCode(block) {
+		block.updateTimeout = null;
+
+		// Get target content
+		let ancestor = block;
+		let target = null;
+		while (ancestor && !target) {
+			// Check we don't start targeting another slide
+			if (ancestor.classList.contains('slides')) {
+				break;
+			}
+			target = ancestor.querySelector('.target-content');
+			ancestor = ancestor.parentNode;
+		}
+
+		if (!target) {
+			console.log('Target content to update not found');
+		}
+
+		// Create a "unique" ID. We really should test to see if the ID is unique but
+		// this way I have a 1 in 10,000 chance of the presentation going pear-shaped
+		// which could never happen. Definitely not.
+		if (!target.id) {
+			target.setAttribute('id', 'id-' + Date.now()
+				+ '-' + Math.floor((Math.random() * 100000)));
+		}
+
+		// Create style element
+		let styleBlock = target.querySelector('style');
+		if (!styleBlock) {
+			styleBlock = document.createElement('style');
+			target.appendChild(styleBlock);
+		}
+
+		// Update result
+		styleBlock.textContent = localizeCSS(block.textContent, target.id);
+	}
+
+	function localizeCSS(css, id) {
+		//
+		// We're just going to do something super hacky here that will work for
+		// this presentation. Basically, just add an ID to the start of any line
+		// that doesn't start with a space or an @
+		//
+		return css.replace(/^([^@ \n].*{)\s*/mg, '#' + id + ' $1');
+	}
+</script>
 		<script>
 			// More info about config & dependencies:
 			// - https://github.com/hakimel/reveal.js#configuration
 			// - https://github.com/hakimel/reveal.js#dependencies
 			Reveal.initialize({
 				dependencies: [
-					{ src: 'plugin/markdown/marked.js' },
-					{ src: 'plugin/markdown/markdown.js' },
+					// { src: 'plugin/markdown/marked.js' },
+					// { src: 'plugin/markdown/markdown.js' },
 					{ src: 'plugin/notes/notes.js', async: true },
-					{ src: 'plugin/highlight/highlight.js', async: true }
+					{
+						src: 'plugin/highlight/highlight.js',
+						async: true,
+						callback: function () {
+							hljs.initHighlightingOnLoad();
+						},
+					}
 				],
 				hash: true,
 				history: true
