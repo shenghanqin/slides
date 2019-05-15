@@ -80,15 +80,15 @@
 		<div class="reveal">
 			<div class="slides">
 				<section>
-					<h1>svg动画研究</h1>
+					<h1>SVG动画研究</h1>
 					<h2>小溪里</h2>
 					<p>2019-05-16</p>
 				</section>
 				<section>
 					<h3>目录</h3>
 					<ul>
-						<li>SVG 简介</li>
-						<li>基本形状</li>
+						<li>SVG简介</li>
+						<li>SVG基本形状</li>
 						<li>CSS动画优化</li>
 						<li>SVG动画技巧</li>
 						<li>我还想说</li>
@@ -100,14 +100,21 @@
 					</section>
 					<section>
 						<h3>概念</h3>
-						<p>可缩放矢量图形是基于可扩展标记语言（标准通用标记语言的子集），用于描述二维矢量图形的一种图形格式。它由万维网联盟制定，是一个开放标准。</p>
+						<ul>
+							<li>SVG 指可伸缩矢量图形 (Scalable Vector Graphics)</li>
+							<li>SVG 用来定义用于网络的基于矢量的图形</li>
+							<li>SVG 使用 XML 格式定义图形</li>
+							<li>SVG 图像在放大或改变尺寸的情况下其图形质量不会有所损失</li>
+							<li>SVG 是万维网联盟的标准</li>
+							<li>SVG 与诸如 DOM 和 XSL 之类的 W3C 标准是一个整体</li>
+						</ul>
 					</section>
 					<section>
 						<h3>特点</h3>
 						<ul>
 							<li>SVG 易读取或修改</li>
-							<li>SVG 与 JPEG 和 GIF 图像比起来，尺寸更小，且可压缩性更强。</li>
-							<li>SVG 是矢量的，且可被高质量打印</li>
+							<li>SVG 与 JPEG 和 GIF 相比，尺寸更小，可压缩性更强</li>
+							<li>SVG 是矢量的，可被高质量打印</li>
 							<li>SVG 图像中的文本是可选的，同时也是可搜索的（很适合制作地图）</li>
 						</ul>
 					</section>
@@ -116,7 +123,7 @@
 						<ul>
 							<li>矢量</li>
 							<li>文件小</li>
-							<li>多色支持</li>
+							<li>多色支持，可以随时变色</li>
 							<li>动画可与CSS、JS配合</li>
 							<li>兼容IE9</li>
 						</ul>
@@ -143,9 +150,9 @@
 								</ul>
 							</li>
 						</ul>
-						<pre><code>
-<symbol id="icon-arrow"></symbol><use xlink:href="#icon-arrow"></use>
-						</code></pre>
+<pre><code><symbol id="icon-arrow"></symbol>
+<use xlink:href="#icon-arrow"></use>
+</code></pre>
 					</section>
 				</section>
 				<section>
@@ -611,7 +618,7 @@
 							<dd>页面整体平移，在屏幕外的交互要格外注意</dd>
 							<br />
 							<dt>V3 touch代替scroll</dt>
-							<dd>touchend内部滚动后不会立即执行scroll</dd>
+							<dd>iPhone上touchend后的内部滚动完成后不会触发scroll</dd>
 						</dl>
 					</section>
 					<section>
@@ -1424,12 +1431,18 @@
 									stroke="#2F5AFF"></rect>
 							</svg>
 						</div>
+<pre><code>// 图形变换
+transform: rotate(-45deg) skew(15deg, 15deg) translate(-21%, -27%) scale(1.1);
+// 路径的转角处使用的形状或者绘制的基础形状 为 圆形
+stroke-linejoin: round
+// 增加描边，来突出转角处的圆角
+stroke-width: 30;
+</code></pre>
 						<script>
 							(() => {
 								const button2 = document.querySelector(
 									'.ui-play-icon-5-rect-skew'
 								);
-								console.log('button2 :', button2);
 								button2.onclick = () => {
 									if (!button2.classList.contains('ui-play-icon-5-rect-skew-to-pause')) {
 										button2.classList.remove('ui-play-icon-5-rect-skew-to-play')
@@ -1490,13 +1503,15 @@
 						</style>
 					</section>
 					<section>
-						<h2>小结</h2>
+						<h3>小结</h3>
 						<ul>
-							<li>Svg Smil Animation 要被废弃，如<pre><code><animateTransform attributeName="transform" type="scale" /></code></pre>
-							</li>
+							<li>Svg Smil Animation 要被废弃，如底部的代码</li>
 							<li>Svg动画兼容性：在SVG 1.1中,圆的半径是 attribute而不是 CSS property。safari和Firefox支持不够好</li>
 							<li>Svg 矢量图形，CSS动画，可以操作的属性有stroke-width,fill, transform，opacity等，但不建议操作半径、路径等</li>
 						</ul>
+
+						<pre><code>// sSvg Smil Animation示例：
+<animateTransform attributeName="transform" type="scale" /></code></pre>
 					</section>
 				</section>
 				<section>
