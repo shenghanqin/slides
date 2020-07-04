@@ -4,7 +4,7 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<title>reveal.js</title>
+		<title>小程序直播间的基础架构和功能优化</title>
 
 		<link rel="stylesheet" href="dist/reset.css">
 		<link rel="stylesheet" href="dist/reveal.css">
@@ -12,12 +12,232 @@
 
 		<!-- Theme used for syntax highlighted code -->
 		<link rel="stylesheet" href="plugin/highlight/monokai.css" id="highlight-theme">
+		<style>
+			.reveal h1, .reveal h2, .reveal h3, .reveal h4, .reveal h5, .reveal h6 {
+				text-transform: initial;
+			}
+
+			.reveal p {
+				text-align: left;
+			}
+
+			.reveal blockquote {
+				width: 95%;
+			}
+		</style>
 	</head>
 	<body>
 		<div class="reveal">
 			<div class="slides">
-				<section>Slide 1</section>
-				<section>Slide 2</section>
+				<section>
+					<h1>小程序直播间</h1>
+					<h2>基础架构和功能优化</h2>
+					<h6>小溪里</h6>
+					<h6>2020-07-08</h6>
+				</section>
+				<section data-markdown>
+					* `socket` 基础知识
+					* `socket-service` 的连接机制
+						* 断网重连的bug
+					* 播放器的设计
+					* 消息监听
+				</section>
+				<section>
+					<section data-markdown>
+						# Socket连接及 <br />Socket-service 服务
+					</section>
+					<section data-markdown>
+						### Socket 连接原理
+						
+						* HTTP 连接
+						* 长轮询
+						* Socket 的 WebSocket 连接
+						
+						###### ![图片](https://uploader.shimo.im/f/IaN8p5ElVuRJGTTa.png!thumbnail)
+					</section>
+					<section data-markdown>
+						### 主要连接顺序
+						
+						1. 创建 `socket` 连接，以 `wss` 协议
+						2. 验证 `service-token` 信息
+						3. 请求指令、回应指令
+							* 获取上麦人数、是否禁言、在线人数等
+							* 监听多种消息类型，如普通消息、上麦、送鲜花等
+						
+						![图片](https://uploader.shimo.im/f/t5gATu2g0pB8AVoy.png!thumbnail)
+					</section>
+					<section data-markdown>
+						### 连接库
+						
+						基于 `socket.io` 实现，有 `socket.io-server` 服务端和 `socket.io-client` 客户端版本
+						
+						Web端使用 `socket.io-client` 的1.4.6版本
+						
+						小程序端用的 `wxapp-socket-io` 的1.0.0版本，特点为编译前未压缩版本大小为 60 k，使用单socket连接，其核心逻辑为 `engine.js` 中有 `wx.connectSocket` 和 `wx.closeSocket` 的单任务连接机制
+					</section>
+					<section data-markdown>
+						### 连接库的疑问
+						为何不使用 `wxapp-socket-io` 的最新版呢？
+						
+						最新版实现的原理是基于`socket.io-client` 的 2.3.6版本，将其中 socket 连接部分
+						
+						编译后未压缩版本大小为300k左右，且在分析namespace时会多一个 “,”，
+						
+						
+						![图片](https://uploader.shimo.im/f/bZLb1KtffpPLe72Y.png!thumbnail)
+						
+						```javascript
+						// 错误
+						/group123456,
+						/group123456,,invalid namespace
+						```
+					</section>
+					<section data-markdown>
+						### 连接初始代码
+						
+						1、io 连接 `wss.cctalk.com:8000/group123456` 其中 `wss.cctalk.com:8000` 为socket连接地址，`group123456` 为命名空间（群聊房间）
+						
+						```javascript
+						// 调用时的配置
+						const socket = new Socket({
+							store,
+							userId: userInfo.userId,
+							actions: liveActions,
+							videoId: videoInfo.videoId,
+							groupId: videoInfo.groupId
+						})
+						```
+					</section>
+					<section data-markdown>
+						<textarea data-template>
+
+							```javascript
+							// 获取wss链接
+							export async function getSocketServer(groupId) {
+								try {
+									const res = await getWssInfo()
+									return `wss://${(res.httpsHost).trim()}:8000/group${groupId}`
+								} catch (e) {
+									wsslogError(e, '获取 wss 地址失败')
+									return null
+								}
+							}
+							```
+							```json
+							 {
+								"httpsHost": "swss.hjapi.com",
+								"wssHost": "wss.cctalk.com",
+								"wssPort": "8000"
+							}
+							```
+							```javascript
+								// 实际连接的核心代码
+								const server = getSocketServer(this.groupId)
+								this.socket = io(server, {
+								// 重连间隔
+								reconnectionDelay: 50000,
+								// 最大重连尝试次数
+								reconnectionAttempts: 5,
+							})
+							```
+						</textarea>
+					</section>
+					<section data-markdown>
+						2、获取 `service-token` ，校验token，此时才会认为 `socket` 登录成功
+						
+						```javascript
+						const data = await this.actions.user.getSocketToken()
+						// 开始验证 token，当后续验证 token 通过时，才算登录成功
+						this.sendCMD(__code.SCMD_LOGIN_VERIFY_TOKEN_REQ, { content: data.token }) 
+						```
+						```json
+						{
+							"blackReason": "",
+							"nickName": "xiaoxili22",
+							"releaseTime": 0,
+							"token": "6680462445615xxxxxx",
+							"userId": 65875530,
+							"userName": "xiaoxili22"
+						}
+						```
+						> 直播间socket连接的机制，命名空间、token校验、多次重连机制、10秒心跳重连
+
+					</section>
+					<section data-markdown>
+						### 断网重连bug
+						
+						bug表现：在用户断网后再次重连后，用户会被从参与列表中自动推出
+					</section>
+					<section data-markdown>
+						#### 怀疑表现1
+						
+						微信开发者工具没有问题，但小程序上就有问题
+						
+						CCtalk web端直播间使用的每隔10秒请求一次群成员数量以此来判断是否连接成功
+						
+						沪江网校的方案为每隔10秒会关闭Socket连接，再重新连接一次
+						
+						**但经过多次尝试，依然无效**
+						
+						> 客户端断开用户连接的时间为2分钟，2分钟内重连成功后不会将用户从用户列表移除。
+					</section>
+					<section data-markdown>
+						<textarea data-template>
+							#### 心跳重连的示例代码
+
+							```js [9-12,16-23]
+							wx.getNetworkType({
+								success: function (res) {
+									// 返回网络类型, 有效值：
+									// wifi/2g/3g/4g/unknown(Android下不常见的网络类型)/(无网络)
+									const networkType = res.networkType;
+									if (networkType === 'none') {
+										console.log('网络中断，聊天服务异常');
+										//重置
+										noNetwork = true;
+										self.socket && self.socket.disconnect();
+										self.closeAgora();
+										wx.closeSocket();
+										return;
+									}
+									//之前有过没有网络的情况
+									if (noNetwork) {
+										if (self.socket) {
+											self.socket.disconnect();
+											wx.closeSocket();
+										}
+										setTimeout(() => {
+											self.connect();
+										}, 1000);
+									}
+								}
+							});
+							```
+						</textarea>
+					</section>
+					<section data-markdown>
+					</section>
+					<section data-markdown>
+					</section>
+					<section data-markdown>
+					</section>
+					<section data-markdown>
+					</section>
+					<section data-markdown>
+					</section>
+					<section data-markdown>
+					</section>
+					<section data-markdown>
+					</section>
+					<section data-markdown>
+					</section>
+					<section data-markdown>
+					</section>
+					<section data-markdown>
+					</section>
+					<section data-markdown>
+					</section>
+				</section>
 			</div>
 		</div>
 

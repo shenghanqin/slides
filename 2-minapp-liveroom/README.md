@@ -2,13 +2,15 @@
 
 ![图片](https://uploader.shimo.im/f/clNGDzFr6RPbLNiH.png!thumbnail)
 
+
 ## **知识点**
 
 *  `socket` 基础知识
 *  `socket-service` 的连接机制
+   *  断网重连的bug
 * 播放器的设计
-* 消息指令，消息类型，优化细节
-* 断网重连的bug及server寻找原因？
+* 消息监听
+  
 ## 1、连接及socket-service服务
 
 ### Socket 连接原理
@@ -111,7 +113,8 @@ this.sendCMD(__code.SCMD_LOGIN_VERIFY_TOKEN_REQ, { content: data.token }) 
 	"userName": "xiaoxili22"
 }
 ```
->直播间socket连接的机制，命名空间、token校验、多次重连机制、10秒心跳重连
+> 直播间socket连接的机制，命名空间、token校验、多次重连机制、10秒心跳重连
+
 ### 断网重连bug
 
 bug表现：在用户断网后再次重连后，用户会被从参与列表中自动推出
