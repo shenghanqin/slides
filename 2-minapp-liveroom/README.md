@@ -311,57 +311,214 @@ onToPlayBtn = () => {
 * 第一条
 * 最新消息与次新消息间隔5分钟
 
-### 【暂时废弃】输入法高度
 
-input的 `adjust-position` 导致整个页面上推，即使是fixed的直播播放区
+### 新消息提醒
 
-（少一张图？）
+效果图（gif）
+
+* 自动滚动到底部
+* 新消息提示
+
+业务需求
+
+* 新消息来时，自动定位到最下方
+* 用户输入文字时，自动定位到最下方
+* 若用户主动滚动聊天列表区域，则会显示“新消息”提示，点击后会自动滚动到最底部
+
+即核心为判断聊天消息区域是否滚动到底部。
+
+
+#### Web端实现方案
+
+通过监听 `Scroll` 事件获取Dom来模拟计算出是否到达底部
+
+```js
+isScrollToBottom = () => {
+  const scrollWrapper = this.scrollRef
+  const sHeight = scrollWrapper.scrollHeight
+  const sTop = scrollWrapper.scrollTop
+  const refHeight = parseInt(getStyle(scrollWrapper, 'height'), 10)
+
+  return sTop + refHeight >= sHeight - 20
+}
+
+onScrollHandler = () => {
+  const bubble = this.bubbleRef
+
+  // 是否滚动到最底部
+  this.isAutoToBottom = this.isScrollToBottom()
+  bubble.style.display = 'none'
+}
+```
+
+
+
+
+
+### 小程序端方案一：监听 onScroll 事件
+
+```js
+onScroll = () => {
+  this.isAutoScroll = false
+}
+
+onScrollToLower = () => {
+  this.isAutoScroll = true
+  this.setState({
+    isShowBubble: false
+  })
+}
+```
+
+存在的问题：`onScrollToLower` 方法默认距离底部 `50px` 触发，但之后  `onScroll` 依旧会触发，也就是说无法实现判断滚动到底部
+
+那为何不像Web端那样监听 DOM高度来计算是否滚动到底部呢？因为小程序上获取 DOM 的Top的方法是异步的，在 `onScroll` 事件内频繁触发，很耗费性能。
+
+```js
+// 获取dom的top值
+export function getDomRect(nodeRef) {
+  return new Promise(resolve => {
+    if (nodeRef) {
+      nodeRef.boundingClientRect(res => {
+        if (res) {
+          resolve(res)
+        }
+      }).exec()
+    }
+  })
+}
+```
+
+### 小程序端方案二：监听高 `1px`的元素是否在视图在内
+
+效果图（gif）
+
+```js
+<ScrollView
+  className='messages-scroll'
+  scrollY
+  enableBackToTop
+  scrollWithAnimation
+  ref={scroll => this.scrollRef = scroll}
+  onScroll={this.onScroll}
+  scrollIntoView={inView}
+>
+  {messageList && messageList.length > 0 && this.renderList()}
+  <View className='bottom-line' id='bottom-line'></View>
+</ScrollView>
+```
+
+```js
+changeLineObserver = () => {
+
+  if (this._observerLine) {
+    this._observerLine.disconnect()
+  }
+  
+  this._observerLine = Taro.createIntersectionObserver(this)
+
+  this._observerLine
+    .relativeTo('.messages-scroll', {
+      bottom: 6,
+    })
+    .observe('.bottom-line', (res) => {
+      const { intersectionRatio, boundingClientRect: { bottom } } = res
+
+      // 在自动滚动到最底部时，暂时停掉这个功能
+      if (bottom > 400 && !this.isToBottoming) {
+
+        // 隐藏新消息气泡
+        if (intersectionRatio) {
+          this.setState({
+            isShowBubble: false
+          })
+        }
+
+        // 判断是否在最底部
+        this.isAutoToBottom = !!intersectionRatio
+      }
+    })
+}
+```
+
+
+### 自动滚动到最底部的实现方法
+
+#### 方案一 scrollTop
+
+`scrollTop` 的方案可以继续用，但需要每次更换 `scrollTop` 才能触发 state 更新
+
+```js
+this.toBottomT = setTimeout(() => this.setState({ listScrollTop: 9999999 + parseInt(Math.random() * 10000)}), 500)
+```
+
+
+#### 方案二 `scrollToView` 快速跳转位置
+
+> `scroll-into-view` 的优先级高于 `scroll-top`
+
+
+
+```js
+toBottomHandler = () => {
+  this.isAutoToBottom = true
+
+  // 滚动到底部
+  this.setState({
+    inView: 'bottom-line',
+    isShowBubble: false,
+  }, () => {
+    // 滚动完成后，需要清空 inView 的值，这样才可以在下次更新 inView 值触发 state 更新
+    this.setState({
+      inView: '',
+    })
+  })
+}
+```
+
+
+
+
+与CCtalk app上的交互类似，当input 聚焦及全屏操作时，认为离开了聊天消息区域，此时需要将聊天消息区域自动滚动到最底部。
+
+监听键盘高度变化，将输入框的位置做偏移
 
 改为监听输入法高度
-
-安卓中文输入法，不跟手
 
 * 改变ScrollView高度影响scroll区域，导致“新消息”的气泡提示有问题。
 * 分离聊天消息列表与输入框
 
-input focus时，聊天消息列表高度不变，而input输入框位置跟随输入法做偏移，使用css动画做简单偏移动画
+input focus 时，聊天消息列表高度不变，而input输入框位置跟随输入法做偏移，使用css动画做简单偏移动画
 
+### 输入框与输入法遮挡的高度
 
+#### 默认效果：输入法遮挡输入框
+<!-- TODO -->
+效果图
 
-方案1：
+#### 方案一：上推页面
+`Input` 的 `adjust-position` 属性支持在输入法弹出时，自动将页面上推
 
-`onScrollToLower` 方法默认距离底部50px触发，但之后  `onScroll` 依旧会触发
+存在的问题：导致整个页面上推，即使是 `postion: fixed` 的直播播放区
 
- 
+<!-- TODO -->
+效果图
 
-需要在 `onScroll` 判断距离底部位置，模拟滚动到底部
-
-
-方案2：
-
-高1px的元素是否在视图在内，监听新消息泡泡
-
- `ScrollView` 的   `scrollToView` 快速跳转位置
-
-新消息来时需要滚动到底部时，加一个状态，以此来将监听暂时无效化
-
-与CCtalk app上的交互类似，当input 聚焦及全屏操作时，认为离开了聊天消息区域，此时需要将聊天消息区域自动滚动到最底部，
-
- 
-
-### 输入框及聊天区域优化
+#### 方案二：聊天列表区域收缩 
 
 CCtalk APP在输入法弹出时会改变聊天消息区域高度
 
 ![图片](https://uploader.shimo.im/f/rcIlmcHcOUvDU6AB.gif)
 
-小程序端采取输入框跟随键盘位置，但聊天消息区域高度不变
+影响了对聊天列表区域高度，从而对相应的监听产生影响
+
+#### 方案三：分离式
+
+具体来说：小程序端采取输入框跟随键盘位置，但聊天消息区域高度不变
 
 并加入了css延迟动画，以模拟贴合输入法高度变化的情况
 
 ![图片](https://uploader.shimo.im/f/pADiy8RHYE9Wden8.gif)
-
-
 
 
 ### 大小表情
