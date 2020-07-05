@@ -229,7 +229,9 @@ v2.9.1 起支持同层渲染
 * 老师主动结束直播，播放区提示
 * 移除群成员，弹窗提示
 
-![图片](https://uploader.shimo.im/f/845JJ4uYi1HeXxT0.png!thumbnail)![图片](https://uploader.shimo.im/f/1srgUWDwu7ATOrEu.png!thumbnail)
+| 老师主动结束 | 移除群成员 |
+| --- | --- |
+| ![图片](./img/status-1.png) | ![图片](./img/status-2.png) |
 
 ### 自动播放
 
