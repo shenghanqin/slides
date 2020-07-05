@@ -1,8 +1,4 @@
 # 直播间
-
-![图片](https://uploader.shimo.im/f/clNGDzFr6RPbLNiH.png!thumbnail)
-
-
 ## **知识点**
 
 * 小程序功能简介
@@ -19,7 +15,7 @@
 * 账号登录
 * 购买后的课程列表
 
-![图片](https://uploader.shimo.im/f/fXVnnntM792z9Auw.png!thumbnail)
+![图片](./img/introduction-1.png)
 
 ### 网师主页
 
@@ -27,7 +23,7 @@
 
 需要隐藏 Web端价格标签，如价格、优惠活动等
 
-![图片](https://uploader.shimo.im/f/FAdpetKaHnj7lwsy.png!thumbnail)
+![图片](./img/introduction-2.png)
 
 ### 课时学习页
 
@@ -36,14 +32,14 @@
 * 视频播放、课时切换
 * 群模块：网师、评价、推荐
 
-![图片](https://uploader.shimo.im/f/LDQ1Ipuekkaoxjsa.png!thumbnail)
+![图片](./img/introduction-3.png)
 
 ### 直播间
 
 * 在线直播播放
 * 聊天消息列表
 
-![图片](https://uploader.shimo.im/f/4UnRcbnu1g9Jnia4.gif)
+![图片](./img/introduction-4.gif)
 
 
   
@@ -55,7 +51,7 @@
 * 长轮询
 * Socket 的 WebSocket 连接
 
-![图片](https://uploader.shimo.im/f/IaN8p5ElVuRJGTTa.png!thumbnail)
+![图片](./img/socket-1.png)
 
 ### 主要连接顺序
 
@@ -66,7 +62,7 @@
   1. 请求指令
   2. 回应指令
 
-![图片](https://uploader.shimo.im/f/t5gATu2g0pB8AVoy.png!thumbnail)
+![图片](./img/socket-2.png)
 
 ### 连接库
 
@@ -85,7 +81,7 @@ Web端使用  `socket.io-client` 的1.4.6版本
 编译后未压缩版本大小为300k左右，且在分析namespace时会多一个 “,”，
 
 
-![图片](https://uploader.shimo.im/f/bZLb1KtffpPLe72Y.png!thumbnail)
+![图片](./img/socket-3.png)
 
 ```javascript
 // 错误
@@ -238,7 +234,7 @@ v2.9.1 起支持同层渲染
 * Wifi 自动开始播放
 * 4G 提示消耗流量，再同意后才进行播放
 
-![图片](https://uploader.shimo.im/f/BR6cSqzCmDnQxrtk.png!thumbnail)
+![图片](./img/status-3.png)
 
 **Wifi下自动播放**
 
@@ -297,11 +293,11 @@ onToPlayBtn = () => {
 ```
 ## 4、消息发送
 
-### 消息合并
+### 消息合并动图
 
-![图片](https://uploader.shimo.im/f/Gz1HPGceHYwgvxIZ.gif)![图片](https://uploader.shimo.im/f/4UnRcbnu1g9Jnia4.gif)
-
-消息合并，简化版分组的概念
+| app | 小程序 |
+| --- | --- |
+| ![图片](./img/message-1.gif) | ![图片](./img/message-2.gif) |
 
 * 移动端app和pc客户端都需要将本地消息与网络消息进行合并，并且也有消息记录的概念
 * 小程序直播间：只有网络消息，只记录从进入、离开聊天室这一段时间
@@ -508,7 +504,7 @@ input focus 时，聊天消息列表高度不变，而input输入框位置跟随
 
 CCtalk APP在输入法弹出时会改变聊天消息区域高度
 
-![图片](https://uploader.shimo.im/f/rcIlmcHcOUvDU6AB.gif)
+![图片](./img/message-4.gif) 
 
 影响了对聊天列表区域高度，从而对相应的监听产生影响
 
@@ -518,7 +514,7 @@ CCtalk APP在输入法弹出时会改变聊天消息区域高度
 
 并加入了css延迟动画，以模拟贴合输入法高度变化的情况
 
-![图片](https://uploader.shimo.im/f/pADiy8RHYE9Wden8.gif)
+![图片](./img/message-5.gif) 
 
 
 ### 大小表情
@@ -536,7 +532,7 @@ CCtalk APP在输入法弹出时会改变聊天消息区域高度
 
 大表情为单独的一条
 
-![图片](https://uploader.shimo.im/f/HFojyTSswJn4CCl6.gif)
+![图片](./img/message-3.gif)
 
 ### 富文本与复制
 
