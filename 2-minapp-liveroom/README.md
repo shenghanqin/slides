@@ -5,11 +5,47 @@
 
 ## **知识点**
 
-*  `socket` 基础知识
-*  `socket-service` 的连接机制
+* 小程序功能简介
+* `socket` 基础知识
+* `socket-service` 的连接机制
    *  断网重连的bug
 * 播放器的设计
 * 消息监听
+
+## 0、 小程序功能简介
+
+### 我的课程列表
+
+* 账号登录
+* 购买后的课程列表
+
+![图片](https://uploader.shimo.im/f/fXVnnntM792z9Auw.png!thumbnail)
+
+### 网师主页
+
+内嵌 web 端网师主页
+
+需要隐藏 Web端价格标签，如价格、优惠活动等
+
+![图片](https://uploader.shimo.im/f/FAdpetKaHnj7lwsy.png!thumbnail)
+
+### 课时学习页
+
+包含 Web 端的群 intro 页和 三合一页面主体功能
+
+* 视频播放、课时切换
+* 群模块：网师、评价、推荐
+
+![图片](https://uploader.shimo.im/f/LDQ1Ipuekkaoxjsa.png!thumbnail)
+
+### 直播间
+
+* 在线直播播放
+* 聊天消息列表
+
+![图片](https://uploader.shimo.im/f/4UnRcbnu1g9Jnia4.gif)
+
+
   
 ## 1、连接及socket-service服务
 
@@ -173,13 +209,11 @@ v2.9.1 起支持同层渲染
 ```xml
 <!-- 错误 -->
 <LivePlayer></LivePlayer>
-<CoverView>静音</CoverView>
 <CoverView>全屏</CoverView>
 ```
 ```xml
 <!-- 正确 -->
 <LivePlayer>
-  <CoverView>静音</CoverView>
   <CoverView>全屏</CoverView>
 </LivePlayer>
 ```

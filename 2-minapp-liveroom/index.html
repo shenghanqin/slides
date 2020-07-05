@@ -9,6 +9,7 @@
 		<link rel="stylesheet" href="dist/reset.css">
 		<link rel="stylesheet" href="dist/reveal.css">
 		<link rel="stylesheet" href="dist/theme/black.css" id="theme">
+		<!-- <link rel="stylesheet" href="dist/theme/white.css" id="theme"> -->
 
 		<!-- Theme used for syntax highlighted code -->
 		<link rel="stylesheet" href="plugin/highlight/monokai.css" id="highlight-theme">
@@ -29,13 +30,15 @@
 	<body>
 		<div class="reveal">
 			<div class="slides">
-				<section>
-					<h1>小程序直播间</h1>
-					<h2>基础架构和功能优化</h2>
-					<h6>小溪里</h6>
-					<h6>2020-07-08</h6>
+				<section data-markdown>
+					# 小程序直播间
+					## 基础架构和功能优化
+					###### 小溪里
+					###### 2020-07-08
 				</section>
 				<section data-markdown>
+					## 知识点 
+					* 小程序业务介绍
 					* `socket` 基础知识
 					* `socket-service` 的连接机制
 						* 断网重连的bug
@@ -44,16 +47,41 @@
 				</section>
 				<section>
 					<section data-markdown>
+						## 小程序功能简介
+					</section>
+					<section data-markdown>
+						### 我的课程列表
+						
+						* 账号登录
+						* 购买后的课程列表
+						
+						###### ![图片](./img/introduction-1.png)
+
+					</section>
+					<section data-markdown>
+						### 网师主页
+						
+						内嵌 web 端网师主页
+						
+						* 需要隐藏 Web端价格标签，如价格、优惠活动等
+						
+						###### ![图片](./img/introduction-2.png)
+					</section>
+					<section data-markdown></section>
+					<section data-markdown></section>
+				</section>
+				<section>
+					<section data-markdown>
 						# Socket连接及 <br />Socket-service 服务
 					</section>
 					<section data-markdown>
 						### Socket 连接原理
 						
-						* HTTP 连接
-						* 长轮询
-						* Socket 的 WebSocket 连接
+						* HTTP 连接：API 请求
+						* 长轮询：订单状态查询
+						* WebSocket 连接：聊天室
 						
-						###### ![图片](https://uploader.shimo.im/f/IaN8p5ElVuRJGTTa.png!thumbnail)
+						###### ![图片](./img/socket-1.png)
 					</section>
 					<section data-markdown>
 						### 主要连接顺序
@@ -64,29 +92,27 @@
 							* 获取上麦人数、是否禁言、在线人数等
 							* 监听多种消息类型，如普通消息、上麦、送鲜花等
 						
-						![图片](https://uploader.shimo.im/f/t5gATu2g0pB8AVoy.png!thumbnail)
+						###### ![图片](./img/socket-2.png)
 					</section>
 					<section data-markdown>
 						### 连接库
 						
 						基于 `socket.io` 实现，有 `socket.io-server` 服务端和 `socket.io-client` 客户端版本
 						
-						Web端使用 `socket.io-client` 的1.4.6版本
+						Web端使用 `socket.io-client` 1.4.6 版
 						
-						小程序端用的 `wxapp-socket-io` 的1.0.0版本，特点为编译前未压缩版本大小为 60 k，使用单socket连接，其核心逻辑为 `engine.js` 中有 `wx.connectSocket` 和 `wx.closeSocket` 的单任务连接机制
+						小程序端用的 `wxapp-socket-io` 1.0.0 版，特点为编译后未压缩版本大小为 60 k，使用单socket连接，其核心逻辑为 `engine.js` 中有 `wx.connectSocket` 和 `wx.closeSocket` 的单任务连接机制
 					</section>
 					<section data-markdown>
 						### 连接库的疑问
 						为何不使用 `wxapp-socket-io` 的最新版呢？
 						
-						最新版实现的原理是基于`socket.io-client` 的 2.3.6版本，将其中 socket 连接部分
-						
-						编译后未压缩版本大小为300k左右，且在分析namespace时会多一个 “,”，
+						最新版实现的原理是基于`socket.io-client` 的 2.3.6版本，将编译后未压缩版本大小为300k左右，且在分析namespace时会多一个 “,”，
 						
 						
-						![图片](https://uploader.shimo.im/f/bZLb1KtffpPLe72Y.png!thumbnail)
+						###### ![图片](./img/socket-3.png)
 						
-						```javascript
+						```javascript [3]
 						// 错误
 						/group123456,
 						/group123456,,invalid namespace
@@ -216,12 +242,48 @@
 						</textarea>
 					</section>
 					<section data-markdown>
+						#### 怀疑表现2
+						
+						但通过测试，iPhone手机的 Safari 浏览器也有类似的bug，怀疑为 Sever 问题，（电脑端没有这个问题）
+						
+						表现为：
+						
+						* 直接断开网络后，参与成员在80秒左右会自动离开
+						* 25秒断开网络后，参与成员在80秒左右会自动离开
+						</section>
+						<section data-markdown>
+						Server同学在解决问题后，给出一下分析：
+						
+						* 存在多个wss的情况下，会出现不能保证顺序执行用户离开再进入，会变成先进入再离开，所以断线后就连不上了。
+						* 对单次登录做了唯一uuid记录，离开的时候需要匹配uuid，否则直接不处理此次离开（认为非法）
+						* 这样先收到进入（新的uuid），再收到离开（老的uuid）。因为老的uuid跟新的uuid不匹配，所以做丢弃处理
+					</section>
+				</section>
+				<section>
+					<section data-markdown>
+						## 播放器
 					</section>
 					<section data-markdown>
+						**小程序端**
+						
+						`live-player` 的 src 支持 rtmp 格式，
+						
+						首次使用 `videoInfo` 里面的 rtmp 地址，但也支持通过 `Socket` 指令来更换 rtmp 地址
+						
+						**Web端**
+						
+						HLS的 m3u8 方式，简单来说就是每次传递视频的一小块。
 					</section>
 					<section data-markdown>
-					</section>
-					<section data-markdown>
+						### 同层渲染
+						
+						LivePlayer 在小程序基础库v2.9.1 起支持同层渲染。
+						> CCtalk 课程小程序的最低基础库限制为 V2.8.0
+
+						但想覆盖住全屏后的 `LivePlayer`，就需要使用 ``
+						![图片](https://uploader.shimo.im/f/aIkRsEhu2CP0drr3.png!thumbnail)
+						
+						安卓手机上即使是最新版小程序基础库，还是会出现“静音”和“全屏”按钮按钮显示不出来，原因为嵌套不合理。
 					</section>
 					<section data-markdown>
 					</section>
