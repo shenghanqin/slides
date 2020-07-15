@@ -12,7 +12,9 @@
             ".gitnore",
             ".github",
             "cloudbaserc.json",
-            "LICENSE"
+            "node_modules",
+            "LICENSE",
+            "README.md"
           ]
         }
       }
