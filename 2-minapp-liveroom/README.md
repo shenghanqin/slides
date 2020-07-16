@@ -1,4 +1,4 @@
-# 直播间
+# 小程序直播间的基础架构和功能优化
 ## **知识点**
 
 * 小程序功能简介
@@ -16,7 +16,7 @@
 * 账号登录
 * 购买后的课程列表
 
-![图片](./img/introduction-1.png)
+![](https://image-hosting.xiaoxili.com/img/20200713100311.png)
 
 ### 网师主页
 
@@ -24,7 +24,7 @@
 
 需要隐藏 Web端价格标签，如价格、优惠活动等
 
-![图片](./img/introduction-2.png)
+![](https://image-hosting.xiaoxili.com/img/20200713100337.png)
 
 ### 课时学习页
 
@@ -33,14 +33,14 @@
 * 视频播放、课时切换
 * 群模块：网师、评价、推荐
 
-![图片](./img/introduction-3.png)
+![](https://image-hosting.xiaoxili.com/img/20200713100353.png)
 
 ### 直播间
 
 * 在线直播播放
 * 聊天消息列表
 
-![图片](./img/introduction-4.gif)
+![](https://image-hosting.xiaoxili.com/img/20200713100408.gif)
 
 
   
@@ -52,7 +52,7 @@
 * 长轮询：订单状态查询
 * WebSocket 连接：聊天室
 
-![图片](./img/socket-1.png)
+![](https://image-hosting.xiaoxili.com/img/20200713100456.png)
 
 ### 主要连接顺序
 
@@ -62,7 +62,7 @@
   * 获取上麦人数、是否禁言、在线人数等
   * 监听多种消息类型，如普通消息、上麦、送鲜花等
 
-![图片](./img/socket-2.png)
+![](https://image-hosting.xiaoxili.com/img/20200713100516.png)
 
 ### 连接库
 
@@ -77,7 +77,7 @@ Web端使用 `socket.io-client` 1.4.6 版
 最新版实现的原理是基于`socket.io-client` 的 2.3.6版本，将编译后未压缩版本大小为300k左右，且在分析namespace时会多一个 “,”，
 
 
-![图片](./img/socket-3.png)
+![](https://image-hosting.xiaoxili.com/img/20200713100545.png)
 
 ```javascript
 // 错误
@@ -144,8 +144,7 @@ this.sendCMD(__code.SCMD_LOGIN_VERIFY_TOKEN_REQ, { content: data.token }) 
 
 ### 断网重连bug
 
-bug表现：在用户断网后再次重连后，用户会被从参与列表中自动推出
-
+bug表现：在用户断网后再次重连后，用户会被从参与列表中自动移除
 #### 怀疑表现1
 
 微信开发者工具没有问题，但小程序上就有问题
@@ -189,13 +188,12 @@ wx.getNetworkType({
 ```
 #### 怀疑表现2
 
-但通过测试，iPhone手机的 Safari 浏览器也有类似的bug，怀疑为 Sever 问题，（电脑端没有这个问题）
+但通过测试，iPhone手机的 Safari 浏览器也有类似的bug，怀疑为 Server 问题，（电脑端没有这个问题）
 
 表现为：
 
 * 直接断开网络后，参与成员在80秒左右会自动离开
 * 25秒断开网络后，参与成员在80秒左右会自动离开
-
 Server同学在解决问题后，给出一下分析：
 
 * 存在多个wss的情况下，会出现不能保证顺序执行用户离开再进入，会变成先进入再离开，所以断线后就连不上了。
@@ -223,7 +221,7 @@ LivePlayer 在小程序基础库v2.9.1 起支持同层渲染。
 
 但想覆盖住全屏后的 `LivePlayer`，就需要使用 `CoverView`
 
-![图片](./img/player-1.png)
+![](https://image-hosting.xiaoxili.com/img/20200713100608.png)
 
  `CoverView` 对 CSS 和动画是部分支持的
 
@@ -254,14 +252,14 @@ LivePlayer 在小程序基础库v2.9.1 起支持同层渲染。
 
 | 老师主动结束 | 移除群成员 |
 | --- | --- |
-| ![图片](./img/status-1.png) | ![图片](./img/status-2.png) |
+| ![](https://image-hosting.xiaoxili.com/img/20200713100844.png) | ![](https://image-hosting.xiaoxili.com/img/20200713101002.png) |
 
 ### 自动播放
 
 * Wifi 自动开始播放
 * 4G 提示消耗流量，再同意后才进行播放
 
-![图片](./img/status-3.png)
+![](https://image-hosting.xiaoxili.com/img/20200713101058.png)
 
 #### Wifi下自动播放
 
@@ -315,7 +313,7 @@ onToPlayBtn = () => {
 
 | app | 小程序 |
 | --- | --- |
-| ![图片](./img/message-1.gif) | ![图片](./img/message-2.gif) |
+| ![](https://image-hosting.xiaoxili.com/img/20200713101753.gif) | ![](https://image-hosting.xiaoxili.com/img/20200713101854.gif) |
 
 > * 移动端app和pc客户端都需要将本地消息与网络消息进行合并
 > * 小程序直播间：只有网络消息，只记录从进入、离开聊天室这一段时间
@@ -324,13 +322,10 @@ onToPlayBtn = () => {
 
 * 第一条
 * 最新消息与次新消息间隔5分钟
-
-
 ### 新消息提醒
 | 自动滚动到底部 | 新消息提示 |
 | --- | --- |
-| ![图片](./img/message-8.gif) | ![图片](./img/message-9.gif) |
-
+| ![](https://image-hosting.xiaoxili.com/img/20200713101142.gif) | ![](https://image-hosting.xiaoxili.com/img/20200713101214.gif) |
 #### 业务需求
 
 * 新消息来时，自动定位到最下方
@@ -398,7 +393,7 @@ export function getDomRect(nodeRef) {
 
 ### 小程序端方案二：监听高 `1px`的元素是否在视图在内
 
-![图片](./img/message-9.gif) 
+![](https://image-hosting.xiaoxili.com/img/20200713101214.gif) 
 
 ```js
 <ScrollView
@@ -484,20 +479,20 @@ toBottomHandler = () => {
 
 ### 输入框与输入法遮挡的高度
 
-![](./img/message-6.gif)
+![](https://image-hosting.xiaoxili.com/img/20200713101414.gif)
 
 #### 方案一：上推页面
 `Input` 的 `adjust-position` 属性支持在输入法弹出时，自动将页面上推
 
 存在的问题：导致整个页面上推，即使是 `postion: fixed` 的直播播放区
 
-![](./img/message-7.gif)
+![](https://image-hosting.xiaoxili.com/img/20200713101524.gif)
 
 #### 方案二：聊天列表区域收缩 
 
 CCtalk APP在输入法弹出时会改变聊天消息区域高度
 
-![图片](./img/message-4.gif) 
+![](https://image-hosting.xiaoxili.com/img/20200713101614.gif) 
 
 影响了对聊天列表区域高度，从而对相应的监听产生影响
 
@@ -509,9 +504,14 @@ CCtalk APP在输入法弹出时会改变聊天消息区域高度
 
 与CCtalk app上的交互类似，当input 聚焦及全屏操作时，认为离开了聊天消息区域，此时需要将聊天消息区域自动滚动到最底部。
 
-![图片](./img/message-5.gif) 
+![](https://image-hosting.xiaoxili.com/img/20200713101711.gif) 
 
+### 输入框跟随输入法键盘
 
+| app | 小程序 |
+| --- | --- |
+| CCtalk APP在输入法弹出时会改变聊天消息区域高度 | 小程序端采取输入框跟随键盘位置，但聊天消息区域高度不变，并加入了css延迟动画，以模拟贴合输入法高度变化的情况 |
+| ![](https://image-hosting.xiaoxili.com/img/20200713104857.gif) | ![](https://image-hosting.xiaoxili.com/img/20200713104927.gif) |
 ### 大小表情
 
 表情map表，在直播间、回顾
@@ -525,7 +525,7 @@ CCtalk APP在输入法弹出时会改变聊天消息区域高度
 ```
 小表情支持图文混合，大表情为单独的一条
 
-![图片](./img/message-3.gif)
+![](https://image-hosting.xiaoxili.com/img/20200713101642.gif)
 
 ### 富文本渲染
 
