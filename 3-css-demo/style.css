@@ -5,15 +5,15 @@ body {
   align-items: center;
   flex-direction: column;
 	height: 100vh;
-  padding-top: 50px;
+  padding-top: 100px;
 }
 
 .cute-box {
 	position: relative;
 	/* animation: 0.6s dance linear infinite; */
-	transform: rotateX(-10deg) rotateY(25deg);
+	transform: rotateX(-45deg) rotateY(45deg);
   transform-style: preserve-3d;
-  height: 400px;
+  height: 500px;
 }
 .cute-box * {
 	position: absolute;
@@ -32,8 +32,15 @@ body {
 	border-width: 2px 0;
 	transform: rotateX(-5deg);
 	top: -175px;
-	left: -75px;
+  left: -75px;
+  /* opacity: 0.8; */
 }
+
+.box-side.box-bottom {
+  --main: red;
+	transform: translateZ(-97px) translateX(25px) translateY(125px)  rotateX(90deg) scale(0.8);
+}
+
 .box-side.box-front {
 	transform: translateZ(69px) rotateX(-5deg);
 	display: flex;
@@ -70,6 +77,41 @@ body {
 	right: -12px;
 	transform: skewX(-5deg);
 	border-width: 2px 2px 2px 0;
+}
+
+/*
+* Top part of cup
+*/
+.box-cap {
+	--main: #fff;
+	width: 294px;
+	height: 125px;
+	background-color: var(--main);
+	border: solid #CAC4C6;
+	border-width: 0 2px;
+  top: -305px;
+	left: -97px;
+	transform-origin: bottom;
+	animation: 2.3s ease-in-out ani-box-cap infinite alternate;
+}
+
+
+.box-cap.box-cap-left {
+	--rotate: translateZ(-64px) translateX(-153px) rotateY(-90deg) rotateX(-155deg) scaleY(1.18);
+	transform: translateZ(-64px) translateX(-153px) rotateY(-90deg) rotateX(90deg) scaleY(1.18);
+}
+
+.box-cap.box-cap-right {
+	--rotate: translateZ(-64px) translateX(140px) rotateY(90deg) rotateX(-155deg)  scaleY(1.18);
+	--main: #F6E2E3;
+  transform: translateZ(-64px) translateX(140px) rotateY(90deg) rotateX(90deg) scaleY(1.18);
+  animation-delay: 0.35s;
+}
+
+@keyframes ani-box-cap {
+	to {
+		transform: var(--rotate);
+	}
 }
 
 .noodles {
