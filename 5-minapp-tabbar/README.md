@@ -1,7 +1,13 @@
 
-# 小程序创意 TabBar 动画
+# 小程序TabBar 创意动画
 
 > 本文有大量 GIF 动画，建议在 Wifi 下阅读。
+
+## 知识点
+
+* TabBar 类型
+* CSS 滤镜
+* TabBar 创意动画
 
 ## 基础知识
 ### 默认效果
@@ -15,9 +21,7 @@
 
 ### 自定义-全局
 
-[https://developers.weixin.qq.com/miniprogram/dev/framework/ability/custom-tabbar.html](https://developers.weixin.qq.com/miniprogram/dev/framework/ability/custom-tabbar.html)
-
-自定义 tabBar 可以让开发者更加灵活地设置 tabBar 样式，以满足更多个性化的场景。
+[自定义 tabBar](https://developers.weixin.qq.com/miniprogram/dev/framework/ability/custom-tabbar.html)可以让开发者更加灵活地设置 tabBar 样式，以满足更多个性化的场景。
 
 在自定义 tabBar 模式下
 
@@ -26,18 +30,13 @@
 * 与 tabBar 样式相关的接口，如 wx.setTabBarItem 等将失效。
 * **每个 tab 页下的自定义 tabBar 组件实例**是不同的，可通过自定义组件下的 `getTabBar` 接口，获取当前页面的自定义 `tabBar` 组件实例。
 
-**注意：如需实现 tab 选中态，要在当前页面下，通过 `getTabBar` 接口获取组件实例，并调用 `setData` 更新选中态。**
-
 简单来说：
 * CSS fixed 底部，需要做iPhone x适配
 * 需要切换页面后，设置当前高亮的 `TabItem`
 
 ![](https://image-hosting.xiaoxili.com/img/img/20200827/6baa5b8531d8f3575db1991e6996f152-a12be5.png)
 
-TabBar 代码示例
-[https://developers.weixin.qq.com/miniprogram/dev/framework/ability/custom-tabbar.html](https://developers.weixin.qq.com/miniprogram/dev/framework/ability/custom-tabbar.html)
-
-另外，自定义组件新增`getTabBar`接口，可获取当前页面下的自定义 tabBar 组件实例。
+**注意：如需实现 tab 选中态，要在当前页面下，通过 `getTabBar` 接口获取组件实例，并调用 `setData` 更新选中态。**
 
 ```js
 show() {
@@ -49,7 +48,7 @@ show() {
 }
 ```
 
-设置 TabBar 高亮的几篇文章：
+#### 设置 TabBar 高亮的几篇文章
 
 * [小程序自定义底部导航栏组件](https://github.com/ljybill/miniprogram-custom-tab-bar)
 * [Taro 3.x 设置自定义 TabBar](https://github.com/tarojsx/ui/blob/master/src/CustomTabBar.tsx)
@@ -64,7 +63,8 @@ show() {
 
 ![](https://image-hosting.xiaoxili.com/img/img/20200827/52c79abfa0ec4398d2688472542705ab-4ce5b1.jpeg)
 
-<!-- ## TabBar 完整动画演示
+## TabBar 完整动画演示
+<!--
 
 * 先看设计稿 局部动画，需要自定义tabBar
 * 找类似的
@@ -86,6 +86,8 @@ show() {
   * https://codepen.io/tylerfowle/pen/vEqXMV
 * 页面布局考虑 - 自定义TabBar
 
+![](https://image-hosting.xiaoxili.com/img/img/20200827/d702c6152b68fb36baa6a1280584294d-7c40f5.png)
+
 ### 底部tabBar动画
 
 | 爱奇艺 | 京东 |
@@ -100,19 +102,23 @@ show() {
 
 参考示例 https://codepen.io/siseer/pen/MBameP
 
-这个动画基于 CSS filter 滤镜与SVG高斯模糊实现，在web端展现ok，但在真机上小程序上不支持。
+这个动画基于 CSS filter 滤镜与 SVG 高斯模糊实现，在web端展现ok，但在真机上小程序上不支持。
 
-这篇《[微信小程序 CSS filter（滤镜）的使用示例](https://juejin.im/post/6844903633289478152)》讲了大部分CSS 滤镜效果，但都是基于微信开发者工具的，在真机上只有 svg 的这个不支持。
+这篇《[微信小程序 CSS filter（滤镜）的使用示例](https://juejin.im/post/6844903633289478152)》讲了大部分CSS 滤镜效果，但都是基于微信开发者工具的，在真机上只有 `filter(abc.svg#goo)` 的这个不支持。
 
 #### 动画2——SVG 路径
+使用 SVG 路径来实现动画。
 
 ![](https://image-hosting.xiaoxili.com/img/img/20200827/e43c2e240852bb2dbe2b39c1f466ed53-100a5b.gif)
 
-使用 SVG 路径来实现动画。
-参考示例：https://codepen.io/ainalem/pen/KBvOWV
+参考示例：
+* 完整效果 https://codepen.io/ainalem/pen/KBvOWV
+* 分析文章 https://www.leevii.com/2018/09/adhesive-effect.html
+* 简单示例 https://codepen.io/leevare/pen/yxxMMq
 
 
-**SVG 路径演示**
+
+###### SVG 路径示意
 ![](https://image-hosting.xiaoxili.com/img/img/20200827/c0f76a365ced32d8dff2ce3d8d0398e7-67a841.png)
 
 #### 动画3——Hi头像 Tab 页切换动画
