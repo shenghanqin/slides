@@ -567,12 +567,15 @@
 					</section>
 					<section data-markdown>
 						#### 方案一 scrollTop
+						`scrollTop` 的方案可以继续用，但需要每次更换 `scrollTop` 才能触发 state 更新
 
-					`scrollTop` 的方案可以继续用，但需要每次更换 `scrollTop` 才能触发 state 更新
-
-					```js
-					this.toBottomT = setTimeout(() => this.setState({ listScrollTop: 9999999 + parseInt(Math.random() * 10000)}), 500)
-					```
+						```js
+							this.toBottomT = setTimeout(() => {
+								this.setState({
+									listScrollTop: 9999999 + parseInt(Math.random() * 10000)
+								})
+							}, 500)
+						```
 
 					</section>
 					<section data-markdown>
@@ -594,7 +597,7 @@
 								})
 							})
 						}
-```
+						```
 					</section>
 					<section data-markdown>
 						### 输入框与输入法遮挡的高度
