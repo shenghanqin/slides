@@ -1,0 +1,344 @@
+body {
+	background-color: #84CCDC;
+	display: flex;
+	justify-content: center;
+  align-items: center;
+  flex-direction: column;
+	height: 100vh;
+  padding-top: 100px;
+}
+
+.cute-box {
+	position: relative;
+	/* animation: 0.6s dance linear infinite; */
+	transform: rotateX(-45deg) rotateY(45deg);
+  transform-style: preserve-3d;
+  height: 500px;
+}
+.cute-box * {
+	position: absolute;
+	transform-style: preserve-3d;
+}
+
+/*
+* Bottom part of cup
+*/
+.box-side {
+	--main: #fff;
+	width: 250px;
+	height: 250px;
+	background-color: var(--main);
+	border: solid #CAC4C6;
+	border-width: 2px 0;
+	transform: rotateX(-5deg);
+	top: -175px;
+  left: -75px;
+  /* opacity: 0.8; */
+}
+
+.box-side.box-bottom {
+  --main: red;
+	transform: translateZ(-97px) translateX(25px) translateY(125px)  rotateX(90deg) scale(0.8);
+}
+
+.box-side.box-front {
+	transform: translateZ(69px) rotateX(-5deg);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.box-side.box-left {
+	--main: #F6E2E3;
+	transform: translateZ(-69px) translateX(-135px) rotateY(90deg) rotateX(5deg);
+}
+.box-side.box-right, .box-side.box-back {
+	--main: #DF807B;
+}
+.box-side.box-right {
+	transform: translateZ(-69px) translateX(135px) rotateY(90deg) rotateX(-5deg);
+}
+.box-side.box-back {
+	transform: translateZ(-205px) rotateX(5deg);
+}
+.box-side:before, .box-side:after {
+	content: "";
+	height: 100%;
+	width: 30px;
+	background-color: var(--main);
+	position: absolute;
+	top: -2px;
+	left: -12px;
+	transform: skewX(5deg);
+	border: solid #CAC4C6;
+	border-width: 2px 0 2px 2px;
+}
+.box-side:after {
+	left: initial;
+	right: -12px;
+	transform: skewX(-5deg);
+	border-width: 2px 2px 2px 0;
+}
+
+/*
+* Top part of cup
+*/
+.box-cap {
+	--main: #fff;
+	width: 294px;
+	height: 125px;
+	background-color: var(--main);
+	border: solid #CAC4C6;
+	border-width: 0 2px;
+  top: -305px;
+	left: -97px;
+	transform-origin: bottom;
+	animation: 2.3s ease-in-out ani-box-cap infinite alternate;
+}
+
+
+.box-cap.box-cap-left {
+	--rotate: translateZ(-64px) translateX(-153px) rotateY(-90deg) rotateX(-155deg) scaleY(1.18);
+	transform: translateZ(-64px) translateX(-153px) rotateY(-90deg) rotateX(90deg) scaleY(1.18);
+}
+
+.box-cap.box-cap-right {
+	--rotate: translateZ(-64px) translateX(140px) rotateY(90deg) rotateX(-155deg)  scaleY(1.18);
+	--main: #F6E2E3;
+  transform: translateZ(-64px) translateX(140px) rotateY(90deg) rotateX(90deg) scaleY(1.18);
+  animation-delay: 0.35s;
+}
+
+@keyframes ani-box-cap {
+	to {
+		transform: var(--rotate);
+	}
+}
+
+.noodles {
+	position: relative;
+	/* animation: 0.6s dance linear infinite; */
+	transform: rotateX(-10deg) rotateY(25deg);
+  transform-style: preserve-3d;
+  height: 400px;
+}
+.noodles * {
+	position: absolute;
+	transform-style: preserve-3d;
+}
+
+/*
+* Bottom part of cup
+*/
+.side {
+	--main: #fff;
+	width: 250px;
+	height: 250px;
+	background-color: var(--main);
+	border: solid #CAC4C6;
+	border-width: 2px 0;
+	transform: rotateX(-5deg);
+	top: -175px;
+	left: -75px;
+}
+.side.front {
+	transform: translateZ(69px) rotateX(-5deg);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.side.left {
+	--main: #F6E2E3;
+	transform: translateZ(-69px) translateX(-135px) rotateY(90deg) rotateX(5deg);
+}
+.side.right, .side.back {
+	--main: #DF807B;
+}
+.side.right {
+	transform: translateZ(-69px) translateX(135px) rotateY(90deg) rotateX(-5deg);
+}
+.side.back {
+	transform: translateZ(-205px) rotateX(5deg);
+}
+.side:before, .side:after {
+	content: "";
+	height: 100%;
+	width: 30px;
+	background-color: var(--main);
+	position: absolute;
+	top: -2px;
+	left: -12px;
+	transform: skewX(5deg);
+	border: solid #CAC4C6;
+	border-width: 2px 0 2px 2px;
+}
+.side:after {
+	left: initial;
+	right: -12px;
+	transform: skewX(-5deg);
+	border-width: 2px 2px 2px 0;
+}
+.eyes {
+	height: 20px;
+	width: 20px;
+	border-radius: 50%;
+	background-color: #312D2A;
+	top: 150px;
+	left: 65px;
+	box-shadow: 110px 0 #312D2A;
+	animation: 4s eyes 1s linear infinite;
+}
+.mouth {
+	background-color: #312D2A;
+	overflow: hidden;
+	width: 50px;
+	height: 20px;
+	left: 105px;
+	top: 165px;
+	border-radius: 5px 5px 50% 50%;
+}
+.mouth:after {
+	content: "";
+	position: absolute;
+	width: 14px;
+	height: 14px;
+	border-radius: 50%;
+	background-color: #DE5C65;
+	left: 17px;
+	bottom: -8px;
+}
+
+/*
+* Top part of cup
+*/
+.cap {
+	--main: #fff;
+	width: 290px;
+	height: 100px;
+	background-color: var(--main);
+	border: solid #CAC4C6;
+	border-width: 0 2px;
+    top: -274px;
+	left: -97px;
+	transform-origin: bottom;
+	animation: 0.3s ease-out cap infinite alternate;
+}
+.cap:before, .cap:after {
+	content: "";
+	height: 50px;
+	width: 180px;
+	position: absolute;
+	top: -52px;
+}
+.cap:before {
+    left: 84px;
+	background-color: var(--main);
+	border: solid #CAC4C6;
+	border-width: 2px 2px 0 0;
+	transform: skewX(45deg);
+}
+.cap:after {
+    right: 84px;
+	background-color: var(--main);
+	border: solid #CAC4C6;
+	border-width: 2px 0 0 2px;
+	transform: skewX(-45deg);
+}
+.cap.front {
+	--rotate: translateZ(80px) rotateX(-85deg);
+	transform: translateZ(80px) rotateX(-125deg);
+}
+.cap.back {
+	--main: #F6E2E3;
+	--rotate: translateZ(-216px) rotateX(85deg);
+	transform: translateZ(-216px) rotateX(125deg);
+}
+.cap.left {
+	--rotate: translateZ(-60px) translateX(-150px) rotateY(-90deg) rotateX(-115deg);
+	top: -305px;
+	height: 130px;
+	transform: translateZ(-60px) translateX(-150px) rotateY(-90deg) rotateX(-125deg);
+}
+.cap.right {
+	--rotate: translateZ(-60px) translateX(148px) rotateY(90deg) rotateX(-115deg);
+	--main: #F6E2E3;
+	top: -305px;
+	height: 130px;
+	transform: translateZ(-60px) translateX(148px) rotateY(90deg) rotateX(-125deg);
+}
+
+/*
+* Noodles inside
+*/
+.noodle {
+	border-radius: 50%;
+	height: 170px;
+	width: 140px;
+	animation: 0.3s noodles linear infinite alternate;
+	--top: -190px;
+}
+.noodles-1 {
+	background-color: #F7D897;
+	top: -180px;
+	transform: translateX(10px) translateZ(20px);
+	box-shadow:
+		0 0 0 1px #D3B87F,
+		0 0 0 15px #F7D897,
+		0 0 0 16px #D3B87F,
+		0 0 0 28px #F5C86B,
+		0 0 0 29px #D3B87F,
+		0 0 0 40px #F7D897,
+		0 0 0 41px #D3B87F;
+}
+.noodles-2 {
+	background-color: #F7D380;
+	top: -190px;
+	transform: translateX(-10px) translateZ(-80px);
+	box-shadow:
+		0 0 0 1px #D3B87F,
+		0 0 0 15px #F7D380,
+		0 0 0 16px #D3B87F,
+		0 0 0 28px #F7D897,
+		0 0 0 29px #D3B87F,
+		0 0 0 40px #F7D380,
+		0 0 0 41px #D3B87F;
+	--top: -195px;
+}
+.noodles-3 {
+	background-color: #F5C86B;
+	top: -170px;
+	transform: translateX(-40px) translateZ(-160px);
+	box-shadow:
+		0 0 0 1px #D3B87F,
+		0 0 0 15px #F5C86B,
+		0 0 0 16px #D3B87F,
+		0 0 0 28px #F7D897,
+		0 0 0 29px #D3B87F;
+	--top: -180px;
+}
+
+@keyframes dance {
+	0% {transform: rotateX(-10deg) rotateY(25deg);}
+	25% {transform: translateY(20px) rotateX(-10deg) rotateY(35deg) rotateZ(10deg);}
+	50% {transform: rotateX(-10deg) rotateY(35deg);}
+	75% {transform: translateY(20px)rotateX(-10deg) rotateY(25deg) rotateZ(-10deg);}
+	100% {transform: rotateX(-10deg) rotateY(25deg);}
+}
+@keyframes eyes {
+	2% {}
+	4% {
+		height: 4px;
+		transform: translateY(8px);
+	}
+	6% {
+		height: 20px;
+		transform: initial;
+	}
+}
+@keyframes noodles {
+	to {top: var(--top)}
+}
+@keyframes cap {
+	to {
+		transform: var(--rotate);
+	}
+}
