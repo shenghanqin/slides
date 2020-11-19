@@ -10,7 +10,7 @@ class App extends React.Component {
     return (
       <Page
         pageClassName={`page-home ${isPCMode ? 'page-mode-pc' : 'page-mode-mobile'}`}
-        title={'融合响应式设计 React 版 - 小溪里'}
+        title={'CSS3 动画实战-积分签到'}
         isPCMode={isPCMode}
       >
   

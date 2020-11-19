@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import ReactDocumentMeta from 'react-document-meta'
+import { Helmet } from "react-helmet";
 
 class DocumentMeta extends React.Component {
 
@@ -58,15 +58,14 @@ class DocumentMeta extends React.Component {
   // }
 
   render() {
-    const { title, description, ...others } = this.props
-    return <ReactDocumentMeta
-      title={title}
-      description={description}
-      meta={{
-        charset: 'utf-8',
-        name: others
-      }}
-    />
+    const { title, description } = this.props
+    return (
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>{title}</title>
+        <meta name="description" content={description} />
+      </Helmet>
+    )
   }
 }
 
