@@ -1,0 +1,482 @@
+@keyframes coin-ani {
+  @for $i from 0 through 40 {
+    #{2.5% * $i} {
+      transform: translateX(- #{$i * 2.5%} );
+    }
+  }
+}
+
+.header-container {
+  padding: 20px 18px 0;
+  width: 100%;
+  height: 51.46666666666667vw;
+  background: url(https://n1image.hjfile.cn/res7/2020/11/12/a2129177e7f1d731f114bd668de9a748.jpg);
+  background-repeat: no-repeat;
+  background-position: bottom;
+  background-size: cover;
+  font-size: 12px;
+  color: #fff;
+  box-sizing: border-box;
+  position: relative
+}
+
+@media (min-width:410px) {
+  .header-container {
+    height: 46.93333333333333vw
+  }
+}
+
+@media (min-width:639px) {
+  .header-container {
+    height: 30.666666666666664vw;
+    background-position: 50%
+  }
+}
+
+@media (min-width:750px) {
+  .header-container {
+    padding: 18px;
+    height: 155px;
+    background-position: 50%
+  }
+}
+
+.my-coin-container {
+  align-items: center;
+  justify-content: space-between;
+}
+
+.my-coin-container,
+.my-coin-icon {
+  display: flex;
+}
+
+.coin-icon {
+  width: 16px;
+  height: 16px;
+  background: url(https://n1image.hjfile.cn/res7/2020/10/22/3fd58d294e5778f7f577c5c538ecbc73.png) 50% no-repeat;
+  background-size: cover
+}
+
+.my-coin {
+  height: 16px;
+  font-weight: 500;
+  line-height: 16px;
+  margin-left: 5px
+}
+
+.integral-num-container {
+  display: flex;
+  align-items: center;
+
+  .days-num {
+    display: inline-block;
+    color: #fff;
+    font-size: 28px;
+    margin-right: 10px;
+    vertical-align: top;
+
+    &.is-signed {
+      .num-small-1 {
+        width: 12px
+      }
+      .num-small-2_3VH9 {
+        width: 17px
+      }
+
+      .num-to-diff .num-small-dot:first-child {
+        margin-top: -40px
+      }
+    }
+
+    .num-small-first {
+      width: 0;
+      transition: width .4s cubic-bezier(.68,-.04,.26,1.55);
+      transition-delay: 2.7s
+    }
+
+    .num-small {
+      vertical-align: top;
+      display: inline-block;
+      height: 40px;
+      line-height: 40px;
+      overflow: hidden;
+      text-align: center;
+
+      &:last-child .num-small-dot {
+        transition-delay: 2.6s
+      }
+   
+      &:nth-last-child(2) .num-small-dot {
+        transition-delay: 2.65s
+      }
+   
+      &:nth-last-child(3) .num-small-dot {
+        transition-delay: 2.7s
+      }
+   
+      &:nth-last-child(4) .num-small-dot {
+        transition-delay: 2.75s
+      }
+   
+      &:nth-last-child(5) .num-small-dot {
+        transition-delay: 2.8s
+      }
+    }
+
+
+   .num-to-diff .num-small-dot {
+      transition: margin-top .5s cubic-bezier(.68,-.04,.26,1.55)
+    }
+  }
+}
+
+.sign-in-container {
+  padding: 13px 16px 0;
+  box-sizing: border-box;
+  height: 213px;
+  color: #fff;
+  background: linear-gradient(180deg,#fffaf6,#fff);
+  box-shadow: 0 0 16px 0 rgba(252,104,62,.2);
+  border-radius: 8px;
+  position: relative;
+  margin: -95px 12px 0
+}
+
+@media (max-width:320px) {
+  .sign-in-container {
+    margin: -60px 10px 0;
+    padding: 8px 8px 0
+  }
+}
+
+@media (min-width:768px) {
+  .sign-in-container {
+    height: 140px;
+    padding: 30px;
+    margin-top: -55px
+  }
+}
+
+.continuous {
+  display: flex;
+  align-items: center;
+  position: absolute;
+  top: 10px
+}
+
+@media (min-width:768px) {
+  .continuous {
+  margin-bottom: 12px;
+  position: static
+  }
+}
+
+.sign-in-continuous-days {
+  height: 28px;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 28px;
+  color: #2f3742;
+  margin-right: 5px;
+
+  .days-num {
+    display: inline-block;
+    color: #ff852e;
+    font-size: 20px;
+    margin: 0 1px;
+    vertical-align: top;
+  
+    &.is-signed {
+      .num-small-1 {
+        width: 10px
+      }
+      .num-small-2 {
+        width: 14px
+      }
+      .num-to-diff .num-small-dot:first-child {
+        margin-top: -28px
+      }
+
+    }
+    
+  }
+
+  .num-small-first {
+    width: 0;
+    transition: width .4s cubic-bezier(.68,-.04,.26,1.55);
+    transition-delay: 3.3s
+  }
+
+  @for $i from 1 through 5 {
+    .num-small:nth-last-child(#{$i}) .num-small-dot {
+      transition-delay: #{3.15 + $i * 0.05}s
+    }
+  }
+  .num-small {
+    vertical-align: top;
+    display: inline-block;
+    height: 28px;
+    line-height: 28px;
+    overflow: hidden;
+    text-align: center
+  }
+  
+  .num-small-dot {
+    display: block
+  }
+  
+  .num-to-diff .num-small-dot {
+    transition: margin-top .5s cubic-bezier(.68,-.04,.26,1.55)
+  }
+}
+
+.everyday-list {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 32px 0 18px;
+  @media (min-width:768px) {
+    & {
+      justify-content: flex-start;
+      margin: 0
+    }
+  }
+
+  .sign-in-everyday {
+    display: flex;
+    flex-direction: column;
+    align-items: center
+  }
+
+  @media (min-width:768px) {
+    .sign-in-everyday {
+      margin-right: 16px
+    }
+  }
+}
+
+
+.sign-in-card {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: flex-end;
+	width: 36px;
+	height: 56px;
+	background: #f2f3f7;
+	transition: background .6s ease-in-out;
+	transition-delay: 2.2s;
+	border-radius: 4px
+}
+
+.already-sign-in-card {
+	background: #fff1a9
+}
+
+.sign-in-add-num {
+	font-size: 14px;
+	color: #464d5c;
+	position: relative;
+  margin-bottom: -2px;
+  
+  .add-num-1,
+  .add-num-2 {
+    display: block;
+    color: #ff8c2c
+  }
+
+  .add-num-2 {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    color: #464d5c;
+    pointer-events: none;
+    transition: all .4s;
+    transition-delay: 2.2s
+  }
+}
+
+.already-sign-in-add-num .add-num-2 {
+	top: -100%;
+	opacity: 0
+}
+
+.sign-in-coin-icon {
+	width: 36px;
+	height: 36px;
+  overflow: hidden;
+  
+  &  > span {
+    display: block;
+    width: 4000%;
+    height: 100%;
+    background: url(https://n1image.hjfile.cn/res7/2020/10/29/7676ad8bef41a059bcccf5042409dd82.png) 0 no-repeat;
+    background-size: auto 100%
+  }
+}
+
+.already-sign-in-icon > span {
+	transform: translateX(-97.5%)
+}
+
+.sign-in-day-num {
+	height: 17px;
+	font-size: 12px;
+	font-weight: 400;
+	color: #95a1af;
+	line-height: 17px;
+	margin-top: 8px
+}
+
+.current-sign-in-card {
+  background: #fff1a9;
+  .sign-in-coin-icon > span {
+    transform: translateX(-97.5%);
+    animation: loading_XfHn 4s steps(1) backwards
+  }
+  
+  .add-num-2 {
+    top: -100%;
+    opacity: 0
+  }
+}
+
+
+@media (min-width:768px) {
+	.continuous-sign-in {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		position: absolute;
+		right: 36px;
+		top: 50%;
+		transform: translateY(-50%)
+	}
+}
+
+.immediately-sign-in-btn {
+	margin: 0 auto;
+	position: relative;
+	width: 250px;
+	height: 40px;
+	font-size: 15px;
+	font-weight: 500;
+	line-height: 40px;
+  text-align: center;
+  
+  .in-btn {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    border-radius: 20px;
+    cursor: pointer
+  }
+  .in-btn-1 {
+    background: linear-gradient(150deg,#fab06f,#fc683e);
+    box-shadow: 0 2px 6px 0 rgba(252,104,62,.36);
+    transition: opacity .45s ease-in
+  }
+  
+  .in-btn-2 {
+    background: #cfd4db;
+    z-index: -1;
+    opacity: 0;
+    transition: opacity .45s ease-out;
+    transition-delay: .1s
+  }
+  
+}
+
+.already-sign-in-btn {
+  .in-btn-1 {
+    opacity: 0
+  }
+  .in-btn-2 {
+    opacity: 1;
+    z-index: 0
+  }
+}
+
+
+.move-wrap {
+	position: fixed;
+	opacity: 1;
+	margin-left: 36px;
+	margin-top: 36px;
+  .move-item-row {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 36px;
+    height: 100%;
+    animation: ani-move-row .7s forwards;
+
+    @for $i from 1 through 12 {
+      &:nth-child(#{$i}) {
+        &, & .move-item-td {
+          animation-delay: #{$i * 0.1 + 0.5}s
+        }
+
+      }
+    }
+  }
+  .move-item-td {
+    opacity: 0;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 36px;
+    height: 36px;
+    background: url(https://n1image.hjfile.cn/res7/2020/10/29/7676ad8bef41a059bcccf5042409dd82.png) 0 no-repeat;
+    background-size: auto 100%;
+    bottom: 100%;
+    animation: ani-move-td .7s cubic-bezier(.15,.64,.3,1.27) forwards;
+  }
+}
+
+@keyframes ani-move-row {
+	0% {
+		right: 0
+	}
+
+	to {
+		right: 100%;
+		margin-right: 3px
+	}
+}
+
+@keyframes ani-move-td {
+	0% {
+		opacity: 1;
+		bottom: 0
+	}
+
+	99% {
+		opacity: 1
+	}
+
+	to {
+		opacity: 0;
+		bottom: 100%;
+		transform: scale(.6);
+		transform-origin: left top;
+		margin-bottom: 2px
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+

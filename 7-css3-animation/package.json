@@ -8,6 +8,7 @@
     "@testing-library/user-event": "^12.1.10",
     "@xiaoxili/react-ui-mode-cc": "^0.2.0",
     "classnames": "^2.2.6",
+    "dayjs": "^1.9.6",
     "node-sass": "^4.0.0",
     "react": "^17.0.1",
     "react-document-meta": "^3.0.0-beta.2",
