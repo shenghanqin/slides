@@ -7,7 +7,7 @@
         "inputs": {
           "buildCommand": "npm run build",
           "outputPath": "build",
-          "cloudPath": "/slides/7-css3-animation"
+          "cloudPath": "/slides/7-css3-animation/example/"
         }
       }
     }

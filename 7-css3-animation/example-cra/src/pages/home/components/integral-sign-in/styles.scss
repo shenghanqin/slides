@@ -1,7 +1,7 @@
 @keyframes coin-ani {
-  @for $i from 0 through 40 {
+  @for $i from 0 through 39 {
     #{2.5% * $i} {
-      transform: translateX(- #{$i * 2.5%} );
+      transform: translateX(- 2.5% * $i );
     }
   }
 }
@@ -80,7 +80,7 @@
       .num-small-1 {
         width: 12px
       }
-      .num-small-2_3VH9 {
+      .num-small-2 {
         width: 17px
       }
 
@@ -102,25 +102,11 @@
       line-height: 40px;
       overflow: hidden;
       text-align: center;
+    }
 
-      &:last-child .num-small-dot {
-        transition-delay: 2.6s
-      }
-   
-      &:nth-last-child(2) .num-small-dot {
-        transition-delay: 2.65s
-      }
-   
-      &:nth-last-child(3) .num-small-dot {
-        transition-delay: 2.7s
-      }
-   
-      &:nth-last-child(4) .num-small-dot {
-        transition-delay: 2.75s
-      }
-   
-      &:nth-last-child(5) .num-small-dot {
-        transition-delay: 2.8s
+    @for $i from 1 through 5 {
+      .num-small:nth-last-child(#{$i}) .num-small-dot {
+        transition-delay: #{2.55+ $i * 0.05}s
       }
     }
 
@@ -140,23 +126,20 @@
   box-shadow: 0 0 16px 0 rgba(252,104,62,.2);
   border-radius: 8px;
   position: relative;
-  margin: -95px 12px 0
-}
+  margin: -95px 12px 0;
 
-@media (max-width:320px) {
-  .sign-in-container {
+  @media (max-width:320px) {
     margin: -60px 10px 0;
-    padding: 8px 8px 0
+    padding: 8px 8px 0;
   }
-}
-
-@media (min-width:768px) {
-  .sign-in-container {
+  @media (min-width:768px) {
     height: 140px;
     padding: 30px;
-    margin-top: -55px
+    margin-top: -55px;
   }
 }
+
+
 
 .continuous {
   display: flex;
@@ -334,7 +317,7 @@
   background: #fff1a9;
   .sign-in-coin-icon > span {
     transform: translateX(-97.5%);
-    animation: loading_XfHn 4s steps(1) backwards
+    animation: coin-ani 4s steps(1) backwards
   }
   
   .add-num-2 {

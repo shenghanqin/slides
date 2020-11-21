@@ -15,10 +15,14 @@ class Home extends React.Component {
         pageClassName={`page-home ${isPCMode ? 'page-mode-pc' : 'page-mode-mobile'}`}
         title={'CSS3 动画实战-积分签到'}
         isPCMode={isPCMode}
+        isShowHeader={false}
       >
-        <IntegralSignIn
-          balanceInfo={Data999}
-        />
+        <div className="page-main">
+          <IntegralSignIn
+            balanceInfo={Data999}
+          />
+
+        </div>
       </Page>
     );
   }
