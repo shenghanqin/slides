@@ -17,29 +17,24 @@
   font-size: 12px;
   color: #fff;
   box-sizing: border-box;
-  position: relative
-}
+  position: relative;
 
-@media (min-width:410px) {
-  .header-container {
-    height: 46.93333333333333vw
+  @media (min-width:410px) {
+    height: 46.93333333333333vw;
   }
-}
-
-@media (min-width:639px) {
-  .header-container {
+  @media (min-width:639px) {
     height: 30.666666666666664vw;
     background-position: 50%
   }
-}
-
-@media (min-width:750px) {
-  .header-container {
+  @media (min-width:750px) {
     padding: 18px;
     height: 155px;
     background-position: 50%
   }
 }
+
+
+
 
 .my-coin-container {
   align-items: center;
