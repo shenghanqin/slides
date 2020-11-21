@@ -86,62 +86,62 @@
   }
 }
  */
-.footer-pc {
-  max-width: none;
-  width: $xxl-page-min-width-center;
-  box-sizing: border-box;
-  padding: 70px 16px;
-  margin: 0 auto;
-  display: flex;
-  justify-content: space-between;
-}
-
-@media (min-width: $xxl-page-max-width) {
-  .footer-pc {
+ 
+ @media (min-width: $xxl-page-max-width) {
+   .footer-main {
+     max-width: none;
+     width: $xxl-page-min-width-center;
+     box-sizing: border-box;
+     padding: 70px 16px;
+     margin: 0 auto;
+     display: flex;
+     justify-content: space-between;
+   }
+  .footer-main {
     width: $xxl-page-max-width-center;
+  }
+  .footer-main .footer-logo {
+    width: 195px;
+    height: 90px;
+  }
+  .footer-main .footer-links {
+    display: flex;
+  }
+  
+  .footer-main .footer-links dl {
+    margin-top: 0;
+    padding-left: 40px;
+    display: block;
+    flex-wrap: nowrap;
+  }
+  .footer-main .footer-links dl + dl {
+    margin-left: 60px;
+  }
+  
+  .footer-main .footer-links dt {
+    font-size: 24px;
+    text-indent: -40px;
+  }
+  
+  .footer-main .footer-links dt > img {
+    height: 30px;
+  }
+  
+  .footer-main .footer-links dt + dd {
+    margin-top: 40px;
+  }
+  
+  .footer-main .footer-links dd {
+    margin-top: 20px;
+  }
+  
+  .footer-main .footer-links dd a {
+    font-size: 18px;
+  }
+  
+  .footer + .footer-copyright > br {
+    display: none;
   }
 }
 
 
-.footer-pc .footer-logo {
-  width: 195px;
-  height: 90px;
-}
-.footer-pc .footer-links {
-  display: flex;
-}
-
-.footer-pc .footer-links dl {
-  margin-top: 0;
-  padding-left: 40px;
-  display: block;
-  flex-wrap: nowrap;
-}
-.footer-pc .footer-links dl + dl {
-  margin-left: 60px;
-}
-
-.footer-pc .footer-links dt {
-  font-size: 24px;
-  text-indent: -40px;
-}
-
-.footer-pc .footer-links dt > img {
-  height: 30px;
-}
-
-.footer-pc .footer-links dt + dd {
-  margin-top: 40px;
-}
-
-.footer-pc .footer-links dd {
-  margin-top: 20px;
-}
-
-.footer-pc .footer-links dd a {
-  font-size: 18px;
-}
-
-.footer-pc + .footer-copyright > br {
-  display: none;
-}
