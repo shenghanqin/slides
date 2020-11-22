@@ -348,12 +348,12 @@
     top: 0;
     bottom: 0;
     border-radius: 20px;
-    cursor: pointer
   }
   .in-btn-1 {
+    cursor: pointer;
     background: linear-gradient(150deg,#fab06f,#fc683e);
     box-shadow: 0 2px 6px 0 rgba(252,104,62,.36);
-    transition: opacity .45s ease-in
+    transition: opacity .45s ease-in;
   }
   
   .in-btn-2 {

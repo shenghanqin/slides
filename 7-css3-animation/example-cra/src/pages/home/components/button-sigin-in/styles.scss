@@ -1,0 +1,68 @@
+.button-sign-toggle {
+	margin: 0 auto;
+	position: relative;
+	width: 250px;
+	height: 40px;
+	font-size: 15px;
+	font-weight: 500;
+	line-height: 40px;
+  text-align: center;
+  color: #fff;
+  background-image: linear-gradient(150deg,#fab06f,#fc683e);
+  box-shadow: 0 2px 6px 0 rgba(252,104,62,.36);
+  border-radius: 20px;
+  transition: all 3.45s ease-in-out;
+  cursor: pointer;
+
+  &.used {
+    background-image: linear-gradient(150deg,#cfd4db,#cfd4db);
+    color: #999;
+    box-shadow: none;
+  }
+}
+
+.button-sign-in {
+	margin: 24px auto 0;
+	position: relative;
+	width: 250px;
+	height: 40px;
+	font-size: 15px;
+	font-weight: 500;
+	line-height: 40px;
+  text-align: center;
+  color: #fff;
+  
+  .in-btn {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    border-radius: 20px;
+    cursor: pointer;
+  }
+  .in-btn-1 {
+    background: linear-gradient(150deg,#fab06f,#fc683e);
+    box-shadow: 0 2px 6px 0 rgba(252,104,62,.36);
+    transition: opacity .45s ease-in
+  }
+  
+  .in-btn-2 {
+    background: #cfd4db;
+    color: #999;
+    z-index: -1;
+    opacity: 0;
+    transition: opacity .45s ease-out;
+    transition-delay: .1s
+  }
+
+  &.used {
+    .in-btn-1 {
+      opacity: 0
+    }
+    .in-btn-2 {
+      opacity: 1;
+      z-index: 0
+    }
+  }
+}

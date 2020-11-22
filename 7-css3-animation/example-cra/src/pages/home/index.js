@@ -6,6 +6,7 @@ import Data10 from "../../data/status-10.json";
 import IntegralSignIn from "./components/integral-sign-in";
 import AniCoinFrame from "./components/coin-frame";
 import ModuleTitle from "./components/module-title";
+import ButtonSignIn from "./components/button-sigin-in";
 console.log('Data999', Data999)
 
 class Home extends React.Component {
@@ -22,7 +23,8 @@ class Home extends React.Component {
           />
           <ModuleTitle title="逐帧动画-金币旋转" />
           <AniCoinFrame />
-
+          <ModuleTitle title="渐变色动画-签到按钮" />
+          <ButtonSignIn />
         </div>
       </Page>
     );
