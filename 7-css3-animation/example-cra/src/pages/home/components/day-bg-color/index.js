@@ -4,12 +4,11 @@ import classnames from 'classnames/bind'
 
 const cx = classnames.bind(styles)
 
-export default function SignDayBg(props) {
-
+export default function DayBgColor(props) {
   return (
-    <div className={cx('sign-day-wrap')}>
-      <div className={cx('sign-day-card')}></div>
-      <div className={cx('sign-day-card')}></div>
+    <div className={cx('day-bg-wrap')}>
+      <div className={cx('day-bg-color')}></div>
+      <div className={cx('day-bg-color')}></div>
     </div>
   )
 }

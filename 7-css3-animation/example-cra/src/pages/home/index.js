@@ -8,7 +8,7 @@ import AniCoinFrame from "./components/coin-frame";
 import ModuleTitle from "./components/module-title";
 import ButtonSignIn from "./components/button-sigin-in";
 import DayBgColor from "./components/day-bg-color";
-console.log('Data999', Data999)
+import NumberFly from "./components/number-fly";
 
 class Home extends React.Component {
   render() {
@@ -28,6 +28,8 @@ class Home extends React.Component {
           <DayBgColor />
           <ModuleTitle title="渐变色动画-签到按钮" tips="按钮可点击" />
           <ButtonSignIn />
+          <ModuleTitle title="金币飞扬" />
+          <NumberFly />
         </div>
       </Page>
     );

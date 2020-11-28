@@ -1,0 +1,39 @@
+
+.number-fly {
+  position: relative;
+  margin: auto;
+	width: 36px;
+	height: 56px;
+	background: #f2f3f7;
+  text-align: center;
+  border-radius: 4px;
+  
+  animation: fly-color-ani 3s ease-in-out infinite;
+  
+  .fly-num-1 {
+    color: #ff8c2c
+  }
+
+  .fly-num-2 {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    color: #464d5c;
+    animation: fly-number-ani 3s ease-in-out infinite ;
+  }
+}
+
+
+@keyframes fly-color-ani {
+  to {
+    background: #FFF1A9;
+  }
+}
+
+@keyframes fly-number-ani {
+  to {
+    top: -100%;
+    opacity: 0
+  }
+}
