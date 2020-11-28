@@ -10,6 +10,7 @@ import ButtonSignIn from "./components/button-sigin-in";
 import DayBgColor from "./components/day-bg-color";
 import NumberFly from "./components/number-fly";
 import NumberIncrease from "./components/number-increase";
+import CoinShoppingCard from "./components/coin-shopping-cart";
 
 class Home extends React.Component {
   render() {
@@ -33,6 +34,8 @@ class Home extends React.Component {
           <NumberFly />
           <ModuleTitle title="数字翻转" />
           <NumberIncrease />
+          <ModuleTitle title="金币-加入购物车" tips="7个色块皆可点击" />
+          <CoinShoppingCard />
         </div>
       </Page>
     );

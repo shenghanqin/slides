@@ -34,28 +34,28 @@
 }
 
 .my-coin-container {
+  display: flex;
   align-items: center;
   justify-content: space-between;
 }
 
-.my-coin-container,
 .my-coin-icon {
   display: flex;
+  .coin-icon {
+    width: 16px;
+    height: 16px;
+    background: url(https://n1image.hjfile.cn/res7/2020/10/22/3fd58d294e5778f7f577c5c538ecbc73.png) 50% no-repeat;
+    background-size: cover
+  }
+  
+  .my-coin {
+    height: 16px;
+    font-weight: 500;
+    line-height: 16px;
+    margin-left: 5px
+  }
 }
 
-.coin-icon {
-  width: 16px;
-  height: 16px;
-  background: url(https://n1image.hjfile.cn/res7/2020/10/22/3fd58d294e5778f7f577c5c538ecbc73.png) 50% no-repeat;
-  background-size: cover
-}
-
-.my-coin {
-  height: 16px;
-  font-weight: 500;
-  line-height: 16px;
-  margin-left: 5px
-}
 
 .integral-num-container {
   display: flex;
@@ -137,15 +137,14 @@
   display: flex;
   align-items: center;
   position: absolute;
-  top: 10px
-}
-
-@media (min-width:768px) {
-  .continuous {
-  margin-bottom: 12px;
-  position: static
+  top: 10px;
+  
+  @media (min-width:768px) {
+    margin-bottom: 12px;
+    position: static
   }
 }
+
 
 .sign-in-continuous-days {
   height: 28px;
