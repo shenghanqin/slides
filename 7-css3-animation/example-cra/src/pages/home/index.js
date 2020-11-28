@@ -9,6 +9,7 @@ import ModuleTitle from "./components/module-title";
 import ButtonSignIn from "./components/button-sigin-in";
 import DayBgColor from "./components/day-bg-color";
 import NumberFly from "./components/number-fly";
+import NumberIncrease from "./components/number-increase";
 
 class Home extends React.Component {
   render() {
@@ -28,8 +29,10 @@ class Home extends React.Component {
           <DayBgColor />
           <ModuleTitle title="渐变色动画-签到按钮" tips="按钮可点击" />
           <ButtonSignIn />
-          <ModuleTitle title="金币飞扬" />
+          <ModuleTitle title="数字飞扬" />
           <NumberFly />
+          <ModuleTitle title="数字翻转" />
+          <NumberIncrease />
         </div>
       </Page>
     );
