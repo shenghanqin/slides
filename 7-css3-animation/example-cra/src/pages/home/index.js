@@ -2,11 +2,12 @@ import React from "react"
 import './styles.scss';
 import Page from "../../components/page"
 import Data999 from "../../data/status-999.json";
-import Data10 from "../../data/status-10.json";
+// import Data10 from "../../data/status-10.json";
 import IntegralSignIn from "./components/integral-sign-in";
 import AniCoinFrame from "./components/coin-frame";
 import ModuleTitle from "./components/module-title";
 import ButtonSignIn from "./components/button-sigin-in";
+import DayBgColor from "./components/day-bg-color";
 console.log('Data999', Data999)
 
 class Home extends React.Component {
@@ -23,7 +24,9 @@ class Home extends React.Component {
           />
           <ModuleTitle title="逐帧动画-金币旋转" />
           <AniCoinFrame />
-          <ModuleTitle title="渐变色动画-签到按钮" />
+          <ModuleTitle title="单色动画" />
+          <DayBgColor />
+          <ModuleTitle title="渐变色动画-签到按钮" tips="按钮可点击" />
           <ButtonSignIn />
         </div>
       </Page>

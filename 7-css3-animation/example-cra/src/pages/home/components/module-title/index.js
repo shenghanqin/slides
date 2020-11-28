@@ -5,11 +5,11 @@ import classnames from 'classnames/bind'
 const cx = classnames.bind(styles)
 
 export default function ModuleTitle(props) {
-  const { title = '' } = props
+  const { title = '', tips = '' } = props
 
   return (
     <div className={cx('module-title')}>
-      {title}
+      {title}<span className={cx('title-tips')}>{tips}</span>
     </div>
   )
 }

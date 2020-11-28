@@ -1,0 +1,25 @@
+.sign-day-wrap {
+  display: flex;
+  justify-content: space-around;
+}
+.sign-day-card {
+	width: 36px;
+	height: 56px;
+	background: #f2f3f7;
+	animation: color-ani 3s ease-in-out infinite;
+  border-radius: 4px;
+  
+  & + & {
+    animation-timing-function: cubic-bezier(.76,-1.7,.39,8.41);
+  }
+}
+
+
+@keyframes color-ani {
+  0% {
+    background: #f2f3f7;
+  }
+  100% {
+    background: #FFF1A9;
+  }
+}
