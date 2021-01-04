@@ -46,7 +46,7 @@ export default function CoinShoppingCard() {
         <div className={cx('my-coin')}>我的C币</div>
       </div>
 
-      <div className={cx('everyday-list')}>
+      <div className={cx('everyday-list-2')}>
         {
           [1, 2, 3, 4, 5, 6, 7].map((item, index) => {
             let isCurrentAni = positionIndex === index && isSignIn

@@ -20,7 +20,7 @@
     line-height: 40px;
     text-align: center;
     color: #fff;
-    background: #fc683e;
+    background: rgba(252, 104, 62, 1);
     box-shadow: 0 2px 6px 0 rgba(252,104,62,.36);
     border-radius: 20px;
     transition: all .45s ease-in-out;
@@ -32,8 +32,11 @@
     display: inline-block;
     color: #ff852e;
     font-size: 28px;
-    margin-right: 10px;
+    margin-bottom: 50px;
     vertical-align: top;
+    border-top: 1px dotted rgba(252, 104, 62, .5);;
+    border-bottom: 1px dotted rgba(252, 104, 62, .5);;
+    padding: 0 20px;
 
     &.is-signed {
       .num-symbol-first {
@@ -41,7 +44,7 @@
       }
       
       .num-symbol-dot {
-        margin-top: -40px
+        transform: translate3d(0, -40px, 0)
       }
     }
 
@@ -50,8 +53,8 @@
       display: inline-block;
       width: 17px;
       height: 40px;
+      margin: 0 1px;
       line-height: 40px;
-      overflow: hidden;
       text-align: center;
 
       @for $i from 1 through 10 {
@@ -67,7 +70,8 @@
     }
 
     .num-symbol-dot {
-      transition: margin-top .5s cubic-bezier(.68,-.04,.26,1.55)
+      box-shadow: inset 0 0 1px rgba(0, 0, 0,.5);
+      transition: transform .5s cubic-bezier(.68,-.04,.26,1.55)
     }
   }
 }

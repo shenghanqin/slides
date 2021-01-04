@@ -13,7 +13,7 @@ function RenderIncreaseNum({ originNumber, gapNumber = 1, isFinish = false }) {
   return (
     <div className={cx('days-num', { 'is-signed': isFinish })}>
       {
-        targetString.split('').map((item, index) => {
+        targetString.split('').map((nextItem, index) => {
 
           const prevNum = originString[lengthDiff > 0 ? index - lengthDiff : index]
 
@@ -28,7 +28,7 @@ function RenderIncreaseNum({ originNumber, gapNumber = 1, isFinish = false }) {
               )}
             >
               <div className={cx('num-symbol-dot')}>
-                {prevNum || '\u00A0'}<br />{item}
+                {prevNum || '\u00A0'}<br />{nextItem}
               </div>
             </div>
           )
