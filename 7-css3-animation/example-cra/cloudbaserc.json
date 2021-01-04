@@ -2,6 +2,7 @@
   "envId": "env-jsdqwaon",
   "framework": {
     "plugins": {
+      "name": "slides-7-css3-animation-example",
       "static": {
         "use": "@cloudbase/framework-plugin-website",
         "inputs": {

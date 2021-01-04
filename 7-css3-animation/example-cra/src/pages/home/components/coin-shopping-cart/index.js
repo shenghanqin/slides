@@ -76,6 +76,11 @@ export default function CoinShoppingCard() {
           })}
         </div>
       )}
+      <div className={cx('auto-wrap')}>
+        <div className={cx('x-axis')}>
+          <div className={cx('y-axis')}></div>
+        </div>
+      </div>
     </div>
   )
 }

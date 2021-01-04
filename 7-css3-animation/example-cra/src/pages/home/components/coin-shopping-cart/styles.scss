@@ -37,6 +37,46 @@
       }
     }
   }
+
+  .auto-wrap {
+    position: relative;
+    background: #f2f3f7;
+    padding-top: 25%;
+    margin: 20% 0 13%;
+
+    .x-axis {
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      top: 0;
+      width: 7.5%;
+      border: 1px dotted rgba(252, 104, 62, .5);
+      animation: ani-auto-x 3s linear infinite;
+    }
+
+    .y-axis {
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      padding-top: 100%;;
+      background: url(https://n1image.hjfile.cn/res7/2020/10/29/7676ad8bef41a059bcccf5042409dd82.png) 0 no-repeat;
+      background-size: auto 100%;
+      box-shadow: inset 0 0 5px rgba(252, 104, 62, .5);
+      animation: ani-auto-y 3s cubic-bezier(.67,.5,.63,1.78) infinite;
+    }
+  }
+}
+
+@keyframes ani-auto-x {
+  to {
+    left: 92.5%;
+  }
+}
+@keyframes ani-auto-y {
+  to {
+    bottom: 100%;
+  }
 }
 
 .shopping-cart-wrap {
