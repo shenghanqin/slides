@@ -36,40 +36,37 @@
     vertical-align: top;
 
     &.is-signed {
-      .num-small-1 {
-        width: 12px
-      }
-      .num-small-2 {
+      .num-symbol-first {
         width: 17px
       }
-
-      .num-to-diff .num-small-dot:first-child {
+      
+      .num-symbol-dot {
         margin-top: -40px
       }
     }
 
-    .num-small-first {
-      width: 0;
-      transition: width .4s cubic-bezier(.68,-.04,.26,1.55);
-    }
-
-    .num-small {
+    .num-symbol {
       vertical-align: top;
       display: inline-block;
+      width: 17px;
       height: 40px;
       line-height: 40px;
       overflow: hidden;
       text-align: center;
-    }
 
-    @for $i from 1 through 10 {
-      .num-small:nth-last-child(#{$i}) .num-small-dot {
-        transition-delay: #{$i * 0.05}s
+      @for $i from 1 through 10 {
+        &:nth-last-child(#{$i}) .num-symbol-dot {
+          transition-delay: #{$i * 0.05}s
+        }
       }
     }
 
+    .num-symbol-first {
+      width: 0;
+      transition: width .4s cubic-bezier(.68,-.04,.26,1.55);
+    }
 
-   .num-to-diff .num-small-dot {
+    .num-symbol-dot {
       transition: margin-top .5s cubic-bezier(.68,-.04,.26,1.55)
     }
   }

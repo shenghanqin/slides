@@ -5,32 +5,31 @@ import classnames from 'classnames/bind'
 const cx = classnames.bind(styles)
 
 
-function RenderIncreaseNum({ originCount, gapNumber = 1, isFinish = false }) {
-  const countArr = String(originCount).split('')
-  const countArr2 = String(Number(originCount) + gapNumber).split('')
-  const isLengthDiff = countArr.length !== countArr2.length
+function RenderIncreaseNum({ originNumber, gapNumber = 1, isFinish = false }) {
+  const originString = String(originNumber)
+  const targetString = String(Number(originNumber) + gapNumber)
+  const lengthDiff = targetString.length - originString.length
 
   return (
     <div className={cx('days-num', { 'is-signed': isFinish })}>
       {
-        countArr2.map((item, index) => {
-          const prevNum = countArr[isLengthDiff ? index + (countArr.length - countArr2.length) : index]
-          const isNowDiff = item !== prevNum
+        targetString.split('').map((item, index) => {
+
+          const prevNum = originString[lengthDiff > 0 ? index - lengthDiff : index]
+
           return (
             <div
               key={index}
               className={cx(
-                'num-small',
+                'num-symbol',
                 {
-                  'num-to-diff': isNowDiff,
-                  'num-small-first': !prevNum,
-                  'num-small-1': !prevNum && (item === '1'),
-                  'num-small-2': !prevNum && (item !== '1')
+                  'num-symbol-first': !prevNum,
                 }
               )}
             >
-              <div className={cx('num-small-dot')}>{prevNum || '\u00A0'}</div>
-              <div className={cx('num-small-dot')}>{item}</div>
+              <div className={cx('num-symbol-dot')}>
+                {prevNum || '\u00A0'}<br />{item}
+              </div>
             </div>
           )
         })
@@ -40,7 +39,7 @@ function RenderIncreaseNum({ originCount, gapNumber = 1, isFinish = false }) {
 }
 
 export default function NumberIncrease(props) {
-  const [balance, setBalance] = useState(992)
+  const [balance, setBalance] = useState(882)
   const [currentAddBalance, setCurrentAddBalance] = useState(11222)
   const [isSignIn, setSignIn] = useState(false)
 
@@ -59,7 +58,7 @@ export default function NumberIncrease(props) {
 
   return (
     <div className={cx('number-increase')}>
-      <RenderIncreaseNum originCount={balance} gapNumber={currentAddBalance} isFinish={isSignIn} />
+      <RenderIncreaseNum originNumber={balance} gapNumber={currentAddBalance} isFinish={isSignIn} />
       <div className={cx('line')}>底数：<input onChange={changeBlance} value={balance} /></div>
       <div className={cx('line')}>加数：<input value={currentAddBalance} onChange={changeAddBalance} /></div>
       <div className={cx('line')}><button onClick={() => setSignIn(!isSignIn)}>{isSignIn ? '重置' : '添加'}</button></div>
