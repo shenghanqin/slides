@@ -1,0 +1,77 @@
+.number-increase {
+  text-align: center;
+
+  .line {
+    margin: 10px 0;
+  }
+
+  input {
+    border: #fc683e 1px solid;
+    line-height: 20px;
+    padding: 0 10px;
+  }
+
+  button {
+    width: 250px;
+    height: 40px;
+    outline: none;
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 40px;
+    text-align: center;
+    color: #fff;
+    background: rgba(252, 104, 62, 1);
+    box-shadow: 0 2px 6px 0 rgba(252,104,62,.36);
+    border-radius: 20px;
+    transition: all .45s ease-in-out;
+    border:  none;
+    cursor: pointer;
+  }
+
+  .days-num {
+    display: inline-block;
+    color: #ff852e;
+    font-size: 28px;
+    margin-bottom: 50px;
+    vertical-align: top;
+    border-top: 1px dotted rgba(252, 104, 62, .5);;
+    border-bottom: 1px dotted rgba(252, 104, 62, .5);
+    padding: 0 20px;
+
+    &.is-signed {
+      .num-symbol-first {
+        width: 17px
+      }
+      
+      .num-symbol-dot {
+        transform: translate3d(0, -40px, 0)
+      }
+    }
+
+    .num-symbol {
+      vertical-align: top;
+      display: inline-block;
+      width: 17px;
+      height: 40px;
+      margin: 0 1px;
+      line-height: 40px;
+      text-align: center;
+
+      @for $i from 1 through 10 {
+        &:nth-last-child(#{$i}) .num-symbol-dot {
+          transition-delay: #{$i * 0.05}s
+        }
+      }
+    }
+
+    .num-symbol-first {
+      width: 0;
+      transition: width .4s cubic-bezier(.68,-.04,.26,1.55);
+    }
+
+    .num-symbol-dot {
+      box-shadow: inset 0 0 1px rgba(0, 0, 0,.5);
+      transition: transform .5s cubic-bezier(.68,-.04,.26,1.55)
+    }
+  }
+}

@@ -1,0 +1,70 @@
+{
+  "continueSignCount": 999,
+  "hasSignIn": false,
+  "configList": [
+    {
+      "serviceBusinessType": 1,
+      "walletLimit": 100,
+      "perWallet": 10,
+      "optTime": 10,
+      "physicalNumber": 10,
+      "timeLimit": 2
+    },
+    {
+      "serviceBusinessType": 2,
+      "walletLimit": 40,
+      "perWallet": 10,
+      "optTime": 10,
+      "physicalNumber": 10,
+      "timeLimit": 2
+    },
+    {
+      "serviceBusinessType": 3,
+      "walletLimit": 100,
+      "perWallet": 10,
+      "optTime": 10,
+      "physicalNumber": 10,
+      "timeLimit": 2
+    }
+  ],
+  "signCycleList": [
+    {
+      "balance": 2,
+      "hasSignIn": true,
+      "dayNumber": 1
+    },
+    {
+      "balance": 3,
+      "hasSignIn": true,
+      "dayNumber": 2
+    },
+    {
+      "balance": 3,
+      "hasSignIn": true,
+      "dayNumber": 3
+    },
+    {
+      "balance": 3,
+      "hasSignIn": true,
+      "dayNumber": 4
+    },
+    {
+      "balance": 5,
+      "hasSignIn": true,
+      "dayNumber": 5
+    },
+    {
+      "balance": 10,
+      "hasSignIn": true,
+      "dayNumber": 6
+    },
+    {
+      "balance": 9914,
+      "hasSignIn": false,
+      "dayNumber": 7
+    }
+  ],
+  "balance": 999,
+  "expireDate": "2020-10-27T14:23:01+0800",
+  "expiringBalance": 33
+}

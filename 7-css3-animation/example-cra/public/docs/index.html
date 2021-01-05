@@ -1,0 +1,1212 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Animation</title>
+<script src="js/jquery.js"></script>
+<style type="text/css">
+*{ margin:0; padding:0;}
+body{ background:#f9f9f9; padding:0 30px; width:800px; margin:0 auto; font-family:"Heiti SC",STHeiTi; color:#1f8dd6;}
+h2 {color: #1f8dd6;font-size: 24px;padding: 25px 0 5px;border-bottom: 1px solid #1f8dd6;text-align: center; margin-bottom:25px;}
+h3 span{ display:inline-block; border-bottom:2px solid #1f8dd6; color:#1f8dd6; padding:0 5px; margin:20px 0 20px;}
+.m_btn{ height:36px; display:inline-block; background:#1f8dd6; line-height:36px; font-size:18px; color:#fff; text-decoration:none; width:100px; text-align:center;  border-radius:6px; }
+.hint{font-size:12px; color:#aaa; font-weight:700;}
+a{ color:#1f8dd6;}
+/*辅助动画图片--此图片样式只起装饰作用*/
+.img1{width:136px;height:184px;background: url("images/img1.png") no-repeat;}
+.img2{width:110px;height:59px;background: url("images/img2.png") no-repeat;}
+.img3{width:128px;height:55px;background: url("images/img3.png") no-repeat;}
+.img4{width:45px;height:98px;background: url("images/img4.png") no-repeat;}
+.img5{width:74px;height:96px;background: url("images/img5.png") no-repeat;}
+.img6{width:149px;height:109px;background: url("images/img6.png") no-repeat;}
+.img7{width:164px;height:91px;background: url("images/img7.png") no-repeat;}
+.img8{width:126px;height:132px;background: url("images/img8.png") no-repeat;}
+.img9{width:124px;height:188px;background: url("images/img9.png") no-repeat;}
+.img10{width:145px;height:135px;background: url("images/img10.png") no-repeat;}
+.img11{width:77px;height:73px;background: url("images/img11.png") no-repeat;}
+.img12{width:155px;height:182px;background: url("images/img12.png") no-repeat;}
+.img13{width:151px;height:99px;background: url("images/img13.png") no-repeat;}
+.img14_1{width:49px;height:22px;background: url("images/img14_1.png") no-repeat;}
+.img14_2{width:20px;height:36px;background: url("images/img14_2.png") no-repeat;}
+.img15{width:136px;height:135px;background: url("images/img15.png") no-repeat;}
+.img16{width:114px;height:135px;background: url("images/img16.png") no-repeat;}
+.img17{width:112px;height:149px;background: url("images/img17.png") no-repeat;}
+.img18{width:135px;height:149px;background: url("images/img18.png") no-repeat;}
+.img19{width:228px;height:207px;background: url("images/img19.png") no-repeat;}
+.img20{width:768px;height:285px;background: url("images/img20.png") no-repeat;}
+.img21{width:157px;height:138px;background: url("images/img21.png") no-repeat;}
+.img22{width:136px;height:135px;background: url("images/img22.png") no-repeat;}
+.img23{width:219px;height:105px;background: url("images/img23.png") no-repeat;}
+.img24{width:122px;height:120px;background: url("images/img24.png") no-repeat;}
+.img25{width:100px;height:83px;background: url("images/img25.png") no-repeat;}
+.img26{width:181px;height:124px;background: url("images/img26.png") no-repeat;}
+.img27{width:186px;height:152px;background: url("images/img27.png") no-repeat;}
+.img29{width:397px;height:80px;background: url("images/img29.png") no-repeat;}
+.img30{width:174px;height:221px;background: url("images/img30.png") no-repeat;}
+.img31{width:231px;height:112px;background: url("images/img31.png") no-repeat;}
+.img32{width:42px;height:22px;background: url("images/img32.png") no-repeat;}
+/*以上均为辅助样式与动画样式无关*/
+
+
+/*1.请选择keyframes动画*/
+/*淡入*/
+@-webkit-keyframes FadeIn{
+    0%  { opacity:0;}
+    100%{ opacity:1;}    
+    }
+@keyframes FadeIn{
+    0%  { opacity:0;}
+    100%{ opacity:1;}    
+    }
+/*淡出*/
+@-webkit-keyframes FadeOut{
+    0%  { opacity:1;}
+    100%{ opacity:0;}    
+    }
+@keyframes FadeOut{
+    0%  { opacity:1;}
+    100%{ opacity:0;}    
+    }
+/*擦入*/
+@-webkit-keyframes WipeIn{
+    0%{width:0;}
+    100%{width:241px;}
+    }
+@keyframes WipeIn{
+    0%{width:0;}
+    100%{width:241px;}
+    }
+/*范例1*/    
+@-webkit-keyframes WipeIn_1{
+    0%{width:0;}
+    100%{width:110px;}
+    }
+@keyframes WipeIn_1{
+    0%{width:0;}
+    100%{width:110px;}
+    }
+/*范例2*/
+@-webkit-keyframes WipeIn_2{
+    0%{width:0;}
+    100%{width:128px;}
+    } 
+@keyframes WipeIn_2{
+    0%{width:0;}
+    100%{width:128px;}
+    }
+/*范例3*/ 
+@-webkit-keyframes WipeIn_3{
+    0%{height:0;}
+    100%{height:98px;}
+    }
+@keyframes WipeIn_3{
+    0%{height:0;}
+    100%{height:98px;}
+    }
+/*范例4*/ 
+@-webkit-keyframes WipeIn_4{
+    0%{height:0;}
+    100%{height:96px;}
+    } 
+@keyframes WipeIn_4{
+    0%{height:0;}
+    100%{height:96px;}
+    }      
+/*擦出*/
+@-webkit-keyframes WipeOut{
+    0%{width:110px;}
+    100%{width:0px;}
+    }
+@keyframes WipeOut{
+    0%{width:110px;}
+    100%{width:0px; }
+    }
+/*范例1*/
+@-webkit-keyframes WipeOut_1{
+    0%{width:110px;}
+    100%{width:0;}
+    }    
+@keyframes WipeOut_1{
+    0%{width:110px;}
+    100%{width:0;}
+    }
+/*范例2*/
+@-webkit-keyframes WipeOut_2{
+    0%{width:128px;}
+    100%{width:0;}
+    } 
+@keyframes WipeOut_2{
+    0%{width:128px;}
+    100%{width:0;}
+    }
+/*范例3*/ 
+@-webkit-keyframes WipeOut_3{
+    0%{height:98px;}
+    100%{height:0;}
+    }
+@keyframes WipeOut_3{
+    0%{height:98px;}
+    100%{height:0;}
+    }
+/*范例4*/ 
+@-webkit-keyframes WipeOut_4{
+    0%{height:96px;}
+    100%{height:0;}
+    } 
+@keyframes WipeOut_4{
+    0%{height:96px;}
+    100%{height:0;}
+    }
+/*缩放入*/
+@-webkit-keyframes ZoomIn{
+    0%  { -webkit-transform:scale(0);}
+    70% { -webkit-transform:scale(1.3);}
+    100%{ -webkit-transform:scale(1);}    
+    }     
+@keyframes ZoomIn{
+    0%  { transform:scale(0);}
+    70% { transform:scale(1.3);}
+    100%{ transform:scale(1);}    
+    } 
+/*缩放出*/  
+@-webkit-keyframes ZoomOut{
+    0%  { -webkit-transform:scale(1);}
+    30% { -webkit-transform:scale(1.3);}
+    100%{ -webkit-transform:scale(0);}    
+    } 
+@keyframes ZoomOut{
+    0%  { transform:scale(1);}
+    30% { transform:scale(1.3);}
+    100%{ transform:scale(0);}    
+    }
+/*飞入*/
+@-webkit-keyframes FlyIn{
+    0%  { -webkit-transform:translate(-300px,150px); opacity:0;}
+    100%{ -webkit-transform:translate(0,0); opacity:1;}    
+    }
+@keyframes FlyIn{
+    0%  { transform:translate(-300px,150px); opacity:0;}
+    100%{ transform:translate(0,0); opacity:1;}    
+    }
+/*飞出*/
+@-webkit-keyframes FlyOut{
+    0%  { -webkit-transform:translate(0,0); opacity:1;}
+    100%{ -webkit-transform:translate(300px,-100px); opacity:0;}    
+    }
+@keyframes FlyOut{
+    0%  { transform:translate(0,0); opacity:1;}
+    100%{ transform:translate(300px,-100px); opacity:0;}    
+    }      
+/*旋转2D*/
+@-webkit-keyframes Rotate{
+    0%  {-webkit-transform:rotate(15deg);}
+    100%{-webkit-transform:rotate(-15deg);}        
+    } 
+@keyframes Rotate{
+    0%  { transform:rotate(15deg);}
+    100%{ transform:rotate(-15deg);}   
+    }
+@-webkit-keyframes Rotate_1{
+    0%  {-webkit-transform:rotate(0);}
+    100%{-webkit-transform:rotate(360deg);}        
+    } 
+@keyframes Rotate_1{
+    0%  { transform:rotate(0);}
+    100%{ transform:rotate(360deg);}   
+    }
+/*旋转3D*/  
+@-webkit-keyframes Rotate_3D{
+    0%  {-webkit-transform:perspective(0) rotateY(0deg);}
+    100%{-webkit-transform:perspective(1000px) rotateY(180deg);}        
+    } 
+@keyframes Rotate_3D{
+    0%  {transform:perspective(0) rotateY(0deg);}
+    100%{transform:perspective(1000px) rotateY(180deg); } 
+    } 
+@-webkit-keyframes Rotate_3D_X{
+    0%  {-webkit-transform:perspective(500px) rotateX(0deg);-webkit-backface-visibility:hidden;}
+    100%{-webkit-transform:perspective(1000px) rotateX(160deg);}        
+    } 
+@keyframes Rotate_3D_X{
+    0%  {transform:perspective(500) rotateX(0deg);backface-visibility:hidden;}
+    100%{transform:perspective(1000px) rotateX(160deg); } 
+    }
+@-webkit-keyframes Rotate_3D_Y{
+    0%  {-webkit-transform:perspective(0) rotateY(0deg);}
+    100%{-webkit-transform:perspective(1000px) rotateY(180deg);}        
+    } 
+@keyframes Rotate_3D_Y{
+    0%  {transform:perspective(0) rotateY(0deg);}
+    100%{transform:perspective(1000px) rotateY(180deg); } 
+    }    
+/*从下至上翻转入*/  
+@-webkit-keyframes 	TurnDownIn{
+    0%{opacity:0;-webkit-transform:perspective(500px) rotateX(-225deg) translateZ(150px);}
+    100%{opacity:1;-webkit-transform:perspective(800px) rotateX(0deg) translateZ(0);-webkit-backface-visibility:hidden;}
+    }
+@keyframes TurnDownIn{
+    0%{opacity:0;transform:perspective(500px) rotateX(-225deg) translateZ(150px);}
+    100%{opacity:1;transform:perspective(800px) rotateX(0deg) translateZ(0);backface-visibility:hidden;}
+    }
+/*从下至上翻转出*/  
+@-webkit-keyframes 	TurnDownOut{
+    0%{opacity:1;-webkit-transform:perspective(800px) rotateX(0deg) translateZ(0);-webkit-backface-visibility:hidden;}
+    100%{opacity:0;-webkit-transform:perspective(500px) rotateX(-225deg) translateZ(150px);}
+    }
+@keyframes TurnDownOut{
+    0%{opacity:0;transform:perspective(800px) rotateX(0deg) translateZ(0);backface-visibility:hidden;}
+    100%{opacity:1;transform:perspective(500px) rotateX(-225deg) translateZ(150px);}
+    }
+/*从上至下翻转入*/
+@-webkit-keyframes TurnUpIn{
+    0%{opacity:0;-webkit-transform:perspective(500px) rotateX(225deg) translateZ(150px);}
+    100%{opacity:1;-webkit-transform:perspective(800px) rotateX(0deg) translateZ(0);-webkit-backface-visibility:hidden;}
+    }
+@keyframes TurnUpIn{
+    0%{opacity:0;transform:perspective(500px) rotateX(225deg) translateZ(150px);}
+    100%{opacity:1;transform:perspective(800px) rotateX(0deg) translateZ(0);backface-visibility:hidden;}
+    } 
+/*从上至下翻转出*/  
+@-webkit-keyframes TurnUpOut{
+    0%{opacity:1;-webkit-transform:perspective(800px) rotateX(0deg) translateZ(0);-webkit-backface-visibility:hidden;}
+    100%{opacity:0;-webkit-transform:perspective(500px) rotateX(225deg) translateZ(150px);}
+    }
+@keyframes TurnUpOut{
+    0%{opacity:1;transform:perspective(800px) rotateX(0deg) translateZ(0);backface-visibility:hidden;}
+    100%{opacity:0;transform:perspective(500px) rotateX(225deg) translateZ(150px);}
+    }
+/*从左滑入*/
+@-webkit-keyframes SlideLeftIn{
+    0%{opacity:0;-webkit-transform:translateX(-13.34em) translateZ(0);}
+	65%{opacity:1;-webkit-transform:translateX(1.334em);}
+	100%{-webkit-transform:translateX(0);}
+	}
+@keyframes SlideLeftIn{
+    0%{opacity:0;transform:translateX(-13.34em) translateZ(0);}
+	65%{opacity:1;transform:translateX(1.334em);}
+	100%{transform:translateX(0);}
+	}
+/*向左滑出*/
+@-webkit-keyframes SlideLeftOut{
+    35%{opacity:1;-webkit-transform:translateX(20px) translateZ(0);}
+	100%{opacity:0;-webkit-transform:translateX(-200px);}
+	}
+@keyframes SlideOutLeft{
+    35%{opacity:1;transform:translateX(20px) translateZ(0);}
+	100%{opacity:0;transform:translateX(-200px);}
+	}
+/*从右滑入*/
+@-webkit-keyframes SlideRightIn{
+    0%{opacity:0;-webkit-transform:translateX(200px) translateZ(0);}
+	65%{opacity:1;-webkit-transform:translateX(-20px);}
+	100%{-webkit-transform:translateX(0);}
+	}
+@keyframes SlideRightIn{
+    0%{opacity:0;transform:translateX(200px) translateZ(0);}
+	65%{opacity:1;transform:translateX(-20px);}
+	100%{transform:translateX(0);}
+	}
+/*向右滑出*/
+@-webkit-keyframes SlideRightOut{
+    35%{opacity:1;-webkit-transform:translateX(-20px) translateZ(0);}
+	100%{opacity:0;-webkit-transform:translateX(200px);}
+	}
+@keyframes SlideOutRight{
+    35%{opacity:1;transform:translateX(-20px) translateZ(0);}
+	100%{opacity:0;transform:translateX(200px);}
+	}
+/*从上滑入*/ 
+@-webkit-keyframes SlideUpIn{
+    0%  { -webkit-transform:translateY(-50px); opacity:0;}
+    85% { -webkit-transform:translateY(5px); opacity:.9;}
+    100%{ -webkit-transform:translateY(0px); opacity:1;}   
+    }  
+@keyframes SlideUpIn{ 
+    0%  { transform:translateY(-50px); opacity:0;}
+    85% { transform:translateY(5px); opacity:.9;}
+    100%{ transform:translateY(0px); opacity:1;}	
+    }
+/*向上滑出*/
+@-webkit-keyframes SlideUpOut{
+    0%  { -webkit-transform:translateY(0px); opacity:1;}
+    5%  { -webkit-transform:translateY(5px); opacity:.9;}
+    100%{ -webkit-transform:translateY(-50px); opacity:0;}    
+    }
+@keyframes SlideUpOut{
+    0%  { transform:translateY(0px); opacity:1;}
+    5%  { transform:translateY(5px); opacity:.9;}
+    100%{ transform:translateY(-50px); opacity:0;}    
+    }
+/*从下滑入*/ 
+@-webkit-keyframes SlideDownIn{
+    0%  { -webkit-transform:translateY(50px); opacity:0;}
+    85% { -webkit-transform:translateY(-5px); opacity:.9;}
+    100%{ -webkit-transform:translateY(0px); opacity:1;}       
+    }  
+@keyframes SlideDownIn{
+    0%  { transform:translateY(50px); opacity:0;}
+    85% { transform:translateY(-5px); opacity:.9;}
+    100%{ transform:translateY(0px); opacity:1;}    
+    }
+/*向下滑出*/
+@-webkit-keyframes SlideDownOut{
+    0%  { -webkit-transform:translateY(0px); opacity:1;}
+    5%  { -webkit-transform:translateY(-5px); opacity:.9;}
+    100%{ -webkit-transform:translateY(50px); opacity:0;}    
+    }
+@keyframes SlideDownOut{
+    0%  { transform:translateY(0px); opacity:1;}
+    5%  { transform:translateY(-5px); opacity:.9;}
+    100%{ transform:translateY(50px); opacity:0;}    
+    }	
+/*坠入*/    
+@-webkit-keyframes DropIn{
+    0%{opacity:0;-webkit-transform:translateY(-10em) rotate(0) translateZ(0);}
+    10%{-webkit-transform:translateY(-10em) rotate(-50deg);}
+    90%{opacity:1}
+    100%{-webkit-transform:translateY(0) rotate(0);}
+    }
+@keyframes DropIn{
+    0%{opacity:0;transform:translateY(-10em) rotate(0) translateZ(0);}
+    10%{transform:translateY(-10em) rotate(-40deg)}
+    90%{opacity:1}
+    100%{transform:translateY(0) rotate(0)}
+    } 
+/*坠出*/ 
+@-webkit-keyframes DropOut{
+    0%{opacity:1;-webkit-transform:translateZ(0);}
+    100%{opacity:0;-webkit-transform:translateY(10em) rotate(-30deg);}
+    }
+@keyframes DropOut{
+    0%{opacity:1;transform:translateZ(0)}
+    100%{opacity:0;transform:translateY(10em) rotate(-30deg);}
+    }  
+/*风车入*/
+@-webkit-keyframes PinwheelIn{
+    0%{opacity:0;-webkit-transform:rotate(-720deg) scale(0.33);}
+    100%{opacity:1;-webkit-transform:rotate(0deg) scale(1);}
+    }
+@keyframes PinwheelIn{
+    0%{opacity:0;transform:rotate(-720deg) scale(0.33);}
+    100%{opacity:1;transform:rotate(0deg) scale(1);}
+    }
+/*风车出*/
+@-webkit-keyframes PinwheelOut{
+    0%{opacity:1;-webkit-transform:rotate(0deg) scale(1);}
+    100%{opacity:0;-webkit-transform:rotate(720deg) scale(0.33);}
+    }
+@keyframes PinwheelOut{
+    0%{opacity:1;transform:rotate(0deg) scale(1);}
+    100%{opacity:0;transform:rotate(720deg) scale(0.33);}
+    } 
+/*伸展*/    
+@-webkit-keyframes Stretch{
+    0%{-webkit-transform:scaleY(0);}
+    40%{-webkit-transform:scaleY(1.05);}
+    60%{-webkit-transform:scaleY(0.97125);}
+    80%{-webkit-transform:scaleY(1.05);}
+    100%{-webkit-transform:scaleY(0.97125);}
+    80%{-webkit-transform:scaleY(1.02375);}
+    100%{-webkit-transform:scaleY(1);}
+    }
+@keyframes Stretch{
+    0%{transform:scaleY(0);}
+    40%{transform:scaleY(1.05);}
+    60%{transform:scaleY(0.97125);}
+    80%{transform:scaleY(1.05);}
+    100%{transform:scaleY(0.97125);}
+    80%{transform:scaleY(1.02375);}
+    100%{transform:scaleY(1);}
+    }          
+/*压缩*/    
+@-webkit-keyframes Compress{
+    0%{-webkit-transform:scaleY(1);}
+    30%{-webkit-transform:scaleY(1.05);}
+    50%{-webkit-transform:scaleY(0.97125);}
+    100%{-webkit-transform:scaleY(0);}
+    }
+@keyframes Compress{
+    0%{transform:scaleY(1);}
+    30%{transform:scaleY(1.05);}
+    50%{transform:scaleY(0.97125);}
+    100%{transform:scaleY(0);}
+    } 
+/*爆炸*/
+@-webkit-keyframes Explode{
+    0%{opacity:1;-webkit-transform:translateZ(0);}
+    100%{opacity:0;-webkit-transform:scale(5);}
+    }
+@keyframes Explode{
+    0%{opacity:1;transform:translateZ(0);}
+    100%{opacity:0;transform:scale(5);}
+    }
+/*漂浮*/
+@-webkit-keyframes Flotage{
+    0%  {-webkit-transform:translateX(0);opacity:1;}
+    50% {-webkit-transform:translateX(5px);opacity:0.7;} 
+    100%{-webkit-transform:translateX(-5px);opacity:1;}  
+    } 
+@keyframes Flotage{
+    0%  {transform:translateX(0);opacity:1;}
+    50% {transform:translateX(5px);opacity:0.7;} 
+    100%{transform:translateX(-5px);opacity:1;}    
+    }
+/*抖动*/
+@-webkit-keyframes Quiver{
+    0%{-webkit-transform:translate3d(2px,1px,0) rotate(0deg);}
+    10%{-webkit-transform:translate3d(-1px,2px,0) rotate(2deg);}
+    20%{-webkit-transform:translate3d(-3px,0) rotate(-2deg);}
+    30%{-webkit-transform:translate3d(0,2px,0) rotate(0deg);}
+    40%{-webkit-transform:translate3d(1px,-1px,0) rotate(2deg);}
+    50%{-webkit-transform:translate3d(-1px,2px,0) rotate(-2deg);}
+    60%{-webkit-transform:translate3d(-3px,1px,0) rotate(0deg);}
+    70%{-webkit-transform:translate3d(2px,1px,0) rotate(2deg);}
+    80%{-webkit-transform:translate3d(-1px,-1px,0) rotate(-2deg);}
+    90%{-webkit-transform:translate3d(2px,2px,0) rotate(0deg);}
+    100%{-webkit-transform:translate3d(1px,-2px,0) rotate(2deg);}
+    }
+@keyframes Quiver{
+    0%{transform:translate3d(2px,1px,0) rotate(0deg);}
+    10%{transform:translate3d(-1px,2px,0) rotate(2deg);}
+    20%{transform:translate3d(-3px,0) rotate(-2deg);}
+    30%{transform:translate3d(0,2px,0) rotate(0deg);}
+    40%{transform:translate3d(1px,-1px,0) rotate(2deg);}
+    50%{transform:translate3d(-1px,2px,0) rotate(-2deg);}
+    60%{transform:translate3d(-3px,1px,0) rotate(0deg);}
+    70%{transform:translate3d(2px,1px,0) rotate(2deg);}
+    80%{transform:translate3d(-1px,-1px,0) rotate(-2deg);}
+    90%{transform:translate3d(2px,2px,0) rotate(0deg);}
+    100%{transform:translate3d(1px,-2px,0) rotate(2deg);}
+    }   
+/*脉动*/
+@-webkit-keyframes Pulsate{
+    0%,100%{opacity:1;-webkit-transform:scale(1) translateZ(0);}
+    50%{opacity:.85;-webkit-transform:scale(1.1);}
+    }
+@keyframes Pulsate{
+    0%,100%{opacity:1;transform:scale(1) translateZ(0);}
+    50%{opacity:.85;transform:scale(1.1);}
+    } 
+/*弹跳*/
+@-webkit-keyframes Bounce{
+    0%,85%,100%{-webkit-transform:translateY(0) scaleY(1) scaleX(1) translateZ(0);}
+    25%{-webkit-transform:translateY(-1.35rem) scaleY(1.02) scaleX(0.98);}
+    35%{-webkit-transform:translateY(0) scaleY(0.98) scaleX(1.02);}
+    50%{-webkit-transform:translateY(-1rem) scaleY(1.01) scaleX(0.99);}
+    60%{-webkit-transform:translateY(0) scaleY(0.99) scaleX(1.01);}
+    75%{-webkit-transform:translateY(-.05rem);}
+    }
+@keyframes Bounce{
+    0%,85%,100%{transform:translateY(0) scaleY(1) scaleX(1) translateZ(0);}
+    25%{transform:translateY(-1.35rem) scaleY(1.02) scaleX(0.98);}
+    35%{transform:translateY(0) scaleY(0.98) scaleX(1.02);}
+    50%{transform:translateY(-1rem) scaleY(1.01) scaleX(0.99);}
+    60%{transform:translateY(0) scaleY(0.99) scaleX(1.01);}
+    75%{transform:translateY(-.05rem);}
+    }
+/*眨眼*/
+@-webkit-keyframes Blink{ 
+  0% { -webkit-transform: scaleX(1) scaleY(1); } 
+  1% { -webkit-transform: scaleX(1.3) scaleY(0.1); } 
+  2% { -webkit-transform: scaleX(1) scaleY(1); } 
+  60% { -webkit-transform: scaleX(1) scaleY(1); } 
+  61% { -webkit-transform: scaleX(1.3) scaleY(0.1);} 
+  62% { -webkit-transform: scaleX(1) scaleY(1); } 
+  100% { -webkit-transform: scaleX(1) scaleY(1); }
+}
+
+@keyframes Blink{ 
+  0% { transform: scaleX(1) scaleY(1); } 
+  1% { transform: scaleX(1.3) scaleY(0.1); } 
+  2% { transform: scaleX(1) scaleY(1); } 
+  60% { transform: scaleX(1) scaleY(1); } 
+  61% { transform: scaleX(1.3) scaleY(0.1);} 
+  62% { transform: scaleX(1) scaleY(1); } 
+  100% { transform: scaleX(1) scaleY(1); }
+}
+/*涟漪*/
+@-webkit-keyframes Ripple{
+   0%{-webkit-transform:scale(0);}
+   100%{-webkit-transform:scale(1);opacity:0;}
+   }
+@keyframes Ripple{
+   0%{transform:scale(0);}
+   100%{transform:scale(1);opacity:0;}
+   }
+/*帧动画*/	
+@-webkit-keyframes Frame{
+	0%{background-position:0 0;}
+    14.3%{background-position:-174px 0;}
+    28.6%{background-position:-348px 0;}
+    42.9%{background-position:-522px 0;}
+    57.2%{background-position:-696px 0;}
+    71.5%{background-position:-870px 0;}
+    85.8%{background-position:-1044px 0;}
+    100%{background-position:-1218px 0;}
+    } 
+@keyframes Frame{
+	0%{background-position:0 0;}
+    14.3%{background-position:-174px 0;}
+    28.6%{background-position:-348px 0;}
+    42.9%{background-position:-522px 0;}
+    57.2%{background-position:-696px 0;}
+    71.5%{background-position:-870px 0;}
+    85.8%{background-position:-1044px 0;}
+    100%{background-position:-1218px 0;}
+    }    
+/*自定义路径*/
+@-webkit-keyframes User-Defined-Path{
+    0%{-webkit-transform:rotate(0deg) translate(0px,0px));}
+    10%{-webkit-transform:rotate(4deg) translate(20px,-2px);}
+    20%{-webkit-transform:rotate(-5deg) translate(40px,2px);}
+    30%{-webkit-transform:rotate(1deg) translate(60px,-4px);}
+    40%{-webkit-transform:rotate(-2deg) translate(80px,2px);}
+    50%{-webkit-transform:rotate(3deg) translate(100px,-4px);}
+    60%{-webkit-transform:rotate(-1deg) translate(120px,1px);}
+    70%{-webkit-transform:rotate(3deg) translate(140px,-3px);}
+    80%{-webkit-transform:rotate(-1deg) translate(160px,1px);}
+    90%{-webkit-transform:rotate(3deg) translate(180px,-4px);}
+    100%{-webkit-transform:rotate(4deg) translate(200px,0px);}
+    }
+@keyframes User-Defined-Path{
+    0%{transform:rotate(0deg) translate(0px,0px));}
+    10%{transform:rotate(4deg) translate(20px,-2px);}
+    20%{transform:rotate(-5deg) translate(40px,2px);}
+    30%{transform:rotate(1deg) translate(60px,-4px);}
+    40%{transform:rotate(-2deg) translate(80px,2px);}
+    50%{transform:rotate(3deg) translate(100px,-4px);}
+    60%{transform:rotate(-1deg) translate(120px,1px);}
+    70%{transform:rotate(3deg) translate(140px,-3px);}
+    80%{transform:rotate(-1deg) translate(160px,1px);}
+    90%{transform:rotate(3deg) translate(180px,-4px);}
+    100%{transform:rotate(4deg) translate(200px,0px);}
+    }
+/*转轴*/
+@-webkit-keyframes Hinge{
+    0%{opacity:1;}
+	20%{-webkit-transform:rotate(75deg);opacity:1;}	
+	40%{-webkit-transform:rotate(47deg);opacity:1;}
+	60%{-webkit-transform:rotate(70deg);opacity:1;}
+	80%{-webkit-transform:rotate(57deg);opacity:1;}
+	100%{-webkit-transform:translateY(700px);opacity:0;}
+	}
+@keyframes Hinge{
+    0%{opacity:1;}
+	20%{transform:rotate(75deg);opacity:1;}	
+	40%{transform:rotate(47deg);opacity:1;}
+	60%{transform:rotate(70deg);opacity:1;}
+	80%{transform:rotate(57deg);opacity:1;}
+	100%{transform:translateY(700px);opacity:0;}
+	}
+
+@-webkit-keyframes ZoomLeftIn{
+    0%{opacity:0;-webkit-transform:scale(.1) translateX(-1000px);-webkit-animation-timing-function:cubic-bezier(0.55,.055,.675,.19);}
+	60%{opacity:1;-webkit-transform:scale(.475) translateX(10px);-webkit-animation-timing-function:cubic-bezier(0.175,.885,.32,1);}
+	}
+@keyframes ZoomLeftIn{
+    0%{opacity:0;transform:scale(.1) translateX(-1000px);animation-timing-function:cubic-bezier(0.55,.055,.675,.19);}
+	60%{opacity:1;transform:scale(.475) translateX(10px);animation-timing-function:cubic-bezier(0.175,.885,.32,1);}
+	}
+@-webkit-keyframes ZoomLeftOut{
+	40%{opacity:1;-webkit-transform:scale(.475) translateX(42px);}
+	100%{opacity:0;-webkit-transform:scale(.1) translateX(-2000px);-webkit-transform-origin:left center;}
+	}
+@keyframes ZoomLeftOut{
+    40%{opacity:1;transform:scale3d(.475) translateX(42px);}
+    100%{opacity:0;transform:scale(.1) translateX(-2000px);transform-origin:left center;}
+	}
+@-webkit-keyframes ZoomRightIn{
+    0%{opacity:0;-webkit-transform:scale(.1) translateX(1000px);-webkit-animation-timing-function:cubic-bezier(0.55,.055,.675,.19);}
+	60%{opacity:1;-webkit-transform:scale(.475) translateX(-10px);-webkit-animation-timing-function:cubic-bezier(0.175,.885,.32,1);}
+	}
+@keyframes ZoomRightIn{
+    0%{opacity:0;transform:scale(.1) translateX(1000px);animation-timing-function:cubic-bezier(0.55,.055,.675,.19);}
+	60%{opacity:1;transform:scale(.475) translateX(-10px);animation-timing-function:cubic-bezier(0.175,.885,.32,1);}
+	}
+@-webkit-keyframes ZoomRightOut{
+	40%{opacity:1;-webkit-transform:scale(.475) translateX(-42px);}
+	100%{opacity:0;-webkit-transform:scale(.1) translateX(2000px);-webkit-transform-origin:right center;}
+	}
+@keyframes ZoomRightOut{
+    40%{opacity:1;transform:scale(.475) translateX(-42px)}
+    100%{opacity:0;transform:scale(.1) translateX(2000px);transform-origin:right center;}
+	}
+@-webkit-keyframes ZoomUpIn{
+    0%{opacity:0;-webkit-transform:scale(.1) translateY(1000px);-webkit-animation-timing-function:cubic-bezier(0.55,.055,.675,.19);}
+	60%{opacity:1;-webkit-transform:scale(.475) translateY(-60px);-webkit-animation-timing-function:cubic-bezier(0.175,.885,.32,1);}
+	}
+@keyframes ZoomUpIn{
+    0%{opacity:0;transform:scale(.1) translateY(1000px);animation-timing-function:cubic-bezier(0.55,.055,.675,.19);}
+	60%{opacity:1;transform:scale(.475) translateY(-60px);animation-timing-function:cubic-bezier(0.175,.885,.32,1);}
+	}
+@-webkit-keyframes ZoomOutUp{
+	40%{opacity:1;-webkit-transform:scale(.475) translateY(60px);-webkit-animation-timing-function:cubic-bezier(0.55,.055,.675,.19);}
+	100%{opacity:0;-webkit-transform:scale(.1) translateY(-2000px);-webkit-transform-origin:center bottom;-webkit-animation-timing-function:cubic-bezier(0.175,.885,.32,1);}
+	}
+@keyframes ZoomOutUp{
+	40%{opacity:1;transform:scale3d(.475) translateY(60px);animation-timing-function:cubic-bezier(0.55,.055,.675,.19);}
+	100%{opacity:0;transform:scale(.1) translateY(-2000px);transform-origin:center bottom;animation-timing-function:cubic-bezier(0.175,.885,.32,1);}
+	}	
+@-webkit-keyframes ZoomDownIn{
+    0%{opacity:0;-webkit-transform:scale(.1) translateY(-1000px);-webkit-animation-timing-function:cubic-bezier(0.55,.055,.675,.19);}
+	60%{opacity:1;-webkit-transform:scale3(.475) translateY(60px);-webkit-animation-timing-function:cubic-bezier(0.175,.885,.32,1);}
+	}
+@keyframes ZoomDownIn{
+    0%{opacity:0;transform:scale(.1) translateY(-1000px);animation-timing-function:cubic-bezier(0.55,.055,.675,.19);}
+	60%{opacity:1;transform:scale(.475) translateY(60px);animation-timing-function:cubic-bezier(0.175,.885,.32,1);}
+	}
+@-webkit-keyframes ZoomOutDown{
+    40%{opacity:1;-webkit-transform:scale(.475) translateY(-60px);-webkit-animation-timing-function:cubic-bezier(0.55,.055,.675,.19);}
+	100%{opacity:0;-webkit-transform:scale(.1) translateY(2000px);-webkit-transform-origin:center bottom;-webkit-animation-timing-function:cubic-bezier(0.175,.885,.32,1);}
+	}
+@keyframes ZoomOutDown{
+    40%{opacity:1;transform:scale(.475) translateY(-60px);animation-timing-function:cubic-bezier(0.55,.055,.675,.19);}
+	100%{opacity:0;transform:scale(.1) translateY(2000px);transform-origin:center bottom;animation-timing-function:cubic-bezier(0.175,.885,.32,1);}
+	}
+/*蒙版*/	
+@-webkit-keyframes Masking{
+    0{-webkit-mask-size: 30px 30px;}
+	100%{-webkit-mask-size: 231px 112px;}
+	}
+@keyframes Masking{
+    0{}
+	100%{}
+	}
+	
+/*围绕*/  
+/*@-webkit-keyframes Around{
+    0%{-webkit-transform:rotate(0deg) translate3d(-5em,-5em,0);}
+    100%{-webkit-transform:rotate(360deg) translate3d(-5em,-5em,0);}
+    }
+@keyframes Around{
+    0%{transform:rotate(0deg) translate3d(-5em,-5em,0) rotate(0deg)}
+    100%{transform:rotate(360deg) translate3d(-5em,-5em,0) rotate(-360deg)}
+    }*/
+
+@-webkit-keyframes animate12_1{
+    0%  {/*-webkit-transform:translateX(0px);*/} 
+    100%{-webkit-transform:rotate(135deg); top:0}  
+    }
+@-webkit-keyframes animate12_2{
+    0%  {/*-webkit-transform:translateX(0px);*/} 
+    100%{-webkit-transform:rotate(225deg); bottom:0}  
+    }
+    
+    
+/*2.请选择动画样式 */
+/*以下动画类名"前"的class均为辅助类名，不用粘贴，只需粘贴动画类名即可*/
+.Active.FadeIn{-webkit-animation:FadeIn 3s linear both;animation:FadeIn 3s linear both;}
+.Active.FadeOut{-webkit-animation:FadeOut 2s linear both;animation:FadeOut 2s linear both;}
+.Active .WipeIn{-webkit-animation:WipeIn .3s linear .5s both;animation:WipeIn .3s linear .5s both;}
+.Active .WipeOut{-webkit-animation:WipeOut .3s linear .5s both;animation:WipeOut .3s linear .5s both;}
+.lr .Active .WipeIn{-webkit-animation-name:WipeIn_1;animation-name:WipeIn_1;}
+.lr .Active .WipeOut{-webkit-animation-name:WipeOut_1;animation-name:WipeOut_1;}
+.rl .Active .WipeIn{-webkit-animation-name:WipeIn_2;animation-name:WipeIn_2;}
+.rl .Active .WipeOut{-webkit-animation-name:WipeOut_2;animation-name:WipeOut_2;}
+.bt .Active .WipeIn{-webkit-animation-name:WipeIn_3;animation-name:WipeIn_3;}
+.bt .Active .WipeOut{-webkit-animation-name:WipeOut_3;animation-name:WipeOut_3;}
+.tb .Active .WipeIn{-webkit-animation-name:WipeIn_4;animation-name:WipeIn_4;}
+.tb .Active .WipeOut{-webkit-animation-name:WipeOut_4;animation-name:WipeOut_4;}
+.Active.ZoomIn{-webkit-animation:ZoomIn .5s linear .2s both;animation:ZoomIn .5s linear .2s both;}
+.Active.ZoomOut{-webkit-animation:ZoomOut .5s linear .2s both;animation:ZoomOut .5s linear .2s both;}
+.Active.FlyIn{-webkit-animation:FlyIn .6s ease-in both;animation:FlyIn .6s ease-in both;}
+.Active.FlyOut{-webkit-animation:FlyOut .6s ease-out both;animation:FlyOut .6s ease-out both;}
+.Active.Rotate{-webkit-animation:Rotate 1.4s linear infinite alternate both;animation:Rotate 1.4s linear infinite alternate both; -webkit-transform-origin:58px 6px;transform-origin:58px 6px;}
+.Active .Rotate_1{-webkit-animation:Rotate_1 1s linear infinite both;animation:Rotate_1 1s linear infinite both;-webkit-transform-origin:5px 4px;transform-origin:5px 4px;}
+.Active .Rotate_2{-webkit-animation:Rotate_1 6s linear infinite both;animation:Rotate_1 6s linear infinite both;-webkit-transform-origin:17px 30px;transform-origin:17px 30px;}
+.Active .Rotate_3D{-webkit-animation:Rotate_3D 1s linear 2 alternate both;animation:Rotate_3D 1s linear 2 alternate both; -webkit-transform-origin:76px 50px;transform-origin:76px 50px;}
+.Active .Rotate_3D_X{-webkit-animation:Rotate_3D_X .5s linear both;animation:Rotate_3D_X .5s linear alternate both; -webkit-transform-origin:72px 10px;transform-origin:72px 10px;}
+.Active .Rotate_3D_Y{-webkit-animation:Rotate_3D_Y .6s ease-in 2 alternate both;animation:Rotate_3D_Y .6s ease-in 2 alternate both; -webkit-transform-origin:62px 40px;transform-origin:62px 40px;}
+.Active.TurnDownIn{-webkit-animation:TurnDownIn 1s forwards;animation:TurnDownIn 1s forwards;}
+.Active.TurnDownOut{-webkit-animation:TurnDownOut 1s forwards;animation:TurnDownOut 1s forwards;}
+.Active.TurnUpIn{-webkit-animation:TurnUpIn 1s forwards;animation:TurnUpIn 1s forwards;}
+.Active.TurnUpOut{-webkit-animation:TurnUpOut 1s forwards;animation:TurnUpOut 1s forwards;}
+.Active .Shine{-webkit-animation:FadeOut .4s linear infinite alternate both;animation:FadeOut .4s linear infinite alternate both;}
+.Active.DropIn{-webkit-animation:DropIn .8s forwards;animation:DropIn .8s forwards}
+.Active.DropOut{-webkit-animation:DropOut .8s forwards;animation:DropOut .8s forwards}
+.Active.PinwheelIn{-webkit-animation:PinwheelIn 1s ease-in-out both;animation:PinwheelIn 1s ease-in-out both;}
+.Active.PinwheelOut{-webkit-animation:PinwheelOut 1s ease-in-out both;animation:PinwheelOut 1s ease-in-out both;}
+.Active.Compress{-webkit-animation:Compress .7s ease-out forwards;animation:Compress .7s ease-out forwards;-webkit-transform-origin:0 100%;transform-origin:0 100%;}
+.Active.Stretch{-webkit-animation:Stretch .9s ease-in forwards;animation:Stretch .9s ease-in forwards;-webkit-transform-origin:0 100%;transform-origin:0 100%;}
+.Active.Explode{-webkit-animation:Explode .5s forwards;animation:Explode .5s forwards;}
+.Active.Flotage{-webkit-animation:Flotage 3s linear infinite alternate both;animation:Flotage 3s linear infinite alternate both;}
+.Active .Quiver{-webkit-animation:Quiver .75s infinite none;animation:Quiver .75s infinite none;}
+.Active.Pulsate{-webkit-animation:Pulsate 1.5s infinite none;animation:Pulsate 1.5s infinite none;}
+.Active.Bounce{-webkit-animation:Bounce .8s ease-out none;animation:Bounce .8s ease-out none;}
+/*.Active.Around{-webkit-animation:Around 10s linear infinite;animation:Around 10s linear infinite;}*/
+.Active.SlideLeftIn{-webkit-animation:SlideLeftIn 1s 0s none;animation:SlideLeftIn 1s 0s none}
+.Active.SlideLeftOut{-webkit-animation:SlideLeftOut 1s 0s none;animation:SlideLeftOut 1s 0s none}
+.Active.SlideRightIn{-webkit-animation:SlideRightIn 1s 0s none;animation:SlideRightIn 1s 0s none}
+.Active.SlideRightOut{-webkit-animation:SlideRightOut 1s 0s none;animation:SlideRightOut 1s 0s none}
+.Active.SlideUpIn{-webkit-animation:SlideUpIn .5s ease-in-out both;animation:SlideUpIn .5s ease-in-out both;}
+.Active.SlideUpOut{-webkit-animation:SlideUpOut .5s ease-in-out both;animation:SlideUpOut .5s ease-in-out both;}
+.Active.SlideDownIn{-webkit-animation:SlideDownIn .5s ease-in-out both;animation:SlideDownIn .5s ease-in-out both;}
+.Active.SlideDownOut{-webkit-animation:SlideDownOut .5s ease-in-out both;animation:SlideDownOut .5s ease-in-out both;}
+.Active.User-Defined-Path{-webkit-animation:User-Defined-Path linear 2.5s 0s forwards;animation:User-Defined-Path linear .5s 0s forwards;}
+.Masking{/*-webkit-mask:url("images/mask.jpg") 50% 50%  no-repeat;*//*-webkit-mask-image: url("images/mask1.jpg");*//*-webkit-mask-image:-webkit-radial-gradient(50% 50%,rgba(0,0,0,0),rgba(0,0,0,0));*/-webkit-mask-image:-webkit-radial-gradient(center center,circle,rgba(0,0,0,1),rgba(255,255,255,1));-webkit-animation:Masking 3.5s ease-in-out both;}
+/*.Masking:before{ content:""; display:block; width:231px; height:112px; background:#fff; position:absolute; left:0;top:0; z-index:2;}
+.Masking:after{ content:""; display:block; width:231px; height:112px; background:#000; position:absolute; left:0;top:0; z-index:3; display:none;}*/
+.Masking{ -webkit-mask-image: url('images/mask1.png');}
+
+.Active.Hinge{-webkit-animation:Hinge 2.5s ease-in-out both;animation:Hinge 2.5s ease-in-out both;-webkit-transform-origin:0 0;transform-origin:0 0;}
+.Active.ZoomLeftIn{-webkit-animation-name:ZoomLeftIn;animation-name:ZoomLeftIn;-webkit-animation-duration:.8s;animation-duration:.8s;}
+.Active.ZoomLeftOut{-webkit-animation-name:ZoomLeftOut;animation-name:ZoomLeftOut;-webkit-animation-duration:.8s;animation-duration:.8s;}
+.Active.ZoomRightIn{-webkit-animation-name:ZoomRightIn;animation-name:ZoomRightIn;-webkit-animation-duration:.8s;animation-duration:.8s;}
+.Active.ZoomRightOut{-webkit-animation-name:ZoomRightOut;animation-name:ZoomRightOut;-webkit-animation-duration:.8s;animation-duration:.8s;}
+.Active.ZoomUpIn{-webkit-animation-name:ZoomUpIn;animation-name:ZoomUpIn;-webkit-animation-duration:.8s;animation-duration:.8s;}
+.Active.ZoomUpOut{-webkit-animation-name:ZoomOutUp;animation-name:ZoomOutUp;-webkit-animation-duration:.8s;animation-duration:.8s;}	
+.Active.ZoomDownIn{-webkit-animation-name:ZoomDownIn;animation-name:ZoomDownIn;-webkit-animation-duration:.8s;animation-duration:.8s;}
+.Active.ZoomDownOut{-webkit-animation-name:ZoomOutDown;animation-name:ZoomOutDown;-webkit-animation-duration:.8s;animation-duration:.8s;}
+.Active.Frame{-webkit-animation:Frame 1.4s step-start infinite;animation:Frame 1.4s step-start infinite;}
+.Active .Blink{-webkit-animation:Blink linear 3s infinite both;animation:Blink linear 3s infinite both;}
+.Ripple{-webkit-animation:Ripple 3 1.5s 0s none ease-in-out;animation:Ripple 3 1.5s 0s none ease-in-out}
+.Active #right_hand{-webkit-animation:Rotate .12s ease-in-out 15 alternate both;animation:Rotate .12s ease-in-out 15 alternate both; -webkit-transform-origin:182px 190px;transform-origin:182px 190px;}
+.Active #left_hand{-webkit-animation:Rotate .12s ease-in-out 0.1s 15 alternate both;animation:Rotate .12s ease-in-out 0.1s 15 alternate both; -webkit-transform-origin:85px 203px;transform-origin:85px 203px;}
+.Active #eyes{-webkit-animation:Blink linear 5s infinite both;animation:Blink linear 5s infinite both;-webkit-transform-origin: 50%;transform-origin: 50%;}
+.Active #flash{-webkit-animation:ZoomIn .1s linear 1.5s both;animation:ZoomIn .2s linear 1.5s both;-webkit-transform-origin: 50%;transform-origin: 50%;}
+
+
+
+.Active.Sunrise{-webkit-animation:Sunrise 5s linear forwards ;animation:Sunrise 1.5s ease-in-out forwards; }
+/*.animate11{ width: 264px;height: 173px;background: url("images/pp.png") no-repeat top right; animation:FlyIn .6s linear both,Rotate 1.4s linear infinite alternate both;-webkit-animation:FadeIn .6s linear both,Rotate 1.4s linear infinite alternate both;transform-origin:190px 130px; -webkit-transform-origin:190px 130px;}多个动画*/
+.animate12{ width:44px; height:44px; border-radius:5px; background:rgba(0,0,0,0.2); position:relative;-webkit-animation:ZoomIn .5s linear .2s both; cursor:pointer}
+.animate12 span{ display:block; height:2px; width:20px; background:#F66; position:absolute; top:50%;left:50%; margin-left:-10px; margin-top:-1px;}
+.animate12 span:before{ content:""; display:block; height:2px; width:20px; position:absolute; top:-6px;  background:#F66;}
+.animate12 span:after{ content:""; display:block; height:2px; width:20px;position:absolute; bottom:-6px; background:#F66;}
+.animate12:hover span{ background:none;}
+.animate12:hover span:before{-webkit-animation:animate12_1 .4s ease-in-out both;}
+.animate12:hover span:after{-webkit-animation:animate12_2 .4s ease-in-out both;}
+</style>
+<script type="text/javascript">
+$(function(){
+	$(".m_btn").hover(function(){
+		a=$(this).text();
+		$(this).text("复位");
+		$(this).next("div").addClass("Active");		
+		},
+		function(){
+		$(this).next("div").removeClass("Active");
+	    $(this).text(a);})	
+	})
+</script>
+</head>
+
+<body>
+<div>
+<h2>声明</h2>
+<p>本页仅用于技术研究及演示动画效果。若原作者看到，请联系<a href="mailto:shenghanqin@163.com">我的邮箱</a></p>
+<h2>使用方法</h2>
+<h3>1.复制关键帧动画keyframes规则</h3>
+<pre>
+
+/*风车入*/
+@-webkit-keyframes PinwheelIn{
+    0%{opacity:0;-webkit-transform:rotate(-720deg) scale(0.33);}
+    100%{opacity:1;-webkit-transform:rotate(0deg) scale(1);}
+    }
+@keyframes PinwheelIn{
+    0%{opacity:0;transform:rotate(-720deg) scale(0.33);}
+    100%{opacity:1;transform:rotate(0deg) scale(1);}
+    }
+    
+</pre>
+<h3>2.复制动画的实现样式</h3>
+<pre>
+
+.PinwheelIn{-webkit-animation:PinwheelIn 1s ease-in-out both;animation:PinwheelIn 1s ease-in-out both;}
+
+</pre>
+<h3>3.将PinwheelIn类名加入需要动画的标签中</h3>
+</div>
+<h2>动画属性说明</h2>
+<h3>1.关键帧动画keyframes规则</h3>
+<pre>
+
+@keyframes &lt;animationname&gt;{
+    &lt;keyframes-selector&gt;{ &lt;css-styles&gt; }
+    }
+&lt;keyframes-selector&gt;有两种形式：
+1.from和to;
+2.百分比；
+
+</pre>
+<h3>2.动画的实现样式animation</h3>
+<pre>
+
+animation : &lt;name&gt; &lt;duration&gt; &lt;timing-function&gt; &lt;delay&gt; &lt;iteration-count&gt; &lt;direction&gt; &lt;play-state&gt; &lt;fill-mode&gt;
+动画的名称： 名称 | 无
+animation-name : &lt;animationname&gt; |  none
+动画播放时间：时间
+animation-duration : &lt;time&gt;
+动画播放方式：匀速 | 加速| 加速进 | 加速出 | 加速先进再出 | 贝塞尔曲线 <a href="http://cubic-bezier.com/#.17,.67,.83,.67" target="_blank">效果预览地址</a> | 马上转跳到动画结束状态 | 
+              保持动画开始状态直到动画执行时间结束马上转跳到动画结束状态 | 
+	      number间隔数，第二个参数默认为end，设置最后一步的状态start结束时状态，end开始时状态
+animation-timing-function : linear | ease | ease-in | ease-out | ease-in-out | cubic-bezier(n,n,n,n) |
+                            step-start | step-end | steps(<number>[, [ start | end ] ]?); 
+动画延迟时间：时间
+animation-delay : &lt;time&gt;
+动画播放次数：无限 | 次数
+animation-iteration-count : infinite | &lt;n&gt;
+动画播放方向：正常 | 交替
+animation-direction : normal | alternate
+动画运行状态：暂停 | 运行
+animation-play-state : paused | running
+动画时间之外的状态：最后一帧动画 | 第一帧动画 | 向前向后填充模式都被应用 | 无
+animation-fill-mode : forwards | backwards | both | none
+</pre>
+<h3></h3>
+<h2>淡入(FadeIn) &clubs; 淡出(FadeOut)</h2>
+<div style="text-align:center;">
+    <a href="#" class="m_btn" style="float:left;">淡入</a>
+    <div class="img1 FadeIn" style="display:inline-block; margin:0 20px;"></div>
+    <a href="#" class="m_btn" style="float:right;">淡出</a>
+    <div class="img1 FadeOut" style="display:inline-block; margin:0 20px;"></div>    
+</div>
+<h2>擦入(WipeIn) &clubs; 擦出(WipeOut)</h2>
+<div class="hint">注：擦入擦出效果与背景图对齐设置，所在div浮动设置、定位设置，父级文字对齐设置，均有影响，选择时请注意以上外界因素。</div>
+<h3><span>从左至右</span></h3>
+<div style="text-align:center;" class="lr">
+    <a href="#" class="m_btn" style="float:left;">擦入</a>
+    <div style="width:110px; height:59px; display:inline-block;margin:0 20px;text-align:left;">
+        <div class="img2 WipeIn" style="display:inline-block;background-position:left center;"></div>
+    </div>
+    <a href="#" class="m_btn" style="float:right;">擦出</a>
+    <div style="width:110px; height:59px; display:inline-block;margin:0 20px;text-align:right;">
+        <div class="img2 WipeOut" style="display:inline-block;background-position:right center;"></div>
+    </div>
+</div>
+<h3><span>从右至左</span></h3>
+<div style="text-align:center;" class="rl">
+    <a href="#" class="m_btn" style="float:left;">擦入</a>
+    <div style="width:128px; height:55px; display:inline-block;margin:0 20px;text-align:right;">
+        <div class="img3 WipeIn" style="display:inline-block;background-position:right center;"></div>
+    </div>
+    <a href="#" class="m_btn" style="float:right;">擦出</a>
+    <div style="width:128px; height:55px; display:inline-block;margin:0 20px;text-align:left;">
+        <div class="img3 WipeOut" style="display:inline-block;background-position:left center;"></div>
+    </div>
+</div>
+<h3><span>从下至上</span></h3>
+<div style="text-align:center;" class="bt">
+    <a href="#" class="m_btn" style="float:left;">擦入</a>
+    <div style="width:45px; height:98px; display:inline-block;margin:0 20px; position:relative;">
+        <div class="img4 WipeIn" style="display:inline-block;background-position:center bottom;position:absolute; bottom:0; left:0;"></div>
+    </div>
+    <a href="#" class="m_btn" style="float:right;">擦出</a>
+    <div style="width:45px; height:98px; display:inline-block;margin:0 20px; position:relative;">
+        <div class="img4 WipeOut" style="display:inline-block;background-position:center top;position:absolute; top:0; left:0;"></div>
+    </div>
+</div>
+<h3><span>从上至下</span></h3>
+<div style="text-align:center;" class="tb">
+    <a href="#" class="m_btn" style="float:left;">擦入</a>
+    <div style="width:74px; height:96px; display:inline-block;margin:0 20px; position:relative;">
+        <div class="img5 WipeIn" style="display:inline-block;background-position:center top;position:absolute; top:0; left:0;"></div>
+    </div>
+    <a href="#" class="m_btn" style="float:right;">擦出</a>
+    <div style="width:74px; height:96px; display:inline-block;margin:0 20px; position:relative;">
+        <div class="img5 WipeOut" style="display:inline-block;background-position:center bottom;position:absolute; bottom:0; left:0;"></div>
+    </div>
+</div>
+<h2>缩放入(ZoomIn) &clubs; 缩放出(ZoomOut)</h2>
+<div style="text-align:center;">
+    <a href="#" class="m_btn" style="float:left;">缩放入</a>
+    <div class="img6 ZoomIn" style="display:inline-block; margin:0 20px;"></div>
+    <a href="#" class="m_btn" style="float:right;">缩放出</a>
+    <div class="img6 ZoomOut" style="display:inline-block; margin:0 20px;"></div>    
+</div>
+<h2>转入(TurnIn) &clubs; 转出(TurnOut)</h2>
+<h3><span>左入左出</span></h3>
+<div style="text-align:center;">
+    <a href="#" class="m_btn" style="float:left;">左转入</a>
+    <div class="img29 ZoomLeftIn" style="display:inline-block; margin:0 20px;"></div>
+    <a href="#" class="m_btn" style="float:right;">左转出</a>
+    <div class="img29 ZoomLeftOut" style="display:inline-block; margin:0 20px;"></div>
+</div>
+<h3><span>右入右出</span></h3>
+<div style="text-align:center;"> 
+    <a href="#" class="m_btn" style="float:left;">右转入</a>
+    <div class="img29 ZoomRightIn" style="display:inline-block; margin:0 20px;"></div>
+    <a href="#" class="m_btn" style="float:right;">右转出</a>
+    <div class="img29 ZoomRightOut" style="display:inline-block; margin:0 20px;"></div>
+</div>
+<h3><span>上入上出</span></h3>
+<div style="text-align:center;"> 
+    <a href="#" class="m_btn" style="float:left;">上转入</a>
+    <div class="img29 ZoomUpIn" style="display:inline-block; margin:0 20px;"></div>
+    <a href="#" class="m_btn" style="float:right;">上转出</a>
+    <div class="img29 ZoomUpOut" style="display:inline-block; margin:0 20px;"></div>
+</div>
+<h3><span>下入下出</span></h3>
+<div style="text-align:center;"> 
+    <a href="#" class="m_btn" style="float:left;">下转入</a>
+    <div class="img29 ZoomDownIn" style="display:inline-block; margin:0 20px;"></div>
+    <a href="#" class="m_btn" style="float:right;">下转出</a>
+    <div class="img29 ZoomDownOut" style="display:inline-block; margin:0 20px;"></div>
+</div>
+<h2>飞入(FlyIn) &clubs; 飞出(FlyOut)</h2>
+<div style="text-align:center;"> 
+    <a href="#" class="m_btn" style="float:left;">飞入</a>
+    <div class="img7 FlyIn" style=" display:inline-block;margin:0 20px;"></div>
+    <a href="#" class="m_btn" style="float:right;">飞出</a>
+    <div class="img7 FlyOut" style=" display:inline-block;margin:0 20px;"></div>
+</div>
+<h2>旋转2D(Rotate) &clubs; 旋转3D(Rotate_3D)</h2>
+<h3><span>旋转2D</span></h3>
+<div style="text-align:center; position:relative;">
+    <a href="#" class="m_btn" style="float:left;">摇摆</a>
+    <div class="img9 Rotate" style="display:inline-block; margin:0 20px;"></div>
+    <div style="width:8px; height:8px; background:#616060; border-radius:50%; position:absolute; left:50%; top:5px; margin-left:-102px;"></div>
+    <a href="#" class="m_btn" style="float:right;">转圈</a>
+    <div style="display:inline-block; margin:0 20px; background:url(images/img14_3.png) no-repeat;width:147px; height:149px; position:relative;">
+       <div class="img14_1 Rotate_1" style="position:absolute; left:74px; top:86px;"></div>
+       <div class="img14_2 Rotate_2" style="position:absolute; left:61px; top:59px;"></div>
+    </div>
+</div>
+<h3><span>旋转3D</span></h3>
+<div style="text-align:center; position:relative;">
+    <a href="#" class="m_btn" style="float:left;">X轴旋转</a>
+    <div style="display:inline-block; margin:0 20px; background:url(images/img13_1.png) no-repeat bottom center;width:151px; height:99px;">
+       <div class="img13 Rotate_3D_X"></div>
+    </div>
+        <a href="#" class="m_btn" style="float:right;">Y轴旋转</a>
+    <div style="display:inline-block; margin:0 20px; background:url(images/img10_1.png) no-repeat 47px center;width:145px; height:135px;">
+       <div class="img10 Rotate_3D_Y" style=" background-position:0 10px"></div>
+    </div>
+</div>
+<h2>翻转入(TurnIn) &clubs; 翻转出(TurnOut)</h2>
+<h3><span>从下至上</span></h3>
+<div style="text-align:center;">
+    <a href="#" class="m_btn" style="float:left;">翻转入</a>
+    <div class="img8 TurnDownIn" style="display:inline-block; margin:0 20px;"></div>
+    <a href="#" class="m_btn" style="float:right;">翻转出</a>
+    <div class="img8 TurnDownOut" style="display:inline-block; margin:0 20px;"></div>
+</div>
+<h3><span>从上至下</span></h3>
+<div style="text-align:center;"> 
+    <a href="#" class="m_btn" style="float:left;">翻转入</a>
+    <div class="img8 TurnUpIn" style="display:inline-block; margin:0 20px;"></div>
+    <a href="#" class="m_btn" style="float:right;">翻转出</a>
+    <div class="img8 TurnUpOut" style="display:inline-block; margin:0 20px;"></div>
+</div>
+<h2>滑入(SlideIn) &clubs; 滑出(SlideOut)</h2>
+<h3><span>左入左出</span></h3>
+<div style="text-align:center;">
+    <a href="#" class="m_btn" style="float:left; position:relative; z-index:1;">滑动入</a>
+    <div class="img8 SlideLeftIn" style="display:inline-block; margin:0 20px;"></div>
+    <a href="#" class="m_btn" style="float:right;">滑动出</a>
+    <div class="img8 SlideLeftOut" style="display:inline-block; margin:0 20px;"></div>
+</div>
+<h3><span>右入右出</span></h3>
+<div style="text-align:center;"> 
+    <a href="#" class="m_btn" style="float:left;">滑动入</a>
+    <div class="img8 SlideRightIn" style="display:inline-block; margin:0 20px;"></div>
+    <a href="#" class="m_btn" style="float:right;">滑动出</a>
+    <div class="img8 SlideRightOut" style="display:inline-block; margin:0 20px;"></div>
+</div>
+<h3><span>上入上出</span></h3>
+<div style="text-align:center;"> 
+    <a href="#" class="m_btn" style="float:left;">滑动入</a>
+    <div class="img8 SlideUpIn" style="display:inline-block; margin:0 20px;"></div>
+    <a href="#" class="m_btn" style="float:right;">滑动出</a>
+    <div class="img8 SlideUpOut" style="display:inline-block; margin:0 20px;"></div>
+</div>
+<h3><span>下入下出</span></h3>
+<div style="text-align:center;"> 
+    <a href="#" class="m_btn" style="float:left;">滑动入</a>
+    <div class="img8 SlideDownIn" style="display:inline-block; margin:0 20px;"></div>
+    <a href="#" class="m_btn" style="float:right;">滑动出</a>
+    <div class="img8 SlideDownOut" style="display:inline-block; margin:0 20px;"></div>
+</div>
+<!--<div class="FlyIn" style=" display:inline-block"> 
+<div class="Blink"></div>
+</div>-->
+<h2>伸展(Stretch) &clubs; 压缩(Compress)</h2>
+<div style="text-align:center;"> 
+    <a href="#" class="m_btn" style="float:left;">伸展</a>
+    <div class="img17 Stretch" style="display:inline-block; margin:0 20px;"></div>
+    <a href="#" class="m_btn" style="float:right;">压缩</a>
+    <div class="img18 Compress" style="display:inline-block; margin:0 20px;"></div>
+</div>
+<h2>坠入(DropIn) &clubs; 坠出(DropOut)</h2>
+<div style="text-align:center;"> 
+    <a href="#" class="m_btn" style="float:left;">坠入</a>
+    <div class="img12 DropIn" style="display:inline-block; margin:0 20px;"></div>
+    <a href="#" class="m_btn" style="float:right;">坠出</a>
+    <div class="img12 DropOut" style="display:inline-block; margin:0 20px;"></div>
+</div>
+<h2>风车入(PinwheelIn) &clubs; 风车出(PinwheelOut)</h2>
+<div style="text-align:center;"> 
+    <a href="#" class="m_btn" style="float:left;">风车入</a>
+    <div class="img15 PinwheelIn" style="display:inline-block; margin:0 20px;"></div>
+    <a href="#" class="m_btn" style="float:right;">风车出</a>
+    <div class="img15 PinwheelOut" style="display:inline-block; margin:0 20px;"></div>
+</div>
+<h2>发光(Shine)</h2>
+<div style="text-align:center;"> 
+    <a href="#" class="m_btn" style="float:left;">发光</a>
+    <div style="background:url(images/img11_1.png) no-repeat;width:124px; height:165px;display:inline-block; margin:0 20px 0 -80px;">
+      <div class="img11 Shine" style=" margin:52px 0 0 -4px;"></div>
+    </div>
+</div>
+<h2>爆炸(Explode)</h2>
+<div style="text-align:center;"> 
+    <a href="#" class="m_btn" style="float:left;">爆炸</a>
+    <div class="img19 Explode" style="display:inline-block;margin:0 20px 0 -80px;"></div>
+</div>
+<h2>漂浮(Flotage)</h2>
+<div style="text-align:center;"> 
+    <a href="#" class="m_btn" style="float:left;">漂浮</a>
+    <div class="img20 Flotage" style="display:inline-block;margin:0 20px 0 -80px;"></div>
+</div>
+<h2>抖动(Quiver)</h2>
+<div style="text-align:center;"> 
+    <a href="#" class="m_btn" style="float:left;">抖动</a>
+    <div style="background:url(images/img21_1.png) no-repeat bottom center;width:162px; height:148px;display:inline-block; margin:0 20px 0 -80px;">
+      <div class="img21 Quiver" style=""></div>
+    </div>
+</div>
+<h2>眨眼(Blink)</h2>
+<div style="text-align:center;"> 
+    <a href="#" class="m_btn" style="float:left;">眨眼</a>
+    <div style="background:url(images/img32_1.png) no-repeat bottom center;width:149px; height:131px;display:inline-block; margin:0 20px 0 -80px;">
+      <div class="img32 Blink" style=" margin:57px 0 0 53px;"></div>
+    </div>
+</div>
+<h2>脉动(Pulsate)</h2>
+<div style="text-align:center;"> 
+    <a href="#" class="m_btn" style="float:left;">脉动</a>
+    <div class="img22 Pulsate" style="display:inline-block;margin:0 20px 0 -80px;"></div>
+</div>
+<h2>弹跳(Bounce)</h2>
+<div style="text-align:center;"> 
+    <a href="#" class="m_btn" style="float:left;">弹跳</a>
+    <div class="img24 Bounce" style="display:inline-block;margin:0 20px 0 -80px;"></div>
+</div>
+<h2>转轴(Hinge)</h2>
+<div style="text-align:center; height:220px;"> 
+    <a href="#" class="m_btn" style="float:left;">转轴</a>
+    <div class="img27 Hinge" style="display:inline-block;margin:0 20px 0 -80px;"></div>
+</div>
+<!-- <h2>涟漪(Ripple)</h2>
+<div style="text-align:center; height:220px;"> 
+    <a href="#" class="m_btn" style="float:left;">涟漪</a>
+    <div class="img00 Ripple" style="display:inline-block;margin:0 20px 0 -80px;"></div>
+</div> -->
+<h2>帧动画(Frame)</h2>
+<div style="text-align:center;"> 
+    <a href="#" class="m_btn" style="float:left;">帧动画</a>
+    <div class="img30 Frame" style="display:inline-block;margin:0 20px 0 -80px;"></div>
+</div>
+<h2>自定义路径(User-Defined-Path)</h2>
+<div style="text-align:center;"> 
+    <a href="#" class="m_btn" style="float:left;">自定义路径</a>
+    <div class="img23 User-Defined-Path" style="display:inline-block;margin:0 20px 0 -80px;"></div>
+</div>
+<!-- <h2>蒙版(Masking)</h2>
+<div style="text-align:center;"> 
+    <a href="#" class="m_btn" style="float:left;">蒙版</a>
+    <div class="img31 Masking" style="display:inline-block;margin:0 20px 0 -80px;"></div>
+</div> -->
+<h2>基于SVG(Base On The SVG)</h2>
+<div style="text-align:center;"> 
+    <a href="#" class="m_btn" style="float:left;">基于SVG</a>
+	<div style="display:inline-block; margin:0 20px 0 -80px;">
+	<svg version="1.1" id="eg" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+	 width="212px" height="272px" viewBox="0 0 212 272" enable-background="new 0 0 212 272" xml:space="preserve">
+<g>
+	<path fill="#441E0C" d="M151.284,262.634H35.229v-8.504c0-26.313,3.676-56.854,16.523-80.282
+		c8.508-15.515,22.629-29.813,41.504-29.813s32.994,14.299,41.504,29.813c12.848,23.429,16.523,53.969,16.523,80.282v8.504H151.284z
+		"/>
+	<path fill="#FFFFFF" d="M43.94,243.986l98.639,0.219c0.055,1.457,0.104,2.926,0.137,4.412L43.8,248.396
+		C43.835,246.908,43.886,245.443,43.94,243.986L43.94,243.986z M54.776,187.303l77.049,0.204c0.584,1.432,1.156,2.897,1.703,4.417
+		l-80.461-0.214C53.616,190.195,54.186,188.731,54.776,187.303L54.776,187.303z M50.808,198.632l84.965,0.219
+		c0.424,1.439,0.83,2.91,1.221,4.415L49.58,203.04C49.972,201.537,50.382,200.067,50.808,198.632L50.808,198.632z M47.934,209.962
+		l90.692,0.235c0.303,1.447,0.598,2.912,0.871,4.414l-92.434-0.239C47.339,212.874,47.63,211.405,47.934,209.962L47.934,209.962z
+		 M45.946,221.3l94.652,0.233c0.207,1.453,0.406,2.916,0.582,4.414l-95.822-0.235C45.538,224.216,45.739,222.753,45.946,221.3
+		L45.946,221.3z M44.647,232.648l97.236,0.216c0.125,1.454,0.242,2.919,0.342,4.413L44.3,237.06
+		C44.401,235.568,44.522,234.103,44.647,232.648z"/>
+	<path fill="#441E0C" d="M74.767,271.177H37.694H0.62c-1.729-31.508,36.578-26.676,56.535-14.648
+		C63.852,260.566,69.89,265.533,74.767,271.177z"/>
+	<path fill="#FFFFFF" d="M68.128,268.341c-3.785-3.57-8.004-6.711-12.437-9.385c-5.105-3.078-10.977-5.404-16.742-6.9
+		c-8.914-2.313-22.277-3.623-29.883,2.785c-4.086,3.439-5.522,8.402-5.656,13.5H68.128z"/>
+	<path fill="#441E0C" d="M106.37,270.087h37.072h37.074c1.727-31.504-36.578-26.674-56.535-14.644
+		C117.284,259.478,111.247,264.445,106.37,270.087z"/>
+	<path fill="#FFFFFF" d="M113.009,267.256h64.719c-0.135-5.098-1.57-10.063-5.656-13.504c-7.605-6.406-20.969-5.094-29.883-2.781
+		c-5.766,1.496-11.637,3.82-16.742,6.898C121.011,260.543,116.794,263.683,113.009,267.256z"/>
+	<path fill="#441E0C" d="M97.331,183.903c44.789,0,81.318-36.529,81.318-81.317S142.12,21.268,97.331,21.268
+		c-44.787,0-81.316,36.529-81.316,81.317S52.544,183.903,97.331,183.903z"/>
+	<path fill="#FFFFFF" d="M98.498,34.939c38.643,0,69.979,31.337,69.979,69.979s-31.336,69.979-69.979,69.979
+		c-38.641,0-69.979-31.337-69.979-69.979C28.519,66.276,59.857,34.939,98.498,34.939z"/>
+	<path fill="#441E0C" d="M27.972,22.434C73.022-2.627,116.505-2.094,145.513,5.402c5.549,16.349,11.938,30.081,17.488,46.43
+		c-48.344-12.62-93.729-7.258-135.535,19.813C27.636,55.241,27.804,38.838,27.972,22.434z"/>
+	<path fill="#D55B1C" d="M152.345,42.394c-3.979-10.432-8.305-20.729-12.043-31.259c-15.254-3.486-31.34-4.248-46.85-2.659
+		c-20.637,2.114-40.42,8.383-58.719,18.032c-0.113,11.013-0.227,22.026-0.34,33.04C71.302,39.05,111.056,34.137,152.345,42.394z"/>
+	<path fill="#441E0C" d="M174.206,49.669c16.537,9.666,16.225,22.035,0.115,28.581C135.788,32.788,37.444,50.539,15.714,105.614
+		C2.952,104.639-4.782,90.372,8.936,75.881C46.933,35.747,127.194,22.19,174.206,49.669z"/>
+	<path fill="#D55B1C" d="M178.548,62.046c-1.961-2.781-5.908-5.413-7.773-6.504c-24.865-14.533-58.051-15.9-85.752-10.659
+		c-25.605,4.845-52.98,16.489-71.145,35.675c-1.857,1.962-3.945,4.793-4.894,7.747c1.043-1.8,2.363-3.438,3.582-4.714
+		c18.598-19.441,46.623-31.24,72.84-36.15c28.363-5.311,62.338-3.925,87.795,10.801C174.456,58.968,176.634,60.37,178.548,62.046z"
+		/>
+</g>
+<path fill="#D55B1C" d="M156.602,102.586c0,32.727-26.543,59.27-59.272,59.27c-23.857,0-45.342-14.294-54.609-36.201
+	l-0.441-1.045l2.086-0.883l0.443,1.044c8.912,21.07,29.576,34.817,52.521,34.817c31.477,0,57.002-25.525,57.002-57.002v-1.134h2.27
+	V102.586z"/>
+<path id="eyes" fill="#441E0C" d="M89.836,81.38c2.758-0.88,5.098,3.877,5.182,4.32c0.082,0.441-1.68,1.148-3.936,1.576
+	c-2.256,0.428-4.154,0.416-4.238-0.027C86.515,85.492,87.344,82.156,89.836,81.38z M107.125,78.458
+	c2.958-0.5,5.059,3.528,5.141,3.97c0.086,0.442-1.676,1.149-3.934,1.577c-2.256,0.427-4.154,0.415-4.238-0.027
+	C104.011,83.536,104.167,78.875,107.125,78.458z"/>
+<g id="cr">
+	<path fill="#441E0C" d="M105.491,205.001l-3.775-24.65c-1.146-7.493,4.049-14.563,11.539-15.709l40.586-6.214
+		c7.488-1.145,14.563,4.05,15.707,11.537l3.773,24.651c1.148,7.487-4.043,14.561-11.535,15.708l-40.588,6.214
+		C113.706,217.685,106.638,212.494,105.491,205.001z"/>
+	<path fill="#FFFFFF" d="M134.833,169.94c9.688-1.482,18.746,5.171,20.229,14.857c1.482,9.686-5.17,18.744-14.857,20.227
+		c-9.686,1.483-18.744-5.17-20.227-14.855C118.493,180.482,125.147,171.424,134.833,169.94z"/>
+	<circle fill="#441E0C" cx="137.519" cy="187.483" r="16.538"/>
+	<circle fill="#FFFFFF" cx="137.52" cy="187.482" r="7.923"/>
+</g>
+<g id="right_hand">
+	<path fill="#441E0C" d="M171.122,180.642c-1.459-3.237-0.195-6.976,1.443-9.883c1.877-3.33,4.67-6.438,7.559-8.922
+		c2.023-1.741,4.26-3.32,6.627-4.554c5.898-3.07,12.572-2.765,17.449,2.017c1.926,1.889,3.328,4.291,4.061,6.885
+		c2.4,8.493-2.541,15.672-10.623,18.373C190.642,186.897,174.837,188.887,171.122,180.642z"/>
+	<path fill="#FFFFFF" d="M173.706,179.478c2.354,5.224,14.381,5.284,23.033,2.392c17.82-5.955,7.178-30.325-8.68-22.071
+		C179.704,164.148,171.405,174.369,173.706,179.478z"/>
+</g>
+<g id="left_hand">
+	<path fill="#441E0C" d="M73.983,190.655c2.469-8.699,18.395-9.042,25.658-7.752c7.875,1.4,13.75,7.161,13.301,15.463
+		c-0.166,3.081-1.254,6.107-3.119,8.569c-4.127,5.439-10.682,6.717-16.965,4.542c-2.523-0.874-4.965-2.109-7.221-3.535
+		C80.647,204.788,72.054,197.453,73.983,190.655z"/>
+	<path fill="#FFFFFF" d="M76.71,191.428c1.563-5.512,13.453-7.33,22.436-5.733c18.5,3.286,11.533,28.95-5.357,23.103
+		C84.884,205.716,75.179,196.819,76.71,191.428z"/>
+</g>
+<g id="flash">
+	<g>
+		<polygon fill="#441E0C" points="153.703,138.59 157.063,156.867 171.385,145.025 162.209,161.187 180.793,161.321 
+			163.377,167.804 177.525,179.852 160.018,173.622 163.111,191.946 153.703,175.92 144.295,191.946 147.389,173.622 
+			129.881,179.852 144.029,167.804 126.613,161.321 145.197,161.187 136.021,145.025 150.344,156.867 		"/>
+	</g>
+	<polygon fill="#D55B1C" points="153.703,147.998 151.492,160.024 142.07,152.233 148.107,162.866 135.877,162.954 147.338,167.22 
+		138.029,175.146 149.549,171.049 147.514,183.105 153.703,172.561 159.893,183.105 157.857,171.049 169.377,175.146 
+		160.068,167.22 171.529,162.954 159.299,162.866 165.336,152.233 155.914,160.024 	"/>
+</g>
+</svg>
+	</div>
+</div>
+<!-- <h2>模板</h2>
+<div style="text-align:center;"> 
+    <a href="#" class="m_btn" style="float:left;">模板</a>
+    <div class="img00 xxx" style="display:inline-block; margin:0 20px;"></div>
+    <a href="#" class="m_btn" style="float:right;">模板</a>
+    <div class="img00 xxx" style="display:inline-block; margin:0 20px;"></div>
+</div> -->
+<!--<h2>围绕(Around)</h2>
+<div style="text-align:center;"> 
+    <a href="#" class="m_btn" style="float:left;">围绕</a>
+    <div class="img25 Around" style="display:inline-block;margin:0 20px 0 -80px;"></div>
+</div>-->
+<!-- <h2>附加</h2>
+<div class="animate12">
+   <span></span>
+</div> -->
+</body>
+</html>

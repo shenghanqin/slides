@@ -10,29 +10,31 @@
 * TabBar 创意动画
 
 ## 基础知识
-### 默认效果
+### 默认 TarBar
 
 * 全局调用
-* 常驻页面最底部，占据页面高度 50px，有iPhone x适配
+* 常驻页面最底部，占据页面高度 50px，有 iPhone x 全面屏适配
 
-[https://developers.weixin.qq.com/miniprogram/dev/extended/weui/tabbar.html](https://developers.weixin.qq.com/miniprogram/dev/extended/weui/tabbar.html)
+[Tabbar 官方文档](https://developers.weixin.qq.com/miniprogram/dev/extended/weui/tabbar.html)
+
+下图为小溪里参与维护的 CCtalk 出品的“打卡鸭”小程序。
 
 ![](https://image-hosting.xiaoxili.com/img/img/20200827/2128e0fc707ad29046520cf48f9b4881-d86272.jpeg)
 
-### 自定义-全局
+### 自定义 TarBar 之全局定义
 
 [自定义 tabBar](https://developers.weixin.qq.com/miniprogram/dev/framework/ability/custom-tabbar.html)可以让开发者更加灵活地设置 tabBar 样式，以满足更多个性化的场景。
 
 在自定义 tabBar 模式下
 
 * 为了保证低版本兼容以及区分哪些页面是 tab 页，tabBar 的相关配置项需完整声明，但这些字段不会作用于自定义 tabBar 的渲染。
-* 此时需要开发者提供一个自定义组件来渲染 tabBar，所有 tabBar 的样式都由该自定义组件渲染。推荐用 fixed 在底部的 cover-view + cover-image 组件渲染样式，以保证 tabBar 层级相对较高。
-* 与 tabBar 样式相关的接口，如 wx.setTabBarItem 等将失效。
+* 此时需要开发者提供一个自定义组件来渲染 tabBar，所有 tabBar 的样式都由该自定义组件渲染。推荐用 fixed 在底部的 `cover-view` + `cover-image` 组件渲染样式，以保证 tabBar 层级相对较高。
+* 与 tabBar 样式相关的接口，如 `wx.setTabBarItem` 等将失效。
 * **每个 tab 页下的自定义 tabBar 组件实例**是不同的，可通过自定义组件下的 `getTabBar` 接口，获取当前页面的自定义 `tabBar` 组件实例。
 
 简单来说：
-* CSS fixed 底部，需要做iPhone x适配
-* 需要切换页面后，设置当前高亮的 `TabItem`
+* 使用 CSS fixed 将 Tabbar 固定到底部，需要做 iPhone x 全面屏适配
+* 在切换页面后，设置当前高亮的 `TabItem`
 
 ![](https://image-hosting.xiaoxili.com/img/img/20200827/6baa5b8531d8f3575db1991e6996f152-a12be5.png)
 
@@ -48,7 +50,7 @@ show() {
 }
 ```
 
-#### 设置 TabBar 高亮的几篇文章
+以下为设置 TabBar 高亮的几篇文章
 
 * [小程序自定义底部导航栏组件](https://github.com/ljybill/miniprogram-custom-tab-bar)
 * [Taro 3.x 设置自定义 TabBar](https://github.com/tarojsx/ui/blob/master/src/CustomTabBar.tsx)
@@ -64,18 +66,6 @@ show() {
 ![](https://image-hosting.xiaoxili.com/img/img/20200827/52c79abfa0ec4398d2688472542705ab-4ce5b1.jpeg)
 
 ## TabBar 完整动画演示
-<!--
-
-* 先看设计稿 局部动画，需要自定义tabBar
-* 找类似的
-    * 爱奇艺app底部动画
-    * 京东app底部动画
-* 两个动画注意点
-    * 页面布局
-    * transform 位移和旋转的效果
-* 动画示例
-    * Menu 动画的示例
-    * TabBar 动画示例 -->
 
 ### 抽屉动画演示
 
@@ -115,8 +105,6 @@ show() {
 * 完整效果 https://codepen.io/ainalem/pen/KBvOWV
 * 分析文章 https://www.leevii.com/2018/09/adhesive-effect.html
 * 简单示例 https://codepen.io/leevare/pen/yxxMMq
-
-
 
 ###### SVG 路径示意
 ![](https://image-hosting.xiaoxili.com/img/img/20200827/c0f76a365ced32d8dff2ce3d8d0398e7-67a841.png)
@@ -270,13 +258,6 @@ css 滤镜[https://juejin.im/post/6844903633289478152](https://juejin.im/post/68
 推拉式菜单[https://codepen.io/tylerfowle/pen/vEqXMV](https://codepen.io/tylerfowle/pen/vEqXMV)
 
 模仿案例[https://codepen.io/jh3y/pen/KKwrzOq](https://codepen.io/jh3y/pen/KKwrzOq)，但是 svg滤镜真机不好使
-
-tabBar文章
-
-
-## 小程序直播间交互动画优化
-
-6个优化点
 
 
 
